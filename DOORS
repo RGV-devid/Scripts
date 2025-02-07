@@ -36,7 +36,8 @@ local Tabs = {
   Main = Window:AddTab("Main"),
   Players = Window:AddTab("Players"),
   Exploits = Window:AddTab("Exploits"),
-  Visual = Window:AddTab("Visual")
+  Visual = Window:AddTab("Visual"),
+  Settings = Window:AddTab("Settings"),
 }
 local Fast = Tabs.Main:AddLeftGroupbox("Fast")
 game:GetService("RunService").RenderStepped:Connect(function()
@@ -460,12 +461,16 @@ World:AddToggle("MyToggle",{
 Text = "No Hiding Vignette",
 Default = false,
 Callback = function(v)
+task.spawn(function()
+while wait(0.1) do
 local vignette = game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.HideVignette
         if v then
             vignette.Size = UDim2.new(0,0,0,0)
         else
             vignette.Size = UDim2.new(1,0,1,0)
         end
+      end
+   end)
 end})
 local Misc = Tabs.Main:AddRightGroupbox("Misc")
 Misc:AddButton({
@@ -500,9 +505,129 @@ game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end})
 
 
-
-
-
+local Players = Tabs.Players:AddLeftGroupbox("Players")
+Players:AddSlider("MySlider",{
+Text = "Speed Boost",
+Min = 15,
+Default = 15,
+Max = 50,
+Rounding = 1,
+Compact = true,
+Callback = function(v)
+_G.SpeedBoost = v
+end})
+Players:AddToggle("MyToggle",{
+Text = "Speed Boost",
+Default = false,
+Callback = function(v)
+_G.EnabledSpeed = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.EnabledSpeed and not _G.SeekSpeed then
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = _G.SpeedBoost or 17
+game.Players.LocalPlayer.Character:SetAttribute("SpeedBoost", 1)
+else
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 17
+game.Players.LocalPlayer.Character:SetAttribute("SpeedBoost", 0)
+end
+end)
+end})
+Players:AddToggle("MyToggle",{
+Text = "Speed Offtion",
+Default = false,
+Callback = function(v)
+_G.SeekSpeed = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.SeekSpeed then
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 20.5
+end
+end)
+end}):AddKeyPicker("SeekSpeed", {
+    Default = "Q",
+    Text = "Speed Offtion",
+    Mode = Library.IsMobile and "Toggle",
+    SyncToggleState = Library.IsMobile,
+})
+Players:AddDivider()
+Players:AddToggle("MyToggle",{
+Text = "Eat Candies",
+Default = false,
+Callback = function(v)
+_G.EatCandy = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if game.Players.LocalPlayer.Character:FindFirstChild("Candy",true) and _G.EatCandy then
+if not game.Players.LocalPlayer.Character:FindFirstChild("Meshes/DOORS_EvilCandy_Cube", true) then
+game.Players.LocalPlayer.Character.Candy.Remote:FireServer()
+end
+end
+end)
+end})
+if Fools then
+Players:AddToggle("Godmode",{
+Text = "Godmode",
+Default = false,
+Callback = function(v)
+if v then
+local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+Collison.Position = Collison.Position - Vector3.new(0,10,0)
+else
+local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+Collison.Position = Collison.Position - Vector3.new(0,-10,0)
+end
+task.spawn(function()
+while wait(1) do
+if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+Toggles.Godmode:SetValue(false)
+end
+end
+end)
+end})
+end
+Players:AddToggle("MyToggle",{
+Text = "No Accessories",
+Default = false,
+Callback = function(v)
+_G.NoSlow = v
+game:GetService("RunService").RenderStepped:Connect(function()
+game.Players.LocalPlayer.Character.Head.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftFoot.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftHand.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftLowerArm.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftLowerLeg.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftUpperArm.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftUpperLeg.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LowerTorso.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightFoot.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightFoot.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightHand.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightLowerArm.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightLowerLeg.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightUpperArm.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightUpperLeg.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.UpperTorso.Massless = not _G.NoSlow;
+end)
+end})
+Players:AddToggle("MyToggle",{
+Text = "Noclip",
+Default = false,
+Callback = function(v)
+if v then
+        noclipConnection = game:GetService("RunService").Stepped:Connect(function()
+            local player = game.Players.LocalPlayer
+            if player and player.Character then
+                for _, part in pairs(player.Character:GetDescendants()) do
+                    if part:IsA("BasePart") then
+                        part.CanCollide = false
+                    end
+                end
+            end
+        end)
+    else
+        if noclipConnection then
+            noclipConnection:Disconnect()
+            noclipConnection = nil
+        end
+    end
+end})
 
 
 
