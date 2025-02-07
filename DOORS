@@ -302,8 +302,8 @@ Interact:AddDropdown("Auto-interact-drop", {
 	Visible = true, 
 })
 local function AutoInteractLoop()
-    while true do
-        task.wait()
+    while true do wait(0.1)
+        task.wait(0.1)
         if _G.AutoInteractEnabled then
             local prompts = Script.Functions.GetAllPromptsWithCondition(function(prompt)
                 if not prompt.Parent then return false end
