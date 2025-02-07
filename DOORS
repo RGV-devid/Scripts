@@ -1,3 +1,18 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local GameData = ReplicatedStorage:WaitForChild("GameData")
+local Floor = GameData:WaitForChild("Floor")
+local Fools = Floor.Value == "Fools"
+local Hotel = Floor.Value == "Hotel"
+local Rooms = Floor.Value == "Rooms"
+local Mines = Floor.Value == "Mines"
+local Retro = Floor.Value == "Retro"
+local Rooms = Floor.Value == "Rooms"
+local Backdoor = Floor.Value == "Backdoor"
+if Fools then
+RemotesFolder = ReplicatedStorage.EntityInfo
+else
+RemotesFolder = ReplicatedStorage.RemotesFolder
+end
 local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
 local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
@@ -330,38 +345,80 @@ InitializeScript()
 task.spawn(AutoInteractLoop)
 local Automation = Tabs.Main:AddRightGroupbox("Automation")
 Automation:AddToggle("MyToggle",{
-Text = "Tự Động Điện",
-Default = false
-})
+Text = "Auto Breaker",
+Default = false,
+Callback = function(v)
+_G.AutoBreaker = v
+while _G.AutoBreaker do wait(1)
+if _G.AutoBreaker then
+RemotesFolder.EBF:FireServer()
+end
+end
+end})
 Automation:AddToggle("MyToggle",{
-Text = "Tự Động Giải Mã",
-Default = false
-})
+Text = "Auto Padlock Unlock",
+Default = false,
+Callback = function(v)
+_G.AutoPadlockUnlock = v
+while _G.AutoPadlockUnlock do wait(0.5)
+        for _, player in pairs(game.Players:GetPlayers()) do
+            if not player.Character then continue end
+            local tool = player.Character:FindFirstChildOfClass("Tool")
+
+            if tool and tool.Name:match("LibraryHintPaper") then
+                local code = tool:FindFirstChild("Code") and tool.Code.Value or nil
+                local padlock = workspace:FindFirstChild("Padlock", true)
+
+                if tonumber(code) and (padlock.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.PadlockUnlockDistance or 50 then
+                    firetouchinterest(padlock, game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
+                    firetouchinterest(padlock, game.Players.LocalPlayer.Character.HumanoidRootPart, 1)
+                end
+            end
+        end
+    end
+end})
 Automation:AddDivider()
 Automation:AddSlider("MySlider",{
-Text = "Khoảng Cách Mở Khoá",
+Text = "Unlock Distance",
 Default = 50,
 Min = 50,
 Max = 200,
 Rounding = 2,
-Compact = true
-})
-local Misc = Tabs.Main:AddLeftGroupbox("Lặt Vật")
+Compact = true,
+Callback = function(v)
+_G.PadlockUnlockDistance = v
+end})
+local Misc = Tabs.Main:AddLeftGroupbox("Misc")
 Misc:AddButton({
-Text = "Sảnh",
-DoubleClick = true})
+Text = "Lobby",
+DoubleClick = true,
+Func = function()
+RemotesFolder.Lobby:FireServer()
+end})
 Misc:AddButton({
-Text = "Hồi Sinh",
-DoubleClick = true})
+Text = "Revive",
+DoubleClick = true,
+Func = function()
+RemotesFolder.Revive:FireServer()
+end})
 Misc:AddButton({
-Text = "Thoát",
-DoubleClick = true})
+Text = "Exit",
+DoubleClick = true,
+Func = function()
+game:Shutdown()
+end})
 Misc:AddButton({
-Text = "Chơi Tiếp",
-DoubleClick = true})
+Text = "Play Again",
+DoubleClick = true,
+Func = function()
+RemotesFolder.PlayAgain:FireServer()
+end})
 Misc:AddButton({
-Text = "Xin Vĩnh Biệt Cụ",
-DoubleClick = true})
+Text = "Reset Character",
+DoubleClick = true,
+Func = function()
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end})
 
 
 
