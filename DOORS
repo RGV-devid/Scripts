@@ -806,8 +806,53 @@ end}):AddKeyPicker("Noclip", {
 })
 
 
-
-
+local Body = Tabs.Players:AddRightGroupbox("Body")
+Body:AddLabel("Body Color"):AddColorPicker("Body Color",{
+Default = Color3.new(1, 1, 1),
+Callback = function(v)
+_G.BodyColor = v
+task.spawn(function()
+while _G.BodyColor do wait(1)
+game.Players.LocalPlayer.Character.Head.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.UpperTorso.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.RightHand.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.RightLowerArm.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.RightLowerLeg.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.RightUpperArm.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.RightUpperLeg.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.LeftLowerLeg.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.LeftUpperArm.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.LeftUpperLeg.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.LowerTorso.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.RightFoot.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.LeftFoot.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.LeftHand.Color = _G.BodyColor or Color3.new(1,1,1)
+game.Players.LocalPlayer.Character.LeftLowerArm.Color = _G.BodyColor or Color3.new(1,1,1)
+end
+end)
+end})
+Body:AddToggle("MyToggle",{
+Text = "Chams Body",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+if v:IsA("Accessory") then
+v.Handle.Material = "ForceField"
+elseif v:IsA("BasePart") then
+v.Material = "ForceField"
+end
+end
+else
+for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+if v:IsA("Accessory") then
+v.Handle.Material = "Plastic"
+elseif v:IsA("BasePart") then
+v.Material = "Plastic"
+end
+end
+end
+end})
 
 
 
