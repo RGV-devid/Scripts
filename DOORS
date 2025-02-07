@@ -18,35 +18,317 @@ local Window = Library:CreateWindow({
 })
 
 local Tabs = {
-  Main = Window:AddTab("Chính", "Home"),
-  Players = Window:AddTab("Người Chơi", "rbxassetid://10747373176"),
-  Entities = Window:AddTab("Thực Thể", "rbxassetid://10734951847"),
-  Visual = Window:AddTab("Thị giác", "rbxassetid://10723396107")
+  Main = Window:AddTab("Main")
+  Players = Window:AddTab("Players"),
+  Exploits = Window:AddTab("Exploits"),
+  Visual = Window:AddTab("Visual")
 }
-local Fast = Tabs.Main:AddLeftGroupbox("Nhanh")
+local Fast = Tabs.Main:AddLeftGroupbox("Fast")
+game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+if _G.FastDoors then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Door"):SetAttribute("FastOpen", true)
+end 
+end)
+end)
 Fast:AddToggle("MyToggle",{
-Text = "Mở Cửa Nhanh",
-Default = false
-})
-local Reach = Tabs.Main:AddRightGroupbox("Xa")
+Text = "Doors Fast",
+Default = false,
+Callback = function(v)
+_G.FastDoors = v
+end})
+local Reach = Tabs.Main:AddRightGroupbox("Reach")
+game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+if _G.DoorsReach then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Door").ClientOpen:FireServer()
+end 
+end)
+end)
 Reach:AddToggle("MyToggle",{
-Text = "Mở Cửa Xa",
-Default = false
-})
+Text = "Doors Reach",
+Default = false,
+Callback = function(v)
+_G.DoorsReach = v
+end})
 Reach:AddToggle("MyToggle",{
-Text = "Tương Tác Xa",
-Default = false
-})
-local Interact = Tabs.Main:AddLeftGroupbox("Tương Tác")
+Text = "Reach",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ProximityPrompt") then
+v.MaxActivationDistance = 15
+end
+end
+IncreasedDistance = workspace.CurrentRooms.ChildAdded:Connect(function()
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ProximityPrompt") then
+v.MaxActivationDistance = 15
+end
+end
+end)
+else
+IncreasedDistance:Disconnect()
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ProximityPrompt") then
+v.MaxActivationDistance = 8
+end
+end
+end
+end})
+local Interact = Tabs.Main:AddLeftGroupbox("Interact")
 Interact:AddToggle("MyToggle",{
-Text = "Tương Tác Xuyên",
-Default = false
-})
+Text = "Through Interact",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ProximityPrompt") then
+v.RequiresLineOfSight = false
+end
+end
+ThroughInteract = workspace.CurrentRooms.ChildAdded:Connect(function()
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ProximityPrompt") then
+v.RequiresLineOfSight = false
+end
+end
+end)
+else
+ThroughInteract:Disconnect()
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ProximityPrompt") then
+v.RequiresLineOfSight = true
+end
+end
+end
+end})
 Interact:AddToggle("MyToggle",{
-Text = "Tương Tác Nhanh",
-Default = false
+Text = "Instance Interact",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ProximityPrompt") then
+v.HoldDuration = 0
+end
+end
+InstanceInteract = workspace.CurrentRooms.ChildAdded:Connect(function()
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ProximityPrompt") then
+v.HoldDuration = 0
+end
+end
+end)
+else
+InstanceInteract:Disconnect()
+end
+end})
+shared = {
+    Character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait(),
+    LocalPlayer = game.Players.LocalPlayer,
+    Humanoid = nil,
+}
+
+local function InitializeScript()
+    shared.Humanoid = shared.Character:WaitForChild("Humanoid")
+    game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+        shared.Character = char
+        shared.Humanoid = char:WaitForChild("Humanoid")
+    end)
+end
+
+shared.fireproximityprompt = function(prompt)
+    if prompt.ClassName == "ProximityPrompt" then
+        fireproximityprompt(prompt)
+    end
+end
+
+local Script = {
+    PromptTable = {
+        GamePrompts = {},
+        Aura = {
+            ["ActivateEventPrompt"] = false,
+            ["AwesomePrompt"] = true,
+            ["FusesPrompt"] = true,
+            ["HerbPrompt"] = false,
+            ["LeverPrompt"] = true,
+            ["LootPrompt"] = false,
+            ["ModulePrompt"] = true,
+            ["SkullPrompt"] = false,
+            ["UnlockPrompt"] = true,
+            ["ValvePrompt"] = false,
+            ["PropPrompt"] = true
+        },
+        AuraObjects = {
+            "Lock",
+            "Button"
+        },
+        Clip = {
+            "AwesomePrompt",
+            "FusesPrompt",
+            "HerbPrompt",
+            "HidePrompt",
+            "LeverPrompt",
+            "LootPrompt",
+            "ModulePrompt",
+            "Prompt",
+            "PushPrompt",
+            "SkullPrompt",
+            "UnlockPrompt",
+            "ValvePrompt"
+        },
+        ClipObjects = {
+            "LeverForGate",
+            "LiveBreakerPolePickup",
+            "LiveHintBook",
+            "Button",
+        },
+        Excluded = {
+            Prompt = {
+                "HintPrompt",
+                "InteractPrompt"
+            },
+            Parent = {
+                "KeyObtainFake",
+                "Padlock"
+            },
+            ModelAncestor = {
+                "DoorFake"
+            }
+        }
+    },
+    Temp = {
+        PaintingDebounce = {}
+    }
+}
+
+Script.Functions = {
+    GetAllPromptsWithCondition = function(condition)
+        local prompts = {}
+        for _, v in pairs(game:GetService("Workspace"):GetDescendants()) do
+            if v:IsA("ProximityPrompt") then
+                if condition(v) then
+                    table.insert(prompts, v)
+                end
+            end
+        end
+        return prompts
+    end,
+
+    DistanceFromCharacter = function(object)
+        if not shared.Character or not shared.Character:FindFirstChild("HumanoidRootPart") or not object then
+            return math.huge
+        end
+        local objectPosition = object:IsA("BasePart") and object.Position or 
+                             object:FindFirstChild("HumanoidRootPart") and object.HumanoidRootPart.Position or
+                             object:FindFirstChildWhichIsA("BasePart") and object:FindFirstChildWhichIsA("BasePart").Position
+        if not objectPosition then
+            return math.huge
+        end
+        return (shared.Character.HumanoidRootPart.Position - objectPosition).Magnitude
+    end,
+    
+    IsExcluded = function(prompt)
+        for _, excludedName in ipairs(Script.PromptTable.Excluded.Prompt) do
+            if prompt.Name == excludedName then return true end
+        end
+        if prompt.Parent then
+            for _, excludedParent in ipairs(Script.PromptTable.Excluded.Parent) do
+                if prompt.Parent.Name == excludedParent then return true end
+            end
+        end
+        local model = prompt:FindFirstAncestorWhichIsA("Model")
+        if model then
+            for _, excludedModel in ipairs(Script.PromptTable.Excluded.ModelAncestor) do
+                if model.Name == excludedModel then return true end
+            end
+        end
+        return false
+    end
+}
+
+local AutoInteractEnabled = false
+local IgnoreSettings = {
+    ["Jeff Items"] = true,
+    ["Unlock Lockpick"] = false,
+    ["Paintings"] = true,
+    ["Gold"] = false,
+    ["Light Source Items"] = false,
+    ["Skull Prompt"] = false
+}
+Interact:AddDivider()
+Interact:AddToggle("Auto-interact", {
+	Text = "Auto Interact",
+	Default = false,
+	Callback = function(v)
+        _G.AutoInteractEnabled = v
+end})
+
+Interact:AddDropdown("Auto-interact-drop", {
+	Values = {"Jeff Items", "Unlock Lockpick", "Paintings", "Gold", "Light Source Items", "Skull Prompt"},
+	Default = 1,
+	Multi = true,
+	Text = "Ignore list",
+	Tooltip = "This is a tooltip",
+	Searchable = false,
+	Callback = function(v)
+        for k, _ in pairs(IgnoreSettings) do
+            IgnoreSettings[k] = false
+        end
+        for _, v in pairs(v) do
+            IgnoreSettings[v] = true
+			end
+	end,
+	Disabled = false,
+	Visible = true, 
 })
-local Automation = Tabs.Main:AddRightGroupbox("Tự Động")
+local function AutoInteractLoop()
+    while true do
+        task.wait()
+        if _G.AutoInteractEnabled then
+            local prompts = Script.Functions.GetAllPromptsWithCondition(function(prompt)
+                if not prompt.Parent then return false end
+                if IgnoreSettings["Jeff Items"] and prompt.Parent:GetAttribute("JeffShop") then return false end
+                if IgnoreSettings["Unlock Lockpick"] and (prompt.Name == "UnlockPrompt" or prompt.Parent:GetAttribute("Locked")) and shared.Character:FindFirstChild("Lockpick") then return false end
+                if IgnoreSettings["Paintings"] and prompt.Name == "PropPrompt" then return false end
+                if IgnoreSettings["Gold"] and prompt.Name == "LootPrompt" then return false end
+                if IgnoreSettings["Light Source Items"] and prompt.Parent:GetAttribute("Tool_LightSource") and not prompt.Parent:GetAttribute("Tool_CanCutVines") then return false end
+                if IgnoreSettings["Skull Prompt"] and prompt.Name == "SkullPrompt" then return false end
+                if prompt.Parent:GetAttribute("PropType") == "Battery" and not (shared.Character:FindFirstChildOfClass("Tool") and (shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("RechargeProp") == "Battery" or shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("StorageProp") == "Battery")) then return false end 
+                if prompt.Parent:GetAttribute("PropType") == "Heal" and shared.Humanoid and shared.Humanoid.Health == shared.Humanoid.MaxHealth then return false end
+                if prompt.Parent.Name == "MinesAnchor" then return false end
+                if Script.IsRetro and prompt.Parent.Parent.Name == "RetroWardrobe" then return false end
+                return Script.PromptTable.Aura[prompt.Name] ~= nil
+            end)
+
+            for _, prompt in pairs(prompts) do
+                task.spawn(function()
+                    if Script.Functions.DistanceFromCharacter(prompt.Parent) < prompt.MaxActivationDistance and (not prompt:GetAttribute("Interactions" .. shared.LocalPlayer.Name) or Script.PromptTable.Aura[prompt.Name] or table.find(Script.PromptTable.AuraObjects, prompt.Parent.Name)) then
+                        if prompt.Parent.Name == "Slot" and prompt.Parent:GetAttribute("Hint") then
+                            if Script.Temp.PaintingDebounce[prompt] then return end
+                            local currentPainting = shared.Character:FindFirstChild("Prop")
+                            local slotPainting = prompt.Parent:FindFirstChild("Prop")
+                            local currentHint = (currentPainting and currentPainting:GetAttribute("Hint"))
+                            local slotHint = (slotPainting and slotPainting:GetAttribute("Hint"))
+                            local promptHint = prompt.Parent:GetAttribute("Hint")
+                            if slotHint ~= promptHint and (currentHint == promptHint or slotPainting) then
+                                Script.Temp.PaintingDebounce[prompt] = true
+                                shared.fireproximityprompt(prompt)
+                                task.wait(0.3)
+                                Script.Temp.PaintingDebounce[prompt] = false    
+                            end
+                            return
+                        end
+                        shared.fireproximityprompt(prompt)
+                    end
+                end)
+            end
+        end
+    end
+end
+InitializeScript()
+task.spawn(AutoInteractLoop)
+local Automation = Tabs.Main:AddRightGroupbox("Automation")
 Automation:AddToggle("MyToggle",{
 Text = "Tự Động Điện",
 Default = false
