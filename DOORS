@@ -841,6 +841,7 @@ if v then
 for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
 if v:IsA("Accessory") then
 v.Handle.Material = "ForceField"
+v.Handle.Color = _G.BodyColor
 elseif v:IsA("BasePart") then
 v.Material = "ForceField"
 end
@@ -849,6 +850,7 @@ else
 for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
 if v:IsA("Accessory") then
 v.Handle.Material = "Plastic"
+v.Handle.Color = _G.BodyColor
 elseif v:IsA("BasePart") then
 v.Material = "Plastic"
 end
