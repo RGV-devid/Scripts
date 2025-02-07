@@ -531,8 +531,75 @@ game.Players.LocalPlayer.Character:SetAttribute("SpeedBoost", 0)
 end
 end)
 end})
+Players:AddSlider("Speed Fly", {
+    Text = "Speed Fly",
+    Default = 16,
+    Min = 16,
+    Max = 50,
+    Rounding = 0,
+    Compact = true,
+    Callback = function(v)
+_G.SetSpeedFly = v
+end})
+_G.SetSpeedFly = 16
+LocalPlayer:AddToggle("StFly", {
+    Text = "Fly",
+    Default = false,
+    Callback = function(v)
+_G.StartFly = v
+if _G.StartFly == false then
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler:Destroy()
+game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+end
+end
+while _G.StartFly do
+if not _G.SeekSpeed then
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
+game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.CFrame = Workspace.CurrentCamera.CoordinateFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X > 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X < 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z > 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z < 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
+end
+elseif game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") == nil and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") == nil then
+local bv = Instance.new("BodyVelocity")
+local bg = Instance.new("BodyGyro")
+
+bv.Name = "VelocityHandler"
+bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+bv.MaxForce = Vector3.new(0,0,0)
+bv.Velocity = Vector3.new(0,0,0)
+
+bg.Name = "GyroHandler"
+bg.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+bg.MaxTorque = Vector3.new(0,0,0)
+bg.P = 1000
+bg.D = 50
+end
+task.wait()
+end
+end
+end}):AddKeyPicker("Fly", {
+   Default = "F",
+   Text = "Fly",
+   Mode = Library.IsMobile and "Toggle" or "Hold",
+   SyncToggleState = Library.IsMobile
+})
 Players:AddToggle("MyToggle",{
-Text = "Speed Offtion",
+Text = "Flight,Speed Offtion",
 Default = false,
 Callback = function(v)
 _G.SeekSpeed = v
@@ -543,7 +610,7 @@ end
 end)
 end}):AddKeyPicker("SeekSpeed", {
     Default = "Q",
-    Text = "Speed Offtion",
+    Text = "Flight,Speed Offtion",
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
@@ -628,10 +695,117 @@ if v then
         end
     end
 end})
-
-
-
-
+if not Fools then
+local LocalPlayer = Tabs.Players:AddRightGroupbox("LocalPlayer")
+LocalPlayer:AddToggle("MyToggle",{
+Text = "Can Jump",
+Default = false,
+Callback = function(v)
+_G.Jump = v
+game:GetService("RunService").RenderStepped:Connect(function()
+game.Players.LocalPlayer.Character:SetAttribute("CanJump", _G.Jump)
+end)
+end})
+LocalPlayer:AddToggle("MyToggle",{
+Text = "Auto Jump",
+Default = false,
+Callback = function(v)
+_G.AutoJump = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.AutoJump then
+game.Players.LocalPlayer.Character.Humanoid.Jump = true
+end
+end)
+end})
+LocalPlayer:AddToggle("MyToggle",{
+Text = "Crouch Spoof Bypass",
+Default = false,
+Callback = function(v)
+_G.CrouchSpoof = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.CrouchSpoof then
+RemotesFolder.Crouch:FireServer(true)
+end
+end)
+end})
+end
+local Bypass = Tabs.Players:AddRightGroupbox("Bypass")
+local ClonedCollision = game:GetService("Players").LocalPlayer.Character.Collision:Clone()
+ClonedCollision.Name = "_CollisionClone"
+ClonedCollision.Massless = true
+ClonedCollision.Parent = game:GetService("Players").LocalPlayer.Character
+ClonedCollision.CanCollide = false
+ClonedCollision.CanQuery = false
+ClonedCollision.CustomPhysicalProperties = PhysicalProperties.new(0.01, 0.7, 0, 1, 1)
+if ClonedCollision:FindFirstChild("CollisionCrouch") then
+ClonedCollision.CollisionCrouch:Destroy()
+end
+task.spawn(function()
+while task.wait(0.23) do
+if _G.SpeedBypass and not _G.SeekSpeed then
+if ClonedCollision then
+ClonedCollision.Massless = false
+task.wait(0.23)
+if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored then
+ClonedCollision.Massless = true
+task.wait(1)
+end
+ClonedCollision.Massless = true
+end
+end
+end
+end)
+Bypass:AddToggle("MyToggle",{
+Text = "Speed Bypass",
+Default = false,
+Callback = function(v)
+_G.SpeedBypass = v
+end})
+if Mines then
+Bypass:AddToggle("MyToggle",{
+Text = "Ladder Bypass",
+Default = false,
+Callback = function(v)
+_G.LadderBypass = v
+task.spawn(function()
+while _G.LadderBypass do wait(1)
+if _G.LadderBypass and not workspace:FindFirstChild("Ladder_Bypass") then
+local progressPart = Instance.new("Part", workspace) do
+progressPart.Anchored = true
+progressPart.CanCollide = false
+progressPart.Name = "Ladder_Bypass"
+progressPart.Transparency = 1
+end
+if _G.LadderBypass and game.Players.LocalPlayer.Character:GetAttribute("Climbing") then
+task.wait()
+game.Players.LocalPlayer.Character:SetAttribute("Climbing", false)
+Notification:Notify("Complete Bypass!")
+end
+else
+if workspace:FindFirstChild("Ladder_Bypass") then 
+workspace:FindFirstChild("Ladder_Bypass"):Destroy() 
+end
+end
+end
+end)
+end})
+end
+Bypass:AddToggle("MyToggle",{
+Text = "Manipulate Bypass",
+Default = false,
+Callback = function(v)
+_G.ManipulateBypass = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.ManipulateBypass then
+game.Players.LocalPlayer.Character:PivotTo(game.Players.LocalPlayer.Character:GetPivot() + workspace.CurrentCamera.CFrame.LookVector * Vector3.new(1, 0, 1) * -100)
+end
+end)
+end}):AddKeyPicker("Noclip", {
+    Default = "B",
+    Text = "Manipulate Bypass",
+    Mode = Library.IsMobile and "Toggle",
+    SyncToggleState = Library.IsMobile,
+})
 
 
 
