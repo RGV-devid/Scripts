@@ -556,7 +556,6 @@ end
 end
 task.spawn(function()
 while _G.StartFly do
-if not _G.SeekSpeed then
 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
 game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
@@ -592,7 +591,6 @@ bg.D = 50
 end
 task.wait()
 end
-end
 end)
 end}):AddKeyPicker("Fly", {
    Default = "F",
@@ -601,7 +599,7 @@ end}):AddKeyPicker("Fly", {
    SyncToggleState = Library.IsMobile
 })
 Players:AddToggle("MyToggle",{
-Text = "Flight,Speed Offtion",
+Text = "Speed Offtion",
 Default = false,
 Callback = function(v)
 _G.SeekSpeed = v
