@@ -1,1 +1,24 @@
-# Scripts
+local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
+local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
+local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
+local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
+
+local Options = Library.Options
+local Toggles = Library.Toggles
+
+Library.ForceCheckbox = false
+Library.ShowToggleFrameInKeybinds = true
+
+local Window = Library:CreateWindow({
+	Title = "YOUHUB | DOORS",
+	Footer = "BETA v0.0.2",
+	Icon = 95869322194132,
+	NotifySide = "Right",
+	ShowCustomCursor = true,
+})
+
+local Tabs = {
+	Main = Window:AddTab("Main", "rbxassetid://18821914323"),
+  Players = Window:AddTab("Main", "rbxassetid://10747373176"),
+  Entities = Window:AddTab("", "user")
+}
