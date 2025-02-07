@@ -18,9 +18,144 @@ local Window = Library:CreateWindow({
 })
 
 local Tabs = {
-  Main = Window:AddTab("Main", "rbxassetid://18821914323"),
-  Players = Window:AddTab("Players", "rbxassetid://10747373176"),
-  Entities = Window:AddTab("Entities", "rbxassetid://10734951847"),
-  Visual = Window:AddTab("Visual", "rbxassetid://10723396107")
+  Main = Window:AddTab("Chính", "Home"),
+  Players = Window:AddTab("Người Chơi", "rbxassetid://10747373176"),
+  Entities = Window:AddTab("Thực Thể", "rbxassetid://10734951847"),
+  Visual = Window:AddTab("Thị giác", "rbxassetid://10723396107")
 }
-local Fast = Tabs.Main:AddLeftGroupbox("Fast")
+local Fast = Tabs.Main:AddLeftGroupbox("Nhanh")
+Fast:AddToggle("MyToggle",{
+Text = "Mở Cửa Nhanh",
+Default = false
+})
+local Reach = Tabs.Main:AddRightGroupbox("Xa")
+Reach:AddToggle("MyToggle",{
+Text = "Mở Cửa Xa",
+Default = false
+})
+Reach:AddToggle("MyToggle",{
+Text = "Tương Tác Xa",
+Default = false
+})
+local Interact = Tabs.Main:AddLeftGroupbox("Tương Tác")
+Interact:AddToggle("MyToggle",{
+Text = "Tương Tác Xuyên",
+Default = false
+})
+Interact:AddToggle("MyToggle",{
+Text = "Tương Tác Nhanh",
+Default = false
+})
+local Automation = Tabs.Main:AddRightGroupbox("Tự Động")
+Automation:AddToggle("MyToggle",{
+Text = "Tự Động Điện",
+Default = false
+})
+Automation:AddToggle("MyToggle",{
+Text = "Tự Động Giải Mã",
+Default = false
+})
+Automation:AddDivider()
+Automation:AddSlider("MySlider",{
+Text = "Khoảng Cách Mở Khoá",
+Default = 50,
+Min = 50,
+Max = 200,
+Rounding = 2,
+Compact = true
+})
+local Misc = Tabs.Main:AddLeftGroupbox("Lặt Vật")
+Misc:AddButton({
+Text = "Sảnh",
+DoubleClick = true})
+Misc:AddButton({
+Text = "Hồi Sinh",
+DoubleClick = true})
+Misc:AddButton({
+Text = "Thoát",
+DoubleClick = true})
+Misc:AddButton({
+Text = "Chơi Tiếp",
+DoubleClick = true})
+Misc:AddButton({
+Text = "Xin Vĩnh Biệt Cụ",
+DoubleClick = true})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
