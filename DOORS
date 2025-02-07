@@ -18,7 +18,9 @@ local Window = Library:CreateWindow({
 })
 
 local Tabs = {
-	Main = Window:AddTab("Main", "rbxassetid://18821914323"),
-  Players = Window:AddTab("Main", "rbxassetid://10747373176"),
-  Entities = Window:AddTab("", "user")
+  Main = Window:AddTab("Main", "rbxassetid://18821914323"),
+  Players = Window:AddTab("Players", "rbxassetid://10747373176"),
+  Entities = Window:AddTab("Entities", "rbxassetid://10734951847"),
+  Visual = Window:AddTab("Visual", "rbxassetid://10723396107")
 }
+local Fast = Tabs.Main:AddLeftGroupbox("Fast")
