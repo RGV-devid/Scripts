@@ -303,8 +303,8 @@ Interact:AddDropdown("Auto-interact-drop", {
 	Visible = true, 
 })
 local function AutoInteractLoop()
-    while true do wait(0.1)
-        task.wait(0.1)
+    while true do wait()
+        task.wait(0.3)
         if _G.AutoInteractEnabled then
             local prompts = Script.Functions.GetAllPromptsWithCondition(function(prompt)
                 if not prompt.Parent then return false end
@@ -323,7 +323,7 @@ local function AutoInteractLoop()
 
             for _, prompt in pairs(prompts) do
                 task.spawn(function()
-                    if Script.Functions.DistanceFromCharacter(prompt.Parent) < prompt.MaxActivationDistance and (not prompt:GetAttribute("Interactions" .. shared.LocalPlayer.Name) or Script.PromptTable.Aura[prompt.Name] or table.find(Script.PromptTable.AuraObjects, prompt.Parent.Name)) then
+                    if Script.Functions.DistanceFromCharacter(prompt.Parent) < 12 and (not prompt:GetAttribute("Interactions" .. shared.LocalPlayer.Name) or Script.PromptTable.Aura[prompt.Name] or table.find(Script.PromptTable.AuraObjects, prompt.Parent.Name)) then
                         if prompt.Parent.Name == "Slot" and prompt.Parent:GetAttribute("Hint") then
                             if Script.Temp.PaintingDebounce[prompt] then return end
                             local currentPainting = shared.Character:FindFirstChild("Prop")
