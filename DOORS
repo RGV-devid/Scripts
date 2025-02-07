@@ -33,7 +33,7 @@ local Window = Library:CreateWindow({
 })
 
 local Tabs = {
-  Main = Window:AddTab("Main")
+  Main = Window:AddTab("Main"),
   Players = Window:AddTab("Players"),
   Exploits = Window:AddTab("Exploits"),
   Visual = Window:AddTab("Visual")
@@ -277,14 +277,18 @@ Interact:AddToggle("Auto-interact", {
 	Default = false,
 	Callback = function(v)
         _G.AutoInteractEnabled = v
-end})
+end}):AddKeyPicker("AutoInteractKeybind", {
+   Default = "R",
+   Text = "Auto Interact",
+   Mode = Library.IsMobile and "Toggle" or "Hold",
+   SyncToggleState = Library.IsMobile
+})
 
 Interact:AddDropdown("Auto-interact-drop", {
 	Values = {"Jeff Items", "Unlock Lockpick", "Paintings", "Gold", "Light Source Items", "Skull Prompt"},
 	Default = 1,
 	Multi = true,
 	Text = "Ignore list",
-	Tooltip = "This is a tooltip",
 	Searchable = false,
 	Callback = function(v)
         for k, _ in pairs(IgnoreSettings) do
@@ -388,7 +392,82 @@ Compact = true,
 Callback = function(v)
 _G.PadlockUnlockDistance = v
 end})
-local Misc = Tabs.Main:AddLeftGroupbox("Misc")
+local World = Tabs.Main:AddLeftGroupbox("World")
+game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("MoveDirection"):Connect(function()
+if _G.ClosetsExitFix and game.Players.LocalPlayer.Character:GetAttribute("Hiding")==true then 
+RemotesFolder.CamLock:FireServer()
+end 
+end)
+World:AddToggle("MyToggle",{
+Text = "Closets Exit Fix",
+Default = false,
+Callback = function(v)
+_G.ClosetsExitFix = v
+end})
+if Retro then
+World:AddToggle("MyToggle",{
+Text = "Blur Fake Brigde",
+Default = false,
+Callback = function(v)
+_G.BlurFakeBridge = v
+if _G.BlurFakeBridge then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Bridge" and not v.CanCollide == true then
+v.Transparency = 0.9
+end
+end
+BlurFakeBridge = workspace.CurrentRooms.ChildAdded:Connect(function(v)
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Bridge" and not v.CanCollide == true then
+v.Transparency = 0.75
+end
+end
+end)
+else
+BlurFakeBridge:Disconnect()
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Bridge" and not v.CanCollide == true then
+v.Transparency = 0
+end
+end
+end
+end})
+end
+World:AddToggle("MyToggle",{
+Text = "Hiding Live Sanity",
+Default = false,
+Callback = function(v)
+_G.NoLiveSanity = v
+while _G.NoLiveSanity do wait(1)
+for _,v in workspace.CurrentCamera:GetChildren() do
+if v.Name == "LiveSanity" and workspace:FindFirstChild("EntityModel") then
+v.Enabled = not _G.NoLiveSanity
+end
+end
+end
+end})
+World:AddToggle("MyToggle",{
+Text = "Hiding Void Roblox",
+Default = false,
+Callback = function(v)
+if v then
+workspace.FallenPartsDestroyHeight = 0 / 0
+else
+workspace.FallenPartsDestroyHeight = -50000
+end
+end})
+World:AddToggle("MyToggle",{
+Text = "No Hiding Vignette",
+Default = false,
+Callback = function(v)
+local vignette = game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.HideVignette
+        if v then
+            vignette.Size = UDim2.new(0,0,0,0)
+        else
+            vignette.Size = UDim2.new(1,0,1,0)
+        end
+end})
+local Misc = Tabs.Main:AddRightGroupbox("Misc")
 Misc:AddButton({
 Text = "Lobby",
 DoubleClick = true,
