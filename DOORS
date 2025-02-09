@@ -1294,7 +1294,7 @@ AntiJeff:Disconnect()
 end
 end})
 Disabled:AddToggle("MyToggle",{
-Text = "Removal-Seek Car",
+Text = "Removal-Seek Chase",
 Default = false,
 Callback = function(v)
 _G.AntiSeekCar = v
@@ -1302,6 +1302,51 @@ game:GetService("RunService").RenderStepped:Connect(function()
 if _G.AntiSeekCar then
 for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do 
 if v.Name == "TriggerEventCollision" then 
+v:Destroy()
+end 
+end 
+end
+end)
+end})
+Disabled:AddToggle("MyToggle",{
+Text = "Removal-Gate",
+Default = false,
+Callback = function(v)
+_G.RemovalGate = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalGate then
+for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do 
+if v.Name == "Gate" then 
+v:Destroy()
+end 
+end 
+end
+end)
+end})
+Disabled:AddToggle("MyToggle",{
+Text = "Removal-Skeleton Door",
+Default = false,
+Callback = function(v)
+_G.RemovalSkeleton = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalSkeleton then
+for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do 
+if v.Name == "Wax_Door" then 
+v:Destroy()
+end 
+end 
+end
+end)
+end})
+Disabled:AddToggle("MyToggle",{
+Text = "Removal-Puzzle Door",
+Default = false,
+Callback = function(v)
+_G.RemovalPuzzle = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalPuzzle then
+for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do 
+if v.Name == "MovingDoor" then 
 v:Destroy()
 end 
 end 
