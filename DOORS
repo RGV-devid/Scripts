@@ -8,8 +8,9 @@ local Mines = Floor.Value == "Mines"
 local Retro = Floor.Value == "Retro"
 local Rooms = Floor.Value == "Rooms"
 local Backdoor = Floor.Value == "Backdoor"
-if Fools then
-RemotesFolder = ReplicatedStorage.EntityInfo
+local Hotelold = game.PlaceId == 110258689672367
+if (Fools or game.PlaceId == 110258689672367) then
+RemotesFolder = ReplicatedStorage.Bricks
 else
 RemotesFolder = ReplicatedStorage.RemotesFolder
 end
@@ -694,7 +695,7 @@ if v then
         end
     end
 end})
-if not Fools then
+if not Fools or not Hotelold then
 local LocalPlayer = Tabs.Players:AddRightGroupbox("LocalPlayer")
 LocalPlayer:AddToggle("MyToggle",{
 Text = "Can Jump",
@@ -729,6 +730,7 @@ end)
 end})
 end
 local Bypass = Tabs.Players:AddRightGroupbox("Bypass")
+if not Hotelold then
 local ClonedCollision = game:GetService("Players").LocalPlayer.Character.Collision:Clone()
 ClonedCollision.Name = "_CollisionClone"
 ClonedCollision.Massless = true
@@ -760,6 +762,7 @@ Default = false,
 Callback = function(v)
 _G.SpeedBypass = v
 end})
+end
 if Mines then
 Bypass:AddToggle("MyToggle",{
 Text = "Ladder Bypass",
@@ -859,6 +862,7 @@ end})
 
 
 local Anti = Tabs.Exploits:AddLeftGroupbox("Anti")
+if not Hotelold then
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.AntiSnare then
 if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Snare") then
@@ -912,6 +916,7 @@ end
 end
 end
 end})
+end
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.AntiChandelier then 
 if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("ChandelierObstruction") then 
@@ -983,6 +988,7 @@ Default = false,
 Callback = function(v)
 _G.AntiEyes = v
 end})
+if not Hotelold then
 Anti:AddToggle("MyToggle",{
 Text = "Anti-Lookman",
 Default = false,
@@ -1006,6 +1012,7 @@ Default = false,
 Callback = function(v)
 _G.AntiGiggle = v
 end})
+end
 if Retro then
 Anti:AddDivider()
 Anti:AddToggle("MyToggle",{
@@ -1122,6 +1129,7 @@ AntiScreech:Disconnect()
 RemotesFolder._Screech.Name = "Screech"
 end
 end})
+if not Hotelold then
 Disabled:AddToggle("MyToggle",{
 Text = "Removal-A90",
 Default = false,
@@ -1134,6 +1142,7 @@ RemotesFolder._A90.Name = "A90"
 game.Players.LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90").Parent = game.Players.LocalPlayers.PlayerGui.MainUI.Jumpscare
 end
 end})
+end
 Disabled:AddToggle("MyToggle",{
 Text = "Removal-Halt",
 Default = false,
@@ -1143,7 +1152,7 @@ while _G.AntiHalt do wait(0.1)
 ReplicatedStorage.ClientModules.EntityModules.Shade.Parent = game.Workspace
 end
 end})
-if not Fools then
+if not Fools or not Hotelold then
 Disabled:AddToggle("MyToggle",{
 Text = "Removal-Dread",
 Default = false,
@@ -1293,6 +1302,8 @@ else
 AntiJeff:Disconnect()
 end
 end})
+end
+if Hotelold or Fools then
 Disabled:AddToggle("MyToggle",{
 Text = "Removal-Seek Chase",
 Default = false,
