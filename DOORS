@@ -1118,31 +1118,8 @@ Disabled:AddToggle("MyToggle",{
 Text = "Removal-Screech",
 Default = false,
 Callback = function(v)
-_G.AntiScreech = v
-if _G.AntiScreech then
-for _,v in pairs(workspace.Camera:GetDescendants()) do
-if v.Name == "Screech" then
-v:Destroy()
-elseif v.Name == "GlitchScreech" then
-v:Destroy()
-elseif v.Name == "RetroScreech" then
-v:Destroy()
-end
-end
-AntiScreech = workspace.CurrentCamera.ChildAdded:Connect(function(v)
-for _,v in pairs(workspace.Camera:GetDescendants()) do
-if v.Name == "Screech" then
-v:Destroy()
-elseif v.Name == "GlitchScreech" then
-v:Destroy()
-elseif v.Name == "RetroScreech" then
-v:Destroy()
-end
-end
-end)
 RemotesFolder.Screech.Name = "_Screech"
 else
-AntiScreech:Disconnect()
 RemotesFolder._Screech.Name = "Screech"
 end
 end})
@@ -1474,14 +1451,14 @@ if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
 if not v:FindFirstChild("DoorESP") then
-LibraryESP:AddESP(v, v.Name, Color3.new(0,255,0) or _G.DoorCE, 20, "DoorESP")
+LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end
 end
 DoorESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "Door" and v.Parent.Name == "Door" then
 if not v:FindFirstChild("DoorESP") then
-LibraryESP:AddESP(v, v.Name, Color3.new(0,255,0) or _G.DoorCE, 20, "DoorESP")
+LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end
 end)
@@ -1490,7 +1467,7 @@ DoorESP:Disconnect()
 LibraryESP:Delete("DoorESP")
 end
 end}):AddColorPicker("DoorESP",{
-Default = Color3.new(0, 1, 0),
+Default = Color3.fromRGB(135, 135, 255),
 Callback = function(v)
 _G.DoorCE = v
 end})
@@ -1502,14 +1479,14 @@ if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
-LibraryESP:AddESP(v, "Key", Color3.new(0,255,0) or _G.KeyCE, 20, "KeyESP")
+LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
 end
 end
 KeyESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
-LibraryESP:AddESP(v, "Key", Color3.new(0,255,0) or _G.KeyCE, 20, "KeyESP")
+LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
 end
 end)
@@ -1518,7 +1495,7 @@ KeyESP:Disconnect()
 LibraryESP:Delete("KeyESP")
 end
 end}):AddColorPicker("DoorESP",{
-Default = Color3.new(0, 1, 0),
+Default = Color3.fromRGB(135, 255, 255),
 Callback = function(v)
 _G.KeyCE = v
 end})
