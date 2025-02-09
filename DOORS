@@ -1536,6 +1536,174 @@ Default = Color3.fromRGB(0,255),
 Callback = function(v)
 _G.LeverCE = v
 end})
+ESP:AddToggle("MyToggle",{
+Text = "Generator ESP",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "MinesGenerator" then
+if not v:FindFirstChild("GeneratorESP") then
+LibraryESP:AddESP(v, "Generator", _G.GeneratorCE or Color3.fromRGB(0,255), 20, "GeneratorESP")
+end
+end
+end
+GeneratorESP = workspace.DescendantAdded:Connect(function(v)
+if v.Name == "MinesGenerator" then
+if not v:FindFirstChild("GeneratorESP") then
+LibraryESP:AddESP(v, "Generator", _G.GeneratorCE or Color3.fromRGB(0,255), 20, "GeneratorESP")
+end
+end
+end)
+else
+GeneratorESP:Disconnect()
+LibraryESP:Delete("GeneratorESP")
+end
+end}):AddColorPicker("GeneratorESP",{
+Default = Color3.fromRGB(0,255),
+Callback = function(v)
+_G.GeneratorCE = v
+end})
+ESP:AddToggle("MyToggle",{
+Text = "Fuse ESP",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "FuseObtain" then
+if not v:FindFirstChild("FuseESP") then
+LibraryESP:AddESP(v, "Fuse", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "FuseESP")
+end
+end
+end
+FuseESP = workspace.DescendantAdded:Connect(function(v)
+if v.Name == "FuseObtain" then
+if not v:FindFirstChild("FuseESP") then
+LibraryESP:AddESP(v, "Fuse", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "FuseESP")
+end
+end
+end)
+else
+FuseESP:Disconnect()
+LibraryESP:Delete("FuseESP")
+end
+end}):AddColorPicker("FuseESP",{
+Default = Color3.fromRGB(0,255),
+Callback = function(v)
+_G.FuseCE = v
+end})
+ESP:AddToggle("MyToggle",{
+Text = "Book ESP",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "LiveHintBook" then
+if not v:FindFirstChild("BookESP") then
+LibraryESP:AddESP(v, "Book", _G.BookCE or Color3.fromRGB(255,0,255), 20, "BookESP")
+end
+end
+end
+BookESP = workspace.DescendantAdded:Connect(function(v)
+if v.Name == "LiveHintBook" then
+if not v:FindFirstChild("BookESP") then
+LibraryESP:AddESP(v, "Book", _G.BookCE or Color3.fromRGB(255,0,255), 20, "BookESP")
+end
+end
+end)
+else
+BookESP:Disconnect()
+LibraryESP:Delete("BookESP")
+end
+end}):AddColorPicker("BookESP",{
+Default = Color3.fromRGB(255,0,255),
+Callback = function(v)
+_G.BookCE = v
+end})
+ESP:AddToggle("MyToggle",{
+Text = "Breaker ESP",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "LiveBreakerPolePickup" then
+if not v:FindFirstChild("BreakerESP") then
+LibraryESP:AddESP(v, "Breaker", _G.BreakerCE or Color3.fromRGB(255,255,255), 20, "BreakerESP")
+end
+end
+end
+BreakerESP = workspace.DescendantAdded:Connect(function(v)
+if v.Name == "LiveBreakerPolePickup" then
+if not v:FindFirstChild("BreakerESP") then
+LibraryESP:AddESP(v, "Breaker", _G.BreakerCE or Color3.fromRGB(255,255,255), 20, "BreakerESP")
+end
+end
+end)
+else
+BreakerESP:Disconnect()
+LibraryESP:Delete("BreakerESP")
+end
+end}):AddColorPicker("BreakerESP",{
+Default = Color3.fromRGB(255,255,255),
+Callback = function(v)
+_G.BreakerCE = v
+end})
+ESP:AddToggle("MyToggle",{
+Text = "Anchor ESP",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "MinesAnchor" then
+if not v:FindFirstChild("AnchorESP") then
+LibraryESP:AddESP(v, "Anchor " .. v.Sign.TextLabel.Text, _G.AnchorCE or Color3.fromRGB(255,255,255), 20, "AnchorESP")
+end
+end
+end
+AnchorESP = workspace.DescendantAdded:Connect(function(v)
+if v.Name == "MinesAnchor" then
+if not v:FindFirstChild("AnchorESP") then
+LibraryESP:AddESP(v, "Anchor " .. v.Sign.TextLabel.Text, _G.AnchorCE or Color3.fromRGB(255,255,255), 20, "AnchorESP")
+end
+end
+end)
+else
+AnchorESP:Disconnect()
+LibraryESP:Delete("AnchorESP")
+end
+end}):AddColorPicker("AnchorESP",{
+Default = Color3.fromRGB(255,255,255),
+Callback = function(v)
+_G.AnchorCE = v
+end})
+ESP:AddToggle("MyToggle",{
+Text = "Waterpump ESP",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "WaterPump" then
+if not v:FindFirstChild("PumpESP") then
+LibraryESP:AddESP(v, "Waterpump", _G.PumpCE or Color3.fromRGB(0,255,255), 20, "PumpESP")
+end
+end
+end
+PumpESP = workspace.DescendantAdded:Connect(function(v)
+if v.Name == "WaterPump" then
+if not v:FindFirstChild("PumpESP") then
+LibraryESP:AddESP(v, "Waterpump", _G.PumpCE or Color3.fromRGB(0,255,255), 20, "PumpESP")
+end
+end
+end)
+else
+PumpESP:Disconnect()
+LibraryESP:Delete("PumpESP")
+end
+end}):AddColorPicker("PumpESP",{
+Default = Color3.fromRGB(0,255,255),
+Callback = function(v)
+_G.PumpCE = v
+end})
 
 
 
