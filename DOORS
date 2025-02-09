@@ -18,6 +18,7 @@ local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
 local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
+local LibraryESP = loadstring(game:HttpGet("https://github.com/Cold-Script/ESPBETA/blob/main/Esp?raw=true"))()
 
 local Options = Library.Options
 local Toggles = Library.Toggles
@@ -1462,6 +1463,70 @@ else
 SpoofMotor:Disconnect()
 end
 end})
+
+
+local ESP = Tabs.Visual:AddLeftGroupbox("ESP")
+ESP:AddToggle("MyToggle",{
+Text = "Door ESP",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Door" and v.Parent.Name == "Door" then
+if not v:FindFirstChild("DoorESP") then
+LibraryESP:AddESP(v, v.Name, Color3.new(0,255,0) or _G.DoorCE, 20, "DoorESP")
+end
+end
+end
+DoorESP = workspace.DescendantAdded:Connect(function(v)
+if v.Name == "Door" and v.Parent.Name == "Door" then
+if not v:FindFirstChild("DoorESP") then
+LibraryESP:AddESP(v, v.Name, Color3.new(0,255,0) or _G.DoorCE, 20, "DoorESP")
+end
+end
+end)
+else
+DoorESP:Disconnect()
+LibraryESP:Delete("DoorESP")
+end
+end}):AddColorPicker("DoorESP",{
+Default = Color3.new(0, 1, 0),
+Callback = function(v)
+_G.DoorCE = v
+end})
+ESP:AddToggle("MyToggle",{
+Text = "Key ESP",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "KeyObtain" then
+if not v:FindFirstChild("KeyESP") then
+LibraryESP:AddESP(v, "Key", Color3.new(0,255,0) or _G.KeyCE, 20, "KeyESP")
+end
+end
+end
+KeyESP = workspace.DescendantAdded:Connect(function(v)
+if v.Name == "KeyObtain" then
+if not v:FindFirstChild("KeyESP") then
+LibraryESP:AddESP(v, "Key", Color3.new(0,255,0) or _G.KeyCE, 20, "KeyESP")
+end
+end
+end)
+else
+KeyESP:Disconnect()
+LibraryESP:Delete("KeyESP")
+end
+end}):AddColorPicker("DoorESP",{
+Default = Color3.new(0, 1, 0),
+Callback = function(v)
+_G.KeyCE = v
+end})
+
+
+
+
+
 
 local MenuGroup = Tabs.Settings:AddLeftGroupbox("Menu")
 local CreditsGroup = Tabs.Settings:AddRightGroupbox("Credits")
