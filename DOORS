@@ -1382,6 +1382,87 @@ end
 end)
 end})
 end
+local Troll = Tabs.Exploits:AddRightGroupbox("Trolling")
+if not Hotelold then
+Troll:AddToggle("MyToggle",{
+Text = "Stunned",
+Default = false,
+Callback = function(v)
+local lplr = game.Players.LocalPlayer
+        if v then
+            lplr.Character:SetAttribute('Stunned', true)
+            lplr.Character.Humanoid:SetAttribute('Stunned', true)
+        else
+            lplr.Character:SetAttribute('Stunned', false)
+            lplr.Character.Humanoid:SetAttribute('Stunned', false)
+        end
+end})
+end
+Troll:AddToggle("MyToggle",{
+Text = "Thoughts",
+Default = false,
+Callback = function(v)
+local lplr = game.Players.LocalPlayer
+        local thinkanims = {"18885101321", "18885098453", "18885095182"}
+        
+        if v then
+            local animation = Instance.new("Animation")
+            animation.AnimationId = "rbxassetid://" .. thinkanims[math.random(1, #thinkanims)]
+            animtrack = lplr.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(animation)
+            animtrack.Looped = true
+            animtrack:Play()
+        else
+            if animtrack then
+                animtrack:Stop()
+                animtrack:Destroy()
+            end
+        end
+end})
+Troll:AddToggle("MyToggle",{
+Text = "Upside Down",
+Default = false,
+Callback = function(v)
+local collision = game.Players.LocalPlayer.Character.Collision
+if not collision then return end
+    if v then
+        local rotation = collision.Rotation
+        collision.Rotation = Vector3.new(rotation.X, rotation.Y, -90)
+
+        task.spawn(function()
+            repeat task.wait() until not Toggles.UpsideDown.Value or Library.Unloaded
+            
+            if collision then
+                rotation = collision.Rotation
+    
+                collision.Rotation = Vector3.new(rotation.X, rotation.Y, 90)
+            end
+        end)
+    end
+end})
+Troll:AddToggle("MyToggle",{
+Text = "Lag Move",
+Default = false,
+Callback = function(v)
+_G.LagBody = v
+while _G.LagBody and task.wait(0.5) do
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+wait(0.5)
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+end
+end})
+Troll:AddToggle("MyToggle",{
+Text = "Spam Motor Replication",
+Default = false,
+Callback = function(v)
+if v then
+SpoofMotor = game:GetService("RunService").Heartbeat:Connect(function()
+RemotesFolder.MotorReplication:FireServer(math.random(1,100000),math.random(1,100000),math.random(1,100000),false)
+end)
+else
+SpoofMotor:Disconnect()
+end
+end})
+
 local MenuGroup = Tabs.Settings:AddLeftGroupbox("Menu")
 local CreditsGroup = Tabs.Settings:AddRightGroupbox("Credits")
 
