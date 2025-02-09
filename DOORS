@@ -1,7 +1,7 @@
 local function CylinderESP(child, color, title)
 local Adornment = Instance.new("CylinderHandleAdornment")
-Adornment.Height = child.Size.Y * 2
-Adornment.Radius = child.Size.X * 0.75
+Adornment.Height = child.Size.Y * 1.75
+Adornment.Radius = child.Size.X * 1
 Adornment.CFrame = CFrame.new(0,0,0) * CFrame.Angles(math.rad(90), 0, 0)
 Adornment.Color3 = color
 Adornment.Transparency = 0.6
@@ -12,7 +12,7 @@ Adornment.Name = title
 Adornment.Parent = child
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().RainbowESP then
-Adornment.Color3 = Color3.fromHSV(tick() % 5/5,1,1)
+Adornment.Color3 = Color3.fromHSV(tick() % 10/10,1,1)
 end
 end)
 end
@@ -1738,10 +1738,10 @@ if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Ambush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
 end
-elseif v.Name == "Eyes" then
+elseif v.Parent.Name == "Eyes" and v.Name == "Core" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Eyes", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v.Parent:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "BackdoorRush" then
 if not v:FindFirstChild("EntityESP") then
@@ -1786,10 +1786,10 @@ if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Ambush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
 end
-elseif v.Name == "Eyes" then
+elseif v.Parent.Name == "Eyes" and v.Name == "Core" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Eyes", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v.Parent:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "BackdoorRush" then
 if not v:FindFirstChild("EntityESP") then
@@ -1827,13 +1827,24 @@ else
 EntityESP:Disconnect()
 LibraryESP:Delete("EntityESP")
 end
-end}):AddColorPicker("FuseESP",{
-Default = Color3.fromRGB(0,255),
+end}):AddColorPicker("EntityESP",{
+Default = Color3.fromRGB(255),
 Callback = function(v)
-_G.FuseCE = v
+_G.EntityCE = v
 end})
-
-
+ESP:AddDivider()
+ESP:AddToggle("MyToggle",{
+Text = "Distance ESP",
+Default = false,
+Callback = function(v)
+getgenv().DistanceESP = v
+end})
+ESP:AddToggle("MyToggle",{
+Text = "Rainbow ESP",
+Default = false,
+Callback = function(v)
+getgenv().RainbowESP = v
+end})
 
 
 local MenuGroup = Tabs.Settings:AddLeftGroupbox("Menu")
