@@ -1118,6 +1118,7 @@ Disabled:AddToggle("MyToggle",{
 Text = "Removal-Screech",
 Default = false,
 Callback = function(v)
+if v then
 RemotesFolder.Screech.Name = "_Screech"
 else
 RemotesFolder._Screech.Name = "Screech"
@@ -1499,7 +1500,42 @@ Default = Color3.fromRGB(135, 255, 255),
 Callback = function(v)
 _G.KeyCE = v
 end})
-
+ESP:AddToggle("MyToggle",{
+Text = "Lever ESP",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "LeverForGate" then
+if not v:FindFirstChild("LeverESP") then
+LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
+end
+elseif v.Name == "TimerLever" then
+if not v:FindFirstChild("LeverESP") then
+LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
+end
+end
+end
+LeverESP = workspace.DescendantAdded:Connect(function(v)
+if v.Name == "LeverForGate" then
+if not v:FindFirstChild("LeverESP") then
+LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
+end
+elseif v.Name == "TimerLever" then
+if not v:FindFirstChild("LeverESP") then
+LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
+end
+end
+end)
+else
+LeverESP:Disconnect()
+LibraryESP:Delete("LeverESP")
+end
+end}):AddColorPicker("LeverESP",{
+Default = Color3.fromRGB(0,255),
+Callback = function(v)
+_G.LeverCE = v
+end})
 
 
 
