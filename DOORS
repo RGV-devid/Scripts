@@ -461,10 +461,11 @@ World:AddToggle("MyToggle",{
 Text = "No Hiding Vignette",
 Default = false,
 Callback = function(v)
+_G.NoHidingVignette = v
 task.spawn(function()
 while wait(0.1) do
 local vignette = game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.HideVignette
-        if v then
+        if _G.NoHidingVignette then
             vignette.Size = UDim2.new(0,0,0,0)
         else
             vignette.Size = UDim2.new(1,0,1,0)
@@ -554,7 +555,6 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler:Destroy()
 game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
 end
 end
-task.spawn(function()
 while _G.StartFly do
 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
@@ -591,7 +591,6 @@ bg.D = 50
 end
 task.wait()
 end
-end)
 end}):AddKeyPicker("Fly", {
    Default = "F",
    Text = "Fly",
@@ -1183,7 +1182,7 @@ AntiDrakobloxxer:Disconnect()
 end
 end})
 end
-if not Fools then
+if Fools then
 Disabled:AddDivider()
 Disabled:AddToggle("MyToggle",{
 Text = "Removal-Jeff",
