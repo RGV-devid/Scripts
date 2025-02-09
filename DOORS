@@ -1,3 +1,21 @@
+local function CylinderESP(child, color, title)
+local Adornment = Instance.new("CylinderHandleAdornment")
+Adornment.Height = child.Size.Y * 2
+Adornment.Radius = child.Size.X * 0.75
+Adornment.CFrame = CFrame.new(0,0,0) * CFrame.Angles(math.rad(90), 0, 0)
+Adornment.Color3 = color
+Adornment.Transparency = 0.6
+Adornment.AlwaysOnTop = true
+Adornment.ZIndex = 10
+Adornment.Adornee = child
+Adornment.Name = title
+Adornment.Parent = child
+game:GetService("RunService").RenderStepped:Connect(function()
+if getgenv().RainbowESP then
+Adornment.Color3 = Color3.fromHSV(tick() % 5/5,1,1)
+end
+end)
+end
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local GameData = ReplicatedStorage:WaitForChild("GameData")
 local Floor = GameData:WaitForChild("Floor")
@@ -1704,7 +1722,116 @@ Default = Color3.fromRGB(0,255,255),
 Callback = function(v)
 _G.PumpCE = v
 end})
-
+ESP:AddToggle("MyToggle",{
+Text = "Entity ESP",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "RushMoving" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Rush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "AmbushMoving" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Ambush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "Eyes" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Eyes", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "BackdoorRush" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Blitz", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "BackdoorLookman" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Lookman", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "A60" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "A60", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "A120" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "A120", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "GlitchAmbush" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "AR0xMBUSH", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "GlitchRush" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "RNIUSHCg==", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+end
+end
+EntityESP = workspace.DescendantAdded:Connect(function(v)
+if v.Name == "RushMoving" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Rush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "AmbushMoving" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Ambush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "Eyes" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Eyes", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "BackdoorRush" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Blitz", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "BackdoorLookman" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Lookman", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "A60" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "A60", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "A120" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "A120", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "GlitchAmbush" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "AR0xMBUSH", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "GlitchRush" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "RNIUSHCg==", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+end
+end)
+else
+EntityESP:Disconnect()
+LibraryESP:Delete("EntityESP")
+end
+end}):AddColorPicker("FuseESP",{
+Default = Color3.fromRGB(0,255),
+Callback = function(v)
+_G.FuseCE = v
+end})
 
 
 
