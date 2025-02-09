@@ -435,6 +435,7 @@ end
 end
 end})
 end
+if not Hotelold or not Fools or not Retro then
 World:AddToggle("MyToggle",{
 Text = "Hiding Live Sanity",
 Default = false,
@@ -448,6 +449,7 @@ end
 end
 end
 end})
+end
 World:AddToggle("MyToggle",{
 Text = "Hiding Void Roblox",
 Default = false,
@@ -458,6 +460,7 @@ else
 workspace.FallenPartsDestroyHeight = -50000
 end
 end})
+if not Hotelold or not Retro then
 World:AddToggle("MyToggle",{
 Text = "No Hiding Vignette",
 Default = false,
@@ -474,6 +477,7 @@ local vignette = game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFra
       end
    end)
 end})
+end
 local Misc = Tabs.Main:AddRightGroupbox("Misc")
 Misc:AddButton({
 Text = "Lobby",
@@ -628,7 +632,7 @@ end
 end
 end)
 end})
-if Fools then
+if Fools or Hotelold then
 Players:AddToggle("Godmode",{
 Text = "Godmode",
 Default = false,
@@ -647,7 +651,13 @@ Toggles.Godmode:SetValue(false)
 end
 end
 end)
-end})
+end}):AddKeyPicker("Godmode", {
+    Default = "G",
+    Text = "Godmode",
+    Mode = Library.IsMobile and "Toggle",
+    SyncToggleState = Library.IsMobile,
+})
+
 end
 Players:AddToggle("MyToggle",{
 Text = "No Accessories",
@@ -694,7 +704,13 @@ if v then
             noclipConnection = nil
         end
     end
-end})
+end}):AddKeyPicker("NC", {
+    Default = "N",
+    Text = "Noclip ",
+    Mode = Library.IsMobile and "Toggle",
+    SyncToggleState = Library.IsMobile,
+})
+
 if not Fools or not Hotelold then
 local LocalPlayer = Tabs.Players:AddRightGroupbox("LocalPlayer")
 LocalPlayer:AddToggle("MyToggle",{
@@ -1304,6 +1320,7 @@ end
 end})
 end
 if Hotelold or Fools then
+Disabled:AddDivider()
 Disabled:AddToggle("MyToggle",{
 Text = "Removal-Seek Chase",
 Default = false,
