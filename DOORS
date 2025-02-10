@@ -1870,9 +1870,9 @@ elseif v.Name == "Grumbo" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Grumble", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 end
-elseif v.Name == "Wall" then
+elseif v.Name == "ScaryWall" then
 if not v:FindFirstChild("EntityESP") then
-LibraryESP:AddESP(v, "Seek Wall", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+LibraryESP:AddESP(v.Wall, "Seek Wall", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 end
 elseif v.Name == "FigureRagdoll" then
 if not v:FindFirstChild("EntityESP") then
@@ -1907,6 +1907,7 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("Model") then
 if v.Name == "StarJug" then
 if not v:FindFirstChild("ItemsESP") then
 LibraryESP:AddESP(v, "Star Jug", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
@@ -2026,10 +2027,12 @@ end
 elseif v.Name == "HolyGrenade" then
 if not v:FindFirstChild("ItemsESP") then
 LibraryESP:AddESP(v, "Holy Hand Grenade", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+end
 end
 end
 end
 ItemsESP = workspace.DescendantAdded:Connect(function(v)
+if v:IsA("Model") then
 if v.Name == "StarJug" then
 if not v:FindFirstChild("ItemsESP") then
 LibraryESP:AddESP(v, "Star Jug", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
@@ -2149,6 +2152,7 @@ end
 elseif v.Name == "HolyGrenade" then
 if not v:FindFirstChild("ItemsESP") then
 LibraryESP:AddESP(v, "Holy Hand Grenade", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+end
 end
 end
 end)
