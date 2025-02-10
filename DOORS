@@ -635,7 +635,7 @@ end
 end)
 end}):AddKeyPicker("SeekSpeed", {
     Default = "Q",
-    Text = "Flight,Speed Offtion",
+    Text = "Speed Offtion",
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
@@ -2242,6 +2242,7 @@ Notifying:AddDropdown('SelectEntity',{
 	Default = 0,
 	Multi = true
 })
+_G.PlaySoundAlert = 5
 Notifying:AddToggle("MyToggle",{
 Text = "Entity Notify",
 Default = false,
@@ -2397,8 +2398,24 @@ game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Ha
 end
 elseif Options.SelectEntity.Value["AR0xMBUSH"] and v.Name == "GlitchAmbush" then
 Library:Notify("ENTITIES | AR0xMBUSH has spawn, find hiding place and hide now!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
 elseif Options.SelectEntity.Value["RNIUSHCg=="] and v.Name == "GlitchRush" then
 Library:Notify("ENTITIES | RNIUSHCg== has spawn, find hiding place and hide now!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
 elseif Options.SelectEntity.Value["Gloombat Swarm"] and v.Name == "GloombatSwarm" then
 Library:Notify("ENTITIES | Gloombat Swarm has spawn!")
 if _G.SoundAlert then
@@ -2421,17 +2438,51 @@ NotificationEntity:Disconnect()
 end
 end})
 Notifying:AddToggle("MyToggle",{
+Text = "Oxygen Notify",
+Default = false,
+Callback = function(v)
+_G.OxygenNotify = v
+if v then
+OxygenNotify = game.Players.LocalPlayer.Character:GetAttributeChangedSignal("Oxygen"):Connect(function()
+if game.Players.LocalPlayer.Character:GetAttribute("Oxygen") < 100 and _G.OxygenNotify then
+firesignal(RemotesFolder.Caption.OnClientEvent, string.format("Oxygen: %s", game.Players.LocalPlayer.Character:GetAttribute("Oxygen")))
+end
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590662766"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+end)
+else
+OxygenNotify:Disconnect()
+end
+end})
+Notifying:AddToggle("MyToggle",{
 Text = "Playing Sound",
 Default = false,
 Callback = function(v)
 _G.SoundAlert = v
 end})
-Notifying:AddToggle("MyToggle",{
-Text = "Playing Chat",
-Default = false,
+Notifying:AddSlider("MySlider",{
+Text = "Volume",
+Min = 5,
+Default = 5,
+Max = 10,
+Rounding = 1,
+Compact = true,
 Callback = function(v)
-_G.PlayChatAlert = v
+_G.PlaySoundAlert = v
 end})
+
+
+
+
+
+
+
 
 local MenuGroup = Tabs.Settings:AddLeftGroupbox("Menu")
 local CreditsGroup = Tabs.Settings:AddRightGroupbox("Credits")
