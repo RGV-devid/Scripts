@@ -1540,11 +1540,11 @@ end
 end
 end
 KeyESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "KeyObtain" and wait(1) then
+if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
-elseif v.Name == "ElectricalKeyObtain" and wait(1) then
+elseif v.Name == "ElectricalKeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
@@ -1576,11 +1576,11 @@ end
 end
 end
 LeverESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "LeverForGate" and wait(1) then
+if v.Name == "LeverForGate" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
-elseif v.Name == "TimerLever" and wait(1) then
+elseif v.Name == "TimerLever" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
@@ -1608,7 +1608,7 @@ end
 end
 end
 GeneratorESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "MinesGenerator" and wait(1) then
+if v.Name == "MinesGenerator" then
 if not v:FindFirstChild("GeneratorESP") then
 LibraryESP:AddESP(v, "Generator", _G.GeneratorCE or Color3.fromRGB(0,255), 20, "GeneratorESP")
 end
@@ -1636,7 +1636,7 @@ end
 end
 end
 FuseESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "FuseObtain" and wait(1) then
+if v.Name == "FuseObtain" then
 if not v:FindFirstChild("FuseESP") then
 LibraryESP:AddESP(v, "Fuse", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "FuseESP")
 end
@@ -1664,7 +1664,7 @@ end
 end
 end
 BookESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "LiveHintBook" and wait(1) then
+if v.Name == "LiveHintBook" then
 if not v:FindFirstChild("BookESP") then
 LibraryESP:AddESP(v, "Book", _G.BookCE or Color3.fromRGB(255,0,255), 20, "BookESP")
 end
@@ -1692,7 +1692,7 @@ end
 end
 end
 BreakerESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "LiveBreakerPolePickup" and wait(1) then
+if v.Name == "LiveBreakerPolePickup" then
 if not v:FindFirstChild("BreakerESP") then
 LibraryESP:AddESP(v, "Breaker", _G.BreakerCE or Color3.fromRGB(255,255,255), 20, "BreakerESP")
 end
@@ -1720,7 +1720,7 @@ end
 end
 end
 AnchorESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "MinesAnchor" and wait(1) then
+if v.Name == "MinesAnchor" then
 if not v:FindFirstChild("AnchorESP") then
 LibraryESP:AddESP(v, "Anchor " .. v.Sign.TextLabel.Text, _G.AnchorCE or Color3.fromRGB(255,255,255), 20, "AnchorESP")
 end
@@ -2235,6 +2235,47 @@ getgenv().RainbowESP = v
 end})
 
 
+local Notifying = Tabs.Visual:AddRightGroupbox("Notifying")
+Notifying:AddDropdown('SelectEntity',{
+	Text = "Select Entity",
+        Values = {'Rush', 'Ambush', 'Blitz', 'A60', 'A120', 'Lookman', 'Eyes', 'Seek Chase', 'JeffTheKiller', 'Sally', 'Halt', 'AR0xMBUSH', 'RNIUSHCg=='},
+	Default = 0,
+	Multi = true
+})
+Notifying:AddToggle("MyToggle",{
+Text = "Entity Notify",
+Default = false,
+Callback = function(v)
+if v then
+local Entity = {"SeekMovingNewClone","SeekMoving","GlitchAmbush","GlitchRush","BackdoorLookman","BackdoorRush","GloombatSwarm","Eyes","JeffTheKiller","RushMoving","AmbushMoving","A60","A120"}
+NotificationEntity = workspace.ChildAdded:Connect(function(v)
+if table.find(Entity,v.Name) then
+repeat task.wait() until game.Players.LocalPlayer:DistanceFromCharacter(v:GetPivot().Position) < 750 or not v:IsDescendantOf(workspace)
+if v:IsDescendantOf(workspace) then
+if Options.SelectEntity.Value["Rush"] and v.Name == "RushMoving" then
+elseif Options.SelectEntity.Value["Ambush"] and v.Name == "AmbushMoving" then
+elseif Options.SelectEntity.Value["Blitz"] and v.Name == "BackdoorRush" then
+elseif Options.SelectEntity.Value["A60"] and v.Name == "A60" then
+elseif Options.SelectEntity.Value["A120"] and v.Name == "A120" then
+elseif Options.SelectEntity.Value["Lookman"] and v.Name == "BackdoorLookman" then
+elseif Options.SelectEntity.Value["Eyes"] and v.Name == "Eyes" then
+elseif Options.SelectEntity.Value["Seek Chase"] and v.Name == "SeekMoving" or v.Name == "SeekMovingNewClone" then
+elseif Options.SelectEntity.Value["JeffTheKiller"] and v.Name == "JeffTheKiller" then
+elseif Options.SelectEntity.Value["Sally"] and v.Name == "Window_BrokenSally" then
+elseif Options.SelectEntity.Value["Halt"] and v.Name == "HaltRoom" then
+elseif Options.SelectEntity.Value["AR0xMBUSH"] and v.Name == "GlitchAmbush" then
+elseif Options.SelectEntity.Value["RNIUSHCg=="] and v.Name == "GlitchRush" then
+elseif Options.SelectEntity.Value["Gloombat Swarm"] and v.Name == "GloombatSwarm" then
+end
+end
+end
+end)
+else
+NotificationEntity:Disconnect()
+end
+end})
+
+
 local MenuGroup = Tabs.Settings:AddLeftGroupbox("Menu")
 local CreditsGroup = Tabs.Settings:AddRightGroupbox("Credits")
 
@@ -2254,7 +2295,9 @@ SaveManager:SetLibrary(Library)
 
 SaveManager:IgnoreThemeSettings()
 
-SaveManager:SetFolder()
+ThemeManager:SetFolder("MyScriptHub")
+SaveManager:SetFolder("MyScriptHub/specific-game")
+SaveManager:SetSubFolder("specific-place") 
 
 SaveManager:BuildConfigSection(Tabs.Settings)
 
