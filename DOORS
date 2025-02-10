@@ -13,6 +13,8 @@ Adornment.Parent = child
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().RainbowESP then
 Adornment.Color3 = Color3.fromHSV(tick() % 10/10,1,1)
+else
+Adornment.Color3 = color
 end
 end)
 end
@@ -1521,12 +1523,20 @@ if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
+elseif v.Name == "ElectricalKeyObtain" then
+if not v:FindFirstChild("KeyESP") then
+LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
+end
 end
 end
 KeyESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
+end
+elseif v.Name == "ElectricalKeyObtain" then
+if not v:FindFirstChild("KeyESP") then
+LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
 end
 end)
@@ -1798,9 +1808,9 @@ elseif v.Name == "Grumbo" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Grumble", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 end
-elseif v.Name == "Wall" then
+elseif v.Name == "ScaryWall" then
 if not v:FindFirstChild("EntityESP") then
-LibraryESP:AddESP(v, "Seek Wall", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+LibraryESP:AddESP(v.Wall, "Seek Wall", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 end
 elseif v.Name == "FigureRagdoll" then
 if not v:FindFirstChild("EntityESP") then
