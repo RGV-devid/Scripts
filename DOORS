@@ -2238,7 +2238,7 @@ end})
 local Notifying = Tabs.Visual:AddRightGroupbox("Notifying")
 Notifying:AddDropdown('SelectEntity',{
 	Text = "Select Entity",
-        Values = {'Rush', 'Ambush', 'Blitz', 'A60', 'A120', 'Lookman', 'Eyes', 'Seek Chase', 'JeffTheKiller', 'Sally', 'Halt', 'AR0xMBUSH', 'RNIUSHCg=='},
+        Values = {'Rush', 'Ambush', 'Blitz', 'A60', 'A120', 'Lookman', 'Eyes', 'Seek Chase', 'JeffTheKiller', 'Sally', 'Halt', 'AR0xMBUSH', 'RNIUSHCg==', 'Gloombat Swarm'},
 	Default = 0,
 	Multi = true
 })
@@ -2253,19 +2253,165 @@ if table.find(Entity,v.Name) then
 repeat task.wait() until game.Players.LocalPlayer:DistanceFromCharacter(v:GetPivot().Position) < 750 or not v:IsDescendantOf(workspace)
 if v:IsDescendantOf(workspace) then
 if Options.SelectEntity.Value["Rush"] and v.Name == "RushMoving" then
+Library:Notify("ENTITIES | Rush has spawn, find hiding place and hide now!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Rush has spawn!")
+end
 elseif Options.SelectEntity.Value["Ambush"] and v.Name == "AmbushMoving" then
+Library:Notify("ENTITIES | Ambush has spawn, find hiding place and hide now!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Ambush has spawn!")
+end
 elseif Options.SelectEntity.Value["Blitz"] and v.Name == "BackdoorRush" then
+Library:Notify("ENTITIES | Blitz has spawn, find hiding place and hide now!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Blitz has spawn!")
+end
 elseif Options.SelectEntity.Value["A60"] and v.Name == "A60" then
+Library:Notify("ENTITIES | A60 has spawn, find hiding place and hide now!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] A60 has spawn!")
+end
 elseif Options.SelectEntity.Value["A120"] and v.Name == "A120" then
+Library:Notify("ENTITIES | A120 has spawn, find hiding place and hide now!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] A120 has spawn!")
+end
 elseif Options.SelectEntity.Value["Lookman"] and v.Name == "BackdoorLookman" then
+Library:Notify("ENTITIES | Lookman has spawn, dont look at it!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Lookman has spawn!")
+end
 elseif Options.SelectEntity.Value["Eyes"] and v.Name == "Eyes" then
+Library:Notify("ENTITIES | Eyes has spawn, dont look at it!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Eyes has spawn!")
+end
 elseif Options.SelectEntity.Value["Seek Chase"] and v.Name == "SeekMoving" or v.Name == "SeekMovingNewClone" then
+Library:Notify("ENTITIES | Seek has spawn, goodluck for chase!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Seek Chase goodluck!")
+end
 elseif Options.SelectEntity.Value["JeffTheKiller"] and v.Name == "JeffTheKiller" then
+Library:Notify("ENTITIES | Jeff The Killer has spawn, careful with knife it!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Jeff The Killer has spawn!")
+end
 elseif Options.SelectEntity.Value["Sally"] and v.Name == "Window_BrokenSally" then
+Library:Notify("ENTITIES | Sally has spawn, in broken window!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Sally has spawn!")
+end
 elseif Options.SelectEntity.Value["Halt"] and v.Name == "HaltRoom" then
+Library:Notify("ENTITIES | Halt has spawn, it in next door!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Halt Room has spawn!")
+end
 elseif Options.SelectEntity.Value["AR0xMBUSH"] and v.Name == "GlitchAmbush" then
+Library:Notify("ENTITIES | AR0xMBUSH has spawn, find hiding place and hide now!")
 elseif Options.SelectEntity.Value["RNIUSHCg=="] and v.Name == "GlitchRush" then
+Library:Notify("ENTITIES | RNIUSHCg== has spawn, find hiding place and hide now!")
 elseif Options.SelectEntity.Value["Gloombat Swarm"] and v.Name == "GloombatSwarm" then
+Library:Notify("ENTITIES | Gloombat Swarm has spawn!")
+if _G.SoundAlert then
+local Sound = Instance.new("Sound")
+Sound.Parent = game.SoundService
+Sound.SoundId = "rbxassetid://4590657391"
+Sound.Volume = _G.PlaySoundAlert
+Sound.PlayOnRemove = true
+Sound:Destroy()
+end
+if _G.PlayChatAlert then
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Gloombat Swarm has spawn!")
+end
 end
 end
 end
@@ -2274,7 +2420,18 @@ else
 NotificationEntity:Disconnect()
 end
 end})
-
+Notifying:AddToggle("MyToggle",{
+Text = "Playing Sound",
+Default = false,
+Callback = function(v)
+_G.SoundAlert = v
+end})
+Notifying:AddToggle("MyToggle",{
+Text = "Playing Chat",
+Default = false,
+Callback = function(v)
+_G.PlayChatAlert = v
+end})
 
 local MenuGroup = Tabs.Settings:AddLeftGroupbox("Menu")
 local CreditsGroup = Tabs.Settings:AddRightGroupbox("Credits")
