@@ -1148,7 +1148,7 @@ Callback = function(v)
 _G.RemovalScreech = v
 task.spawn(function()
 while wait(1) do
-if _G.RemovalScreech and workspace.CurrentCamera:FindFirstChild("Screech") or workspace.CurrentCamera:FindFirstChild("RetroScreech") or workspace.CurrentCamera:FindFirstChild("GlitchScreech") then
+if _G.RemovalScreech then
 RemotesFolder.Screech.Name = "_Screech"
 for _,v in pairs(workspace.CurrentCamera:GetDescendants()) do
 if v.Name == "Screech" then
@@ -1159,7 +1159,17 @@ elseif v.Name == "GlitchScreech" then
 v:Destroy()
 end
 end
+RemoveScreech = workspace.CurrentCamera.ChildAdded:Connect(function(v)
+if v.Name == "Screech" then
+v:Destroy()
+elseif v.Name == "RetroScreech" then
+v:Destroy()
+elseif v.Name == "GlitchScreech" then
+v:Destroy()
+end
+end)
 else
+RemoveScreech:Disconnect()
 RemotesFolder._Screech.Name = "Screech"
 end
 end
@@ -1519,22 +1529,22 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v:FindFirstChild("KeyObtain") then
+if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
-elseif v:FindFirstChild("ElectricalKeyObtain") then
+elseif v.Name == "ElectricalKeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
 end
 end
 KeyESP = workspace.DescendantAdded:Connect(function(v)
-if v:FindFirstChild("KeyObtain") then
+if v.Name == "KeyObtain" and wait(1) then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
-elseif v:FindFirstChild("ElectricalKeyObtain") then
+elseif v.Name == "ElectricalKeyObtain" and wait(1) then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
@@ -1555,22 +1565,22 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v:FindFirstChild("LeverForGate") then
+if v.Name == "LeverForGate" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
-elseif v:FindFirstChild("TimerLever") then
+elseif v.Name == "TimerLever" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
 end
 end
 LeverESP = workspace.DescendantAdded:Connect(function(v)
-if v:FindFirstChild("LeverForGate") then
+if v.Name == "LeverForGate" and wait(1) then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
-elseif v:FindFirstChild("TimerLever") then
+elseif v.Name == "TimerLever" and wait(1) then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
@@ -1598,7 +1608,7 @@ end
 end
 end
 GeneratorESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "MinesGenerator" then
+if v.Name == "MinesGenerator" and wait(1) then
 if not v:FindFirstChild("GeneratorESP") then
 LibraryESP:AddESP(v, "Generator", _G.GeneratorCE or Color3.fromRGB(0,255), 20, "GeneratorESP")
 end
@@ -1626,7 +1636,7 @@ end
 end
 end
 FuseESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "FuseObtain" then
+if v.Name == "FuseObtain" and wait(1) then
 if not v:FindFirstChild("FuseESP") then
 LibraryESP:AddESP(v, "Fuse", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "FuseESP")
 end
@@ -1654,7 +1664,7 @@ end
 end
 end
 BookESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "LiveHintBook" then
+if v.Name == "LiveHintBook" and wait(1) then
 if not v:FindFirstChild("BookESP") then
 LibraryESP:AddESP(v, "Book", _G.BookCE or Color3.fromRGB(255,0,255), 20, "BookESP")
 end
@@ -1682,7 +1692,7 @@ end
 end
 end
 BreakerESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "LiveBreakerPolePickup" then
+if v.Name == "LiveBreakerPolePickup" and wait(1) then
 if not v:FindFirstChild("BreakerESP") then
 LibraryESP:AddESP(v, "Breaker", _G.BreakerCE or Color3.fromRGB(255,255,255), 20, "BreakerESP")
 end
@@ -1710,7 +1720,7 @@ end
 end
 end
 AnchorESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "MinesAnchor" then
+if v.Name == "MinesAnchor" and wait(1) then
 if not v:FindFirstChild("AnchorESP") then
 LibraryESP:AddESP(v, "Anchor " .. v.Sign.TextLabel.Text, _G.AnchorCE or Color3.fromRGB(255,255,255), 20, "AnchorESP")
 end
@@ -1726,6 +1736,32 @@ Callback = function(v)
 _G.AnchorCE = v
 end})
 ESP:AddToggle("MyToggle",{
+Text = "Players ESP",
+Default = false,
+Callback = function(v)
+if v then
+for _,Player in pairs(game:GetService("Players"):GetPlayers()) do
+if Player ~= game:GetService("Players").LocalPlayer then
+ESP:AddESP(Player.Character, Player.DisplayName .. "\n[HP:" .. Player.Character.Humanoid.Health .. "]", _G.PlayerCE or Color3.new(1,1,1), 14, "PlayerESP")
+end
+end
+PlayerESP = workspace.DescendantAdded:Connect(function(v)
+for _,Player in pairs(game:GetService("Players"):GetPlayers()) do
+if Player ~= game:GetService("Players").LocalPlayer then
+ESP:AddESP(Player.Character, Player.DisplayName .. "\n[HP:" .. Player.Character.Humanoid.Health .. "]", _G.PlayerCE or Color3.new(1,1,1), 14, "PlayerESP")
+end
+end
+end)
+else
+PlayerESP:Disconnect()
+LibraryESP:Delete("PlayerESP")
+end
+end}):AddColorPicker("PlayerESP",{
+Default = Color3.fromRGB(255,255,255),
+Callback = function(v)
+_G.PlayerCE = v
+end})
+ESP:AddToggle("MyToggle",{
 Text = "Waterpump ESP",
 Default = false,
 Callback = function(v)
@@ -1738,7 +1774,7 @@ end
 end
 end
 PumpESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "WaterPump" then
+if v.Name == "WaterPump" and wait(1) then
 if not v:FindFirstChild("PumpESP") then
 LibraryESP:AddESP(v, "Waterpump", _G.PumpCE or Color3.fromRGB(0,255,255), 20, "PumpESP")
 end
@@ -1988,7 +2024,7 @@ LibraryESP:AddESP(v, "Crucifix", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "I
 end
 elseif v.Name == "CrucifixWall" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "< Wall >\nCrucifix", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Crucifix", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "SkeletonKey" then
 if not v:FindFirstChild("ItemsESP") then
@@ -2013,6 +2049,10 @@ end
 elseif v.Name == "Battery" then
 if not v:FindFirstChild("ItemsESP") then
 LibraryESP:AddESP(v, "Battery", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+end
+elseif v.Name == "Bandage" then
+if not v:FindFirstChild("ItemsESP") then
+LibraryESP:AddESP(v, "Bandage", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "PickupItem" then
 if not v:FindFirstChild("ItemsESP") then
@@ -2113,7 +2153,7 @@ LibraryESP:AddESP(v, "Crucifix", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "I
 end
 elseif v.Name == "CrucifixWall" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "< Wall >\nCrucifix", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Crucifix", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "SkeletonKey" then
 if not v:FindFirstChild("ItemsESP") then
@@ -2138,6 +2178,10 @@ end
 elseif v.Name == "Battery" then
 if not v:FindFirstChild("ItemsESP") then
 LibraryESP:AddESP(v, "Battery", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+end
+elseif v.Name == "Bandage" then
+if not v:FindFirstChild("ItemsESP") then
+LibraryESP:AddESP(v, "Bandage", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "PickupItem" then
 if not v:FindFirstChild("ItemsESP") then
@@ -2175,6 +2219,7 @@ Default = Color3.fromRGB(255,0,255),
 Callback = function(v)
 _G.ItemsCE = v
 end})
+
 ESP:AddDivider()
 ESP:AddToggle("MyToggle",{
 Text = "Distance ESP",
