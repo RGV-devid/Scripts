@@ -68,7 +68,7 @@ if _G.FastDoors then game.workspace.CurrentRooms[tostring(game:GetService("Repli
 end 
 end)
 end)
-Fast:AddToggle("MyToggle",{
+Fast:AddToggle("DoorsFast",{
 Text = "Doors Fast",
 Default = false,
 Callback = function(v)
@@ -81,13 +81,13 @@ if _G.DoorsReach then game.workspace.CurrentRooms[tostring(game:GetService("Repl
 end 
 end)
 end)
-Reach:AddToggle("MyToggle",{
+Reach:AddToggle("DoorsReach",{
 Text = "Doors Reach",
 Default = false,
 Callback = function(v)
 _G.DoorsReach = v
 end})
-Reach:AddToggle("MyToggle",{
+Reach:AddToggle("Reach",{
 Text = "Reach",
 Default = false,
 Callback = function(v)
@@ -114,7 +114,7 @@ end
 end
 end})
 local Interact = Tabs.Main:AddLeftGroupbox("Interact")
-Interact:AddToggle("MyToggle",{
+Interact:AddToggle("ThroughInteract",{
 Text = "Through Interact",
 Default = false,
 Callback = function(v)
@@ -140,7 +140,7 @@ end
 end
 end
 end})
-Interact:AddToggle("MyToggle",{
+Interact:AddToggle("InstanceInteract",{
 Text = "Instance Interact",
 Default = false,
 Callback = function(v)
@@ -371,7 +371,7 @@ end
 InitializeScript()
 task.spawn(AutoInteractLoop)
 local Automation = Tabs.Main:AddRightGroupbox("Automation")
-Automation:AddToggle("MyToggle",{
+Automation:AddToggle("AutoBreaker",{
 Text = "Auto Breaker",
 Default = false,
 Callback = function(v)
@@ -382,7 +382,7 @@ RemotesFolder.EBF:FireServer()
 end
 end
 end})
-Automation:AddToggle("MyToggle",{
+Automation:AddToggle("AutoPadlockUnlock",{
 Text = "Auto Padlock Unlock",
 Default = false,
 Callback = function(v)
@@ -405,7 +405,7 @@ while _G.AutoPadlockUnlock do wait(0.5)
     end
 end})
 Automation:AddDivider()
-Automation:AddSlider("MySlider",{
+Automation:AddSlider("UnlockDistance",{
 Text = "Unlock Distance",
 Default = 50,
 Min = 50,
@@ -421,14 +421,14 @@ if _G.ClosetsExitFix and game.Players.LocalPlayer.Character:GetAttribute("Hiding
 RemotesFolder.CamLock:FireServer()
 end 
 end)
-World:AddToggle("MyToggle",{
+World:AddToggle("ClosetsExitFix",{
 Text = "Closets Exit Fix",
 Default = false,
 Callback = function(v)
 _G.ClosetsExitFix = v
 end})
 if Retro then
-World:AddToggle("MyToggle",{
+World:AddToggle("BlurFakeBridge",{
 Text = "Blur Fake Brigde",
 Default = false,
 Callback = function(v)
@@ -457,7 +457,7 @@ end
 end})
 end
 if not Hotelold or not Fools or not Retro then
-World:AddToggle("MyToggle",{
+World:AddToggle("HidingLiveSanity",{
 Text = "Hiding Live Sanity",
 Default = false,
 Callback = function(v)
@@ -471,7 +471,7 @@ end
 end
 end})
 end
-World:AddToggle("MyToggle",{
+World:AddToggle("HidingVoidRoblox",{
 Text = "Hiding Void Roblox",
 Default = false,
 Callback = function(v)
@@ -482,7 +482,7 @@ workspace.FallenPartsDestroyHeight = -50000
 end
 end})
 if not Hotelold or not Retro then
-World:AddToggle("MyToggle",{
+World:AddToggle("NoHidingVignette",{
 Text = "No Hiding Vignette",
 Default = false,
 Callback = function(v)
@@ -533,7 +533,7 @@ end})
 
 
 local Players = Tabs.Players:AddLeftGroupbox("Players")
-Players:AddSlider("MySlider",{
+Players:AddSlider("SpeedBoostSlider",{
 Text = "Speed Boost",
 Min = 15,
 Default = 15,
@@ -543,7 +543,7 @@ Compact = true,
 Callback = function(v)
 _G.SpeedBoost = v
 end})
-Players:AddToggle("MyToggle",{
+Players:AddToggle("SpeedBoost",{
 Text = "Speed Boost",
 Default = false,
 Callback = function(v)
@@ -623,7 +623,7 @@ end}):AddKeyPicker("Fly", {
    Mode = Library.IsMobile and "Toggle",
    SyncToggleState = Library.IsMobile
 })
-Players:AddToggle("MyToggle",{
+Players:AddToggle("SpeedOftion",{
 Text = "Speed Offtion",
 Default = false,
 Callback = function(v)
@@ -640,7 +640,7 @@ end}):AddKeyPicker("SeekSpeed", {
     SyncToggleState = Library.IsMobile,
 })
 Players:AddDivider()
-Players:AddToggle("MyToggle",{
+Players:AddToggle("EatCandies",{
 Text = "Eat Candies",
 Default = false,
 Callback = function(v)
@@ -680,7 +680,7 @@ end}):AddKeyPicker("Godmode", {
 })
 
 end
-Players:AddToggle("MyToggle",{
+Players:AddToggle("NoAccessories",{
 Text = "No Accessories",
 Default = false,
 Callback = function(v)
@@ -704,7 +704,7 @@ game.Players.LocalPlayer.Character.RightUpperLeg.Massless = not _G.NoSlow;
 game.Players.LocalPlayer.Character.UpperTorso.Massless = not _G.NoSlow;
 end)
 end})
-Players:AddToggle("MyToggle",{
+Players:AddToggle("Noclip",{
 Text = "Noclip",
 Default = false,
 Callback = function(v)
@@ -734,7 +734,7 @@ end}):AddKeyPicker("NC", {
 
 if not Fools or not Hotelold then
 local LocalPlayer = Tabs.Players:AddRightGroupbox("LocalPlayer")
-LocalPlayer:AddToggle("MyToggle",{
+LocalPlayer:AddToggle("CanJump",{
 Text = "Can Jump",
 Default = false,
 Callback = function(v)
@@ -743,7 +743,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 game.Players.LocalPlayer.Character:SetAttribute("CanJump", _G.Jump)
 end)
 end})
-LocalPlayer:AddToggle("MyToggle",{
+LocalPlayer:AddToggle("AutoJump",{
 Text = "Auto Jump",
 Default = false,
 Callback = function(v)
@@ -754,7 +754,7 @@ game.Players.LocalPlayer.Character.Humanoid.Jump = true
 end
 end)
 end})
-LocalPlayer:AddToggle("MyToggle",{
+LocalPlayer:AddToggle("CrouchBypass",{
 Text = "Crouch Spoof Bypass",
 Default = false,
 Callback = function(v)
@@ -793,7 +793,7 @@ end
 end
 end)
 if not Hotelold then
-Bypass:AddToggle("MyToggle",{
+Bypass:AddToggle("SpeedBypass",{
 Text = "Speed Bypass",
 Default = false,
 Callback = function(v)
@@ -801,7 +801,7 @@ _G.SpeedBypass = v
 end})
 end
 if Mines then
-Bypass:AddToggle("MyToggle",{
+Bypass:AddToggle("LadderBypass",{
 Text = "Ladder Bypass",
 Default = false,
 Callback = function(v)
@@ -818,7 +818,7 @@ end
 if _G.LadderBypass and game.Players.LocalPlayer.Character:GetAttribute("Climbing") then
 task.wait()
 game.Players.LocalPlayer.Character:SetAttribute("Climbing", false)
-Notification:Notify("Complete Bypass!")
+Library:Notify("WARNING | Complete Ladder Bypass!")
 end
 else
 if workspace:FindFirstChild("Ladder_Bypass") then 
@@ -829,7 +829,7 @@ end
 end)
 end})
 end
-Bypass:AddToggle("MyToggle",{
+Bypass:AddToggle("ManipulateBypass",{
 Text = "Manipulate Bypass",
 Default = false,
 Callback = function(v)
@@ -839,7 +839,7 @@ if _G.ManipulateBypass then
 game.Players.LocalPlayer.Character:PivotTo(game.Players.LocalPlayer.Character:GetPivot() + workspace.CurrentCamera.CFrame.LookVector * Vector3.new(1, 0, 1) * -100)
 end
 end)
-end}):AddKeyPicker("Noclip", {
+end}):AddKeyPicker("ManiBypassKey", {
     Default = "B",
     Text = "Manipulate Bypass",
     Mode = Library.IsMobile and "Toggle",
@@ -848,6 +848,7 @@ end}):AddKeyPicker("Noclip", {
 
 
 local Body = Tabs.Players:AddRightGroupbox("Body")
+_G.BodyColor = Color3.new(1,1,1)
 Body:AddLabel("Body Color"):AddColorPicker("Body Color",{
 Default = Color3.new(1, 1, 1),
 Callback = function(v)
@@ -918,13 +919,13 @@ end
 end 
 end 
 end)
-Anti:AddToggle("MyToggle",{
+Anti:AddToggle("Anti-Snare",{
 Text = "Anti-Snare",
 Default = false,
 Callback = function(v)
 _G.AntiSnare = v
 end})
-Anti:AddToggle("MyToggle",{
+Anti:AddToggle("Anti-Dupe",{
 Text = "Anti-Dupe",
 Default = false,
 Callback = function(v)
@@ -972,7 +973,7 @@ end
 end 
 end 
 end)
-Anti:AddToggle("MyToggle",{
+Anti:AddToggle("Anti-Chandelier",{
 Text = "Anti-Chandelier",
 Default = false,
 Callback = function(v)
@@ -989,7 +990,7 @@ end
 end 
 end 
 end)
-Anti:AddToggle("MyToggle",{
+Anti:AddToggle("Anti-SeekArms",{
 Text = "Anti-Seek Arms",
 Default = false,
 Callback = function(v)
@@ -1026,14 +1027,25 @@ end
 end
 end
 end)
-Anti:AddToggle("MyToggle",{
+Anti:AddToggle("Anti-Eyes",{
 Text = "Anti-Eyes",
 Default = false,
 Callback = function(v)
 _G.AntiEyes = v
 end})
+Anti:AddToggle("RemoveScreech",{
+Text = "Anti-Screech",
+Default = false,
+Callback = function(v)
+_G.RemovalScreech = v
+if _G.RemovalScreech then
+RemotesFolder.Screech.Name = "_Screech"
+else
+RemotesFolder._Screech.Name = "Screech"
+end
+end})
 if not Hotelold then
-Anti:AddToggle("MyToggle",{
+Anti:AddToggle("Anti-Lookman",{
 Text = "Anti-Lookman",
 Default = false,
 Callback = function(v)
@@ -1050,7 +1062,7 @@ end
 end
 end)
 end)
-Anti:AddToggle("MyToggle",{
+Anti:AddToggle("Anti-Giggle",{
 Text = "Anti-Giggle",
 Default = false,
 Callback = function(v)
@@ -1059,7 +1071,7 @@ end})
 end
 if Retro then
 Anti:AddDivider()
-Anti:AddToggle("MyToggle",{
+Anti:AddToggle("Anti-Lava",{
 Text = "Anti-Lava",
 Default = false,
 Callback = function(v)
@@ -1085,7 +1097,7 @@ end
 end
 end
 end})
-Anti:AddToggle("MyToggle",{
+Anti:AddToggle("AntiSeekWall",{
 Text = "Anti-Seek Wall",
 Default = false,
 Callback = function(v)
@@ -1114,7 +1126,7 @@ end})
 end
 if Fools then
 Anti:AddDivider()
-Anti:AddToggle("MyToggle",{
+Anti:AddToggle("AntiBanana",{
 Text = "Anti-Banana",
 Default = false,
 Callback = function(v)
@@ -1141,42 +1153,8 @@ end
 
 
 local Disabled = Tabs.Exploits:AddRightGroupbox("Disabled")
-Disabled:AddToggle("MyToggle",{
-Text = "Removal-Screech",
-Default = false,
-Callback = function(v)
-_G.RemovalScreech = v
-task.spawn(function()
-while wait(1) do
-if _G.RemovalScreech then
-RemotesFolder.Screech.Name = "_Screech"
-for _,v in pairs(workspace.CurrentCamera:GetDescendants()) do
-if v.Name == "Screech" then
-v:Destroy()
-elseif v.Name == "RetroScreech" then
-v:Destroy()
-elseif v.Name == "GlitchScreech" then
-v:Destroy()
-end
-end
-RemoveScreech = workspace.CurrentCamera.ChildAdded:Connect(function(v)
-if v.Name == "Screech" then
-v:Destroy()
-elseif v.Name == "RetroScreech" then
-v:Destroy()
-elseif v.Name == "GlitchScreech" then
-v:Destroy()
-end
-end)
-else
-RemoveScreech:Disconnect()
-RemotesFolder._Screech.Name = "Screech"
-end
-end
-end)
-end})
 if not Hotelold then
-Disabled:AddToggle("MyToggle",{
+Disabled:AddToggle("RemoveA90",{
 Text = "Removal-A90",
 Default = false,
 Callback = function(v)
@@ -1189,7 +1167,7 @@ game.Players.LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscar
 end
 end})
 end
-Disabled:AddToggle("MyToggle",{
+Disabled:AddToggle("RemoveHalt",{
 Text = "Removal-Halt",
 Default = false,
 Callback = function(v)
@@ -1199,7 +1177,7 @@ ReplicatedStorage.ClientModules.EntityModules.Shade.Parent = game.Workspace
 end
 end})
 if not Fools or not Hotelold then
-Disabled:AddToggle("MyToggle",{
+Disabled:AddToggle("RemoveDread",{
 Text = "Removal-Dread",
 Default = false,
 Callback = function(v)
@@ -1215,7 +1193,7 @@ end})
 end
 if Retro then
 Disabled:AddDivider()
-Disabled:AddToggle("MyToggle",{
+Disabled:AddToggle("RemoveDrakoBloxxer",{
 Text = "Removal-DrakoBloxxer",
 Default = false,
 Callback = function(v)
@@ -1239,7 +1217,7 @@ end})
 end
 if Fools then
 Disabled:AddDivider()
-Disabled:AddToggle("MyToggle",{
+Disabled:AddToggle("RemoveJeff",{
 Text = "Removal-Jeff",
 Default = false,
 Callback = function(v)
@@ -1351,7 +1329,7 @@ end})
 end
 if Hotelold or Fools then
 Disabled:AddDivider()
-Disabled:AddToggle("MyToggle",{
+Disabled:AddToggle("RemoveSeek",{
 Text = "Removal-Seek Chase",
 Default = false,
 Callback = function(v)
@@ -1366,7 +1344,7 @@ end
 end
 end)
 end})
-Disabled:AddToggle("MyToggle",{
+Disabled:AddToggle("RemoveGate",{
 Text = "Removal-Gate",
 Default = false,
 Callback = function(v)
@@ -1381,7 +1359,7 @@ end
 end
 end)
 end})
-Disabled:AddToggle("MyToggle",{
+Disabled:AddToggle("RemoveSkeleton",{
 Text = "Removal-Skeleton Door",
 Default = false,
 Callback = function(v)
@@ -1396,7 +1374,7 @@ end
 end
 end)
 end})
-Disabled:AddToggle("MyToggle",{
+Disabled:AddToggle("RemovePuzzle",{
 Text = "Removal-Puzzle Door",
 Default = false,
 Callback = function(v)
@@ -1414,7 +1392,7 @@ end})
 end
 local Troll = Tabs.Exploits:AddRightGroupbox("Trolling")
 if not Hotelold then
-Troll:AddToggle("MyToggle",{
+Troll:AddToggle("Stunned",{
 Text = "Stunned",
 Default = false,
 Callback = function(v)
@@ -1428,7 +1406,7 @@ local lplr = game.Players.LocalPlayer
         end
 end})
 end
-Troll:AddToggle("MyToggle",{
+Troll:AddToggle("Thoughts",{
 Text = "Thoughts",
 Default = false,
 Callback = function(v)
@@ -1448,7 +1426,7 @@ local lplr = game.Players.LocalPlayer
             end
         end
 end})
-Troll:AddToggle("MyToggle",{
+Troll:AddToggle("UpsideDown",{
 Text = "Upside Down",
 Default = false,
 Callback = function(v)
@@ -1469,7 +1447,7 @@ if not collision then return end
         end)
     end
 end})
-Troll:AddToggle("MyToggle",{
+Troll:AddToggle("LagMove",{
 Text = "Lag Move",
 Default = false,
 Callback = function(v)
@@ -1480,7 +1458,7 @@ wait(0.5)
 game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
 end
 end})
-Troll:AddToggle("MyToggle",{
+Troll:AddToggle("SpamMotorReplication",{
 Text = "Spam Motor Replication",
 Default = false,
 Callback = function(v)
@@ -1495,7 +1473,7 @@ end})
 
 
 local ESP = Tabs.Visual:AddLeftGroupbox("ESP")
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("DoorESP",{
 Text = "Door ESP",
 Default = false,
 Callback = function(v)
@@ -1523,7 +1501,7 @@ Default = Color3.fromRGB(135, 135, 255),
 Callback = function(v)
 _G.DoorCE = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("KeyESP",{
 Text = "Key ESP",
 Default = false,
 Callback = function(v)
@@ -1559,7 +1537,7 @@ Default = Color3.fromRGB(135, 255, 255),
 Callback = function(v)
 _G.KeyCE = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("LeverESP",{
 Text = "Lever ESP",
 Default = false,
 Callback = function(v)
@@ -1595,7 +1573,7 @@ Default = Color3.fromRGB(0,255),
 Callback = function(v)
 _G.LeverCE = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("GeneratorESP",{
 Text = "Generator ESP",
 Default = false,
 Callback = function(v)
@@ -1623,7 +1601,7 @@ Default = Color3.fromRGB(0,255),
 Callback = function(v)
 _G.GeneratorCE = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("FuseESP",{
 Text = "Fuse ESP",
 Default = false,
 Callback = function(v)
@@ -1651,7 +1629,7 @@ Default = Color3.fromRGB(0,255),
 Callback = function(v)
 _G.FuseCE = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("BookESP",{
 Text = "Book ESP",
 Default = false,
 Callback = function(v)
@@ -1679,7 +1657,7 @@ Default = Color3.fromRGB(255,0,255),
 Callback = function(v)
 _G.BookCE = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("BreakerESP",{
 Text = "Breaker ESP",
 Default = false,
 Callback = function(v)
@@ -1707,7 +1685,7 @@ Default = Color3.fromRGB(255,255,255),
 Callback = function(v)
 _G.BreakerCE = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("AnchorESP",{
 Text = "Anchor ESP",
 Default = false,
 Callback = function(v)
@@ -1735,7 +1713,7 @@ Default = Color3.fromRGB(255,255,255),
 Callback = function(v)
 _G.AnchorCE = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("PlayerESP",{
 Text = "Players ESP",
 Default = false,
 Callback = function(v)
@@ -1761,7 +1739,7 @@ Default = Color3.fromRGB(255,255,255),
 Callback = function(v)
 _G.PlayerCE = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("WaterPumpESP",{
 Text = "Waterpump ESP",
 Default = false,
 Callback = function(v)
@@ -1789,7 +1767,7 @@ Default = Color3.fromRGB(0,255,255),
 Callback = function(v)
 _G.PumpCE = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("EntityESP",{
 Text = "Entity ESP",
 Default = false,
 Callback = function(v)
@@ -1947,7 +1925,7 @@ Default = Color3.fromRGB(255),
 Callback = function(v)
 _G.EntityCE = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("ItemsESP",{
 Text = "Items ESP",
 Default = false,
 Callback = function(v)
@@ -2221,13 +2199,13 @@ _G.ItemsCE = v
 end})
 
 ESP:AddDivider()
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("DistanceESP",{
 Text = "Distance ESP",
 Default = false,
 Callback = function(v)
 getgenv().DistanceESP = v
 end})
-ESP:AddToggle("MyToggle",{
+ESP:AddToggle("RainbowESP",{
 Text = "Rainbow ESP",
 Default = false,
 Callback = function(v)
@@ -2243,7 +2221,7 @@ Notifying:AddDropdown('SelectEntity',{
 	Multi = true
 })
 _G.PlaySoundAlert = 5
-Notifying:AddToggle("MyToggle",{
+Notifying:AddToggle("EntityNotify",{
 Text = "Entity Notify",
 Default = false,
 Callback = function(v)
@@ -2437,7 +2415,7 @@ else
 NotificationEntity:Disconnect()
 end
 end})
-Notifying:AddToggle("MyToggle",{
+Notifying:AddToggle("OxyNotify",{
 Text = "Oxygen Notify",
 Default = false,
 Callback = function(v)
@@ -2445,28 +2423,20 @@ _G.OxygenNotify = v
 if v then
 OxygenNotify = game.Players.LocalPlayer.Character:GetAttributeChangedSignal("Oxygen"):Connect(function()
 if game.Players.LocalPlayer.Character:GetAttribute("Oxygen") < 100 and _G.OxygenNotify then
-firesignal(RemotesFolder.Caption.OnClientEvent, string.format("Oxygen: %s", game.Players.LocalPlayer.Character:GetAttribute("Oxygen")))
-end
-if _G.SoundAlert then
-local Sound = Instance.new("Sound")
-Sound.Parent = game.SoundService
-Sound.SoundId = "rbxassetid://4590662766"
-Sound.Volume = _G.PlaySoundAlert
-Sound.PlayOnRemove = true
-Sound:Destroy()
+firesignal(RemotesFolder.Caption.OnClientEvent, string.format("Oxygen: %.1f", game.Players.LocalPlayer.Character:GetAttribute("Oxygen")))
 end
 end)
 else
 OxygenNotify:Disconnect()
 end
 end})
-Notifying:AddToggle("MyToggle",{
+Notifying:AddToggle("PlaySound",{
 Text = "Playing Sound",
 Default = false,
 Callback = function(v)
 _G.SoundAlert = v
 end})
-Notifying:AddSlider("MySlider",{
+Notifying:AddSlider("VolumeSound",{
 Text = "Volume",
 Min = 5,
 Default = 5,
