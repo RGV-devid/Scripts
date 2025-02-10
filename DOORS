@@ -1519,22 +1519,22 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "KeyObtain" then
+if v:FindFirstChild("KeyObtain") then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
-elseif v.Name == "ElectricalKeyObtain" then
+elseif v:FindFirstChild("ElectricalKeyObtain") then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
 end
 end
 KeyESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "KeyObtain" then
+if v:FindFirstChild("KeyObtain") then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
-elseif v.Name == "ElectricalKeyObtain" then
+elseif v:FindFirstChild("ElectricalKeyObtain") then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
@@ -1555,22 +1555,22 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "LeverForGate" then
+if v:FindFirstChild("LeverForGate") then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
-elseif v.Name == "TimerLever" then
+elseif v:FindFirstChild("TimerLever") then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
 end
 end
 LeverESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "LeverForGate" then
+if v:FindFirstChild("LeverForGate") then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
-elseif v.Name == "TimerLever" then
+elseif v:FindFirstChild("TimerLever") then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
@@ -1762,47 +1762,47 @@ for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "RushMoving" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Rush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "AmbushMoving" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Ambush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Parent.Name == "Eyes" and v.Name == "Core" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Eyes", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v.Parent:FindFirstChild("Core"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v.Parent:FindFirstChild("Core"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "BackdoorRush" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Blitz", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "BackdoorLookman" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Lookman", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "A60" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "A60", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "A120" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "A120", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "GlitchAmbush" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "AR0xMBUSH", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "GlitchRush" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "RNIUSHCg==", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "Grumbo" then
 if not v:FindFirstChild("EntityESP") then
@@ -1834,47 +1834,47 @@ EntityESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "RushMoving" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Rush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "AmbushMoving" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Ambush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Parent.Name == "Eyes" and v.Name == "Core" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Eyes", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v.Parent:FindFirstChild("Core"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v.Parent:FindFirstChild("Core"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "BackdoorRush" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Blitz", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "BackdoorLookman" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Lookman", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "A60" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "A60", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "A120" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "A120", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "GlitchAmbush" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "AR0xMBUSH", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "GlitchRush" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "RNIUSHCg==", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v:FindFirstChildOfClass("Part"), _G.EntityCE or Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "Grumbo" then
 if not v:FindFirstChild("EntityESP") then
