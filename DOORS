@@ -765,7 +765,6 @@ end)
 end})
 end
 local Bypass = Tabs.Players:AddRightGroupbox("Bypass")
-if not Hotelold then
 local ClonedCollision = game:GetService("Players").LocalPlayer.Character.Collision:Clone()
 ClonedCollision.Name = "_CollisionClone"
 ClonedCollision.Massless = true
@@ -791,6 +790,7 @@ end
 end
 end
 end)
+if not Hotelold then
 Bypass:AddToggle("MyToggle",{
 Text = "Speed Bypass",
 Default = false,
@@ -870,7 +870,7 @@ game.Players.LocalPlayer.Character.LeftLowerArm.Color = _G.BodyColor or Color3.n
 end
 end)
 end})
-Body:AddToggle("MyToggle",{
+Body:AddToggle("ChamsBody",{
 Text = "Chams Body",
 Default = false,
 Callback = function(v)
@@ -893,6 +893,13 @@ v.Material = "Plastic"
 end
 end
 end
+task.spawn(function()
+while wait(1) do
+if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+Toggles.ChamsBody:SetValue(false)
+end
+end
+end)
 end})
 
 
@@ -1136,11 +1143,25 @@ Disabled:AddToggle("MyToggle",{
 Text = "Removal-Screech",
 Default = false,
 Callback = function(v)
-if v then
+_G.RemovalScreech = v
+task.spawn(function()
+while wait(1) do
+if _G.RemovalScreech and workspace.CurrentCamera:FindFirstChild("Screech") or workspace.CurrentCamera:FindFirstChild("RetroScreech") or workspace.CurrentCamera:FindFirstChild("GlitchScreech") then
 RemotesFolder.Screech.Name = "_Screech"
+for _,v in pairs(workspace.CurrentCamera:GetDescendants()) do
+if v.Name == "Screech" then
+v:Destroy()
+elseif v.Name == "RetroScreech" then
+v:Destroy()
+elseif v.Name == "GlitchScreech" then
+v:Destroy()
+end
+end
 else
 RemotesFolder._Screech.Name = "Screech"
 end
+end
+end)
 end})
 if not Hotelold then
 Disabled:AddToggle("MyToggle",{
@@ -1741,7 +1762,7 @@ end
 elseif v.Parent.Name == "Eyes" and v.Name == "Core" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Eyes", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v.Parent:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v.Parent:FindFirstChild("Core"), Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "BackdoorRush" then
 if not v:FindFirstChild("EntityESP") then
@@ -1772,6 +1793,30 @@ elseif v.Name == "GlitchRush" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "RNIUSHCg==", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "Grumbo" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Grumble", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+end
+elseif v.Name == "Wall" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Seek Wall", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+end
+elseif v.Name == "FigureRagdoll" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Figure", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+end
+elseif v.Name == "FigureRig" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Figure", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+end
+elseif v.Name == "JeffTheKiller" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Jeff", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+end
+elseif v.Name == "Sally" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Sally", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 end
 end
 end
@@ -1789,7 +1834,7 @@ end
 elseif v.Parent.Name == "Eyes" and v.Name == "Core" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Eyes", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
-CylinderESP(v.Parent:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+CylinderESP(v.Parent:FindFirstChild("Core"), Color3.fromRGB(255), "EntityESP")
 end
 elseif v.Name == "BackdoorRush" then
 if not v:FindFirstChild("EntityESP") then
@@ -1820,6 +1865,30 @@ elseif v.Name == "GlitchRush" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "RNIUSHCg==", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 CylinderESP(v:FindFirstChildOfClass("Part"), Color3.fromRGB(255), "EntityESP")
+end
+elseif v.Name == "Grumbo" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Grumble", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+end
+elseif v.Name == "Wall" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Seek Wall", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+end
+elseif v.Name == "FigureRagdoll" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Figure", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+end
+elseif v.Name == "FigureRig" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Figure", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+end
+elseif v.Name == "JeffTheKiller" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Jeff", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
+end
+elseif v.Name == "Sally" then
+if not v:FindFirstChild("EntityESP") then
+LibraryESP:AddESP(v, "Sally", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 end
 end
 end)
