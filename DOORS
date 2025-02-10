@@ -1926,7 +1926,7 @@ MenuGroup:AddLabel("Keybind"):AddKeyPicker("MenuKeybind", { Default = "RightShif
 MenuGroup:AddButton("Unload", function() Library:Unload() end)
 
 CreditsGroup:AddLabel("Developers:")
-CreditsGroup:AddLabel("'Owner' : rechedmcvn")
+CreditsGroup:AddLabel("< Owner > | rechedmcvn")
 
 Library.ToggleKeybind = Options.MenuKeybind
 
@@ -1935,7 +1935,7 @@ SaveManager:SetLibrary(Library)
 
 SaveManager:IgnoreThemeSettings()
 
-SaveManager:SetFolder("YOUHUB/doors")
+SaveManager:SetFolder()
 
 SaveManager:BuildConfigSection(Tabs.Settings)
 
