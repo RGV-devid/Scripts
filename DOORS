@@ -2521,6 +2521,7 @@ Text = "Enabled",
 Default = false,
 Callback = function(v)
 _G.Fullbright = v
+task.spawn(function()
 pcall(function()
 if _G.Fullbright then
 if not game.Lighting:GetAttribute("FogStart") then game.Lighting:SetAttribute("FogStart", game.Lighting.FogStart) end
@@ -2533,6 +2534,7 @@ if not fog:GetAttribute("Density") then fog:SetAttribute("Density", fog.Density)
 fog.Density = _G.NoFog and 0 or fog:GetAttribute("Density")
 end
 end
+end)
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.Fullbright then
