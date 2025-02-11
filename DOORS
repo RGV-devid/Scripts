@@ -2492,7 +2492,8 @@ _G.PlaySoundAlert = v
 end})
 
 
-local Lighting = Tabs.Visual:AddRightGroupbox("Lighting")
+local LightingTabbox = Tabs.Visual:AddRightTabbox()
+local Lighting = LightingTabbox:AddTab("Lighting")
 Lighting:AddSlider("Brightness",{
 Text = "Brightness",
 Min = 1,
@@ -2540,14 +2541,76 @@ game:GetService("RunService").RenderStepped:Connect(function()
 if _G.Fullbright then
 game.Lighting.OutdoorAmbient = Color3.new(1,1,1)
 game.Lighting.Brightness = _G.Brightness or 1
-game.Lighting.GlobalShadow = not _G.GlobalShadows
+game.Lighting.GlobalShadows = not _G.GlobalShadows
 else
 game.Lighting.OutdoorAmbient = Color3.fromRGB(55,55,55)
 game.Lighting.Brightness = 0
-game.Lighting.GlobalShadow = true
+game.Lighting.GlobalShadows = true
 end
 end)
 end})
+local Ambient = LightingTabbox:AddTab("Ambient")
+Ambient:AddDropdown('SelectHeadLight',{
+	Text = "Head Light",
+        Values = {'Curious', 'Modifiers', 'Guidance'},
+	Default = 0,
+        Multi = false,
+        Callback = function(v)
+_G.HeadLightSelect = v
+end})
+Ambient:AddSlider("HeadBrightness",{
+Text = "Brightness",
+Min = 1,
+Default = 1,
+Max = 3,
+Rounding = 1,
+Compact = true,
+Callback = function(v)
+_G.HeadBrightness = v
+end})
+Ambient:AddSlider("Range",{
+Text = "Range",
+Min = 1,
+Default = 1,
+Max = 60,
+Rounding = 1,
+Compact = true,
+Callback = function(v)
+_G.RangeLightHead = v
+end})
+Ambient:AddToggle("EnabledHeadLight",{
+Text = "Enabled",
+Default = false,
+Callback = function(v)
+_G.EnabledLightHead = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if Options.SelectHeadLight.Value["Curious"] and _G.EnabledLightHead then
+if game.Players.LocalPlayer.Character:FinFirstChild("Head") then
+game.Players.LocalPlayer.Character.Head.PointLight.Enabled = _G.EnabledLightHead
+game.Players.LocalPlayer.Character.Head.PointLight.Range = _G.RangeLightHead or 60
+game.Players.LocalPlayer.Character.Head.PointLight.Color = Color3.new(1,1,0)
+game.Players.LocalPlayer.Character.Head.PointLight.Brightness = _G.HeadBrightness or 1
+end
+end
+if Options.SelectHeadLight.Value["Modifiers"] and _G.EnabledLightHead then
+if game.Players.LocalPlayer.Character:FinFirstChild("Head") then
+game.Players.LocalPlayer.Character.Head.PointLight.Enabled = _G.EnabledLightHead
+game.Players.LocalPlayer.Character.Head.PointLight.Range = _G.RangeLightHead or 60
+game.Players.LocalPlayer.Character.Head.PointLight.Color = Color3.new(1,1,0)
+game.Players.LocalPlayer.Character.Head.PointLight.Brightness = _G.HeadBrightness or 1
+end
+end
+if Options.SelectHeadLight.Value["Guidance"] and _G.EnabledLightHead then
+if game.Players.LocalPlayer.Character:FinFirstChild("Head") then
+game.Players.LocalPlayer.Character.Head.PointLight.Enabled = _G.EnabledLightHead
+game.Players.LocalPlayer.Character.Head.PointLight.Range = _G.RangeLightHead or 60
+game.Players.LocalPlayer.Character.Head.PointLight.Color = Color3.new(1,1,0)
+game.Players.LocalPlayer.Character.Head.PointLight.Brightness = _G.HeadBrightness or 1
+end
+end
+end)
+end})
+
 
 
 local Camera = Tabs.Visual:AddRightGroupbox("Camera")
