@@ -2585,28 +2585,22 @@ Callback = function(v)
 _G.EnabledLightHead = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if Options.SelectHeadLight.Value["Curious"] and _G.EnabledLightHead then
-if game.Players.LocalPlayer.Character:FinFirstChild("Head") then
 game.Players.LocalPlayer.Character.Head.PointLight.Enabled = _G.EnabledLightHead
 game.Players.LocalPlayer.Character.Head.PointLight.Range = _G.RangeLightHead or 60
 game.Players.LocalPlayer.Character.Head.PointLight.Color = Color3.new(1,1,0)
 game.Players.LocalPlayer.Character.Head.PointLight.Brightness = _G.HeadBrightness or 1
-end
 end
 if Options.SelectHeadLight.Value["Modifiers"] and _G.EnabledLightHead then
-if game.Players.LocalPlayer.Character:FinFirstChild("Head") then
 game.Players.LocalPlayer.Character.Head.PointLight.Enabled = _G.EnabledLightHead
 game.Players.LocalPlayer.Character.Head.PointLight.Range = _G.RangeLightHead or 60
 game.Players.LocalPlayer.Character.Head.PointLight.Color = Color3.new(1,1,0)
 game.Players.LocalPlayer.Character.Head.PointLight.Brightness = _G.HeadBrightness or 1
-end
 end
 if Options.SelectHeadLight.Value["Guidance"] and _G.EnabledLightHead then
-if game.Players.LocalPlayer.Character:FinFirstChild("Head") then
 game.Players.LocalPlayer.Character.Head.PointLight.Enabled = _G.EnabledLightHead
 game.Players.LocalPlayer.Character.Head.PointLight.Range = _G.RangeLightHead or 60
 game.Players.LocalPlayer.Character.Head.PointLight.Color = Color3.new(1,1,0)
 game.Players.LocalPlayer.Character.Head.PointLight.Brightness = _G.HeadBrightness or 1
-end
 end
 end)
 end})
