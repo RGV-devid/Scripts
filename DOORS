@@ -2509,7 +2509,12 @@ Default = false,
 Callback = function(v)
 _G.GlobalShadows = v
 end})
-
+Lighting:AddToggle("NoFog",{
+Text = "No Fog",
+Default = false,
+Callback = function(v)
+_G.NoFog = v
+end})
 Lighting:AddDivider()
 Lighting:AddToggle("Fullbright",{
 Text = "Enabled",
@@ -2517,15 +2522,15 @@ Default = false,
 Callback = function(v)
 _G.Fullbright = v
 pcall(function()
-if _G.NoFog then
+if _G.Fullbright then
 if not game.Lighting:GetAttribute("FogStart") then game.Lighting:SetAttribute("FogStart", game.Lighting.FogStart) end
 if not game.Lighting:GetAttribute("FogEnd") then game.Lighting:SetAttribute("FogEnd", game.Lighting.FogEnd) end
-game.Lighting.FogStart = _G.Fullbright and 0 or game.Lighting:GetAttribute("FogStart")
-game.Lighting.FogEnd = _G.Fullbright and math.huge or game.Lighting:GetAttribute("FogEnd")
+game.Lighting.FogStart = _G.NoFog and 0 or game.Lighting:GetAttribute("FogStart")
+game.Lighting.FogEnd = _G.NoFog and math.huge or game.Lighting:GetAttribute("FogEnd")
 local fog = game.Lighting:FindFirstChildOfClass("Atmosphere")
 if fog then
 if not fog:GetAttribute("Density") then fog:SetAttribute("Density", fog.Density) end
-fog.Density = _G.Fullbright and 0 or fog:GetAttribute("Density")
+fog.Density = _G.NoFog and 0 or fog:GetAttribute("Density")
 end
 end
 end)
@@ -2592,6 +2597,7 @@ Camera:AddToggle("Viewmodel",{
 Text = "Viewmodel",
 Default = false,
 Callback = function(v)
+_G.Viewmodel = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.Viewmodel then
 Main_Game.tooloffset = Vector3.new(_G.ViewmodelX, _G.ViewmodelY, _G.ViewmodelZ)
