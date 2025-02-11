@@ -18,6 +18,7 @@ Adornment.Color3 = color
 end
 end)
 end
+local Main_Game = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local GameData = ReplicatedStorage:WaitForChild("GameData")
 local Floor = GameData:WaitForChild("Floor")
@@ -742,7 +743,12 @@ _G.Jump = v
 game:GetService("RunService").RenderStepped:Connect(function()
 game.Players.LocalPlayer.Character:SetAttribute("CanJump", _G.Jump)
 end)
-end})
+end}):AddKeyPicker("CanJump", {
+    Default = "J",
+    Text = "Can Jump ",
+    Mode = Library.IsMobile and "Toggle",
+    SyncToggleState = Library.IsMobile,
+})
 LocalPlayer:AddToggle("AutoJump",{
 Text = "Auto Jump",
 Default = false,
@@ -846,64 +852,6 @@ end}):AddKeyPicker("ManiBypassKey", {
     SyncToggleState = Library.IsMobile,
 })
 
-
-local Body = Tabs.Players:AddRightGroupbox("Body")
-_G.BodyColor = Color3.new(1,1,1)
-Body:AddLabel("Body Color"):AddColorPicker("Body Color",{
-Default = Color3.new(1, 1, 1),
-Callback = function(v)
-_G.BodyColor = v
-task.spawn(function()
-while _G.BodyColor do wait(1)
-game.Players.LocalPlayer.Character.Head.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.UpperTorso.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.RightHand.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.RightLowerArm.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.RightLowerLeg.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.RightUpperArm.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.RightUpperLeg.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.LeftLowerLeg.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.LeftUpperArm.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.LeftUpperLeg.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.LowerTorso.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.RightFoot.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.LeftFoot.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.LeftHand.Color = _G.BodyColor or Color3.new(1,1,1)
-game.Players.LocalPlayer.Character.LeftLowerArm.Color = _G.BodyColor or Color3.new(1,1,1)
-end
-end)
-end})
-Body:AddToggle("ChamsBody",{
-Text = "Chams Body",
-Default = false,
-Callback = function(v)
-if v then
-for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-if v:IsA("Accessory") then
-v.Handle.Material = "ForceField"
-v.Handle.Color = _G.BodyColor
-elseif v:IsA("BasePart") then
-v.Material = "ForceField"
-end
-end
-else
-for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-if v:IsA("Accessory") then
-v.Handle.Material = "Plastic"
-v.Handle.Color = _G.BodyColor
-elseif v:IsA("BasePart") then
-v.Material = "Plastic"
-end
-end
-end
-task.spawn(function()
-while wait(1) do
-if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
-Toggles.ChamsBody:SetValue(false)
-end
-end
-end)
-end})
 
 
 local Anti = Tabs.Exploits:AddLeftGroupbox("Anti")
@@ -1506,23 +1454,23 @@ Text = "Key ESP",
 Default = false,
 Callback = function(v)
 if v then
-for _,v in pairs(workspace:GetDescendants()) do
-if v:FindFirstChild("KeyObtain") and v.Name == "KeyObtain" then
+for _,v in pairs(workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do
+if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
-elseif v:FindFirstChild("ElectricalKeyObtain") and v.Name == "ElectricalKeyObtain" then
+elseif v.Name == "ElectricalKeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
 end
 end
-KeyESP = workspace.DescendantAdded:Connect(function(v)
-if v:FindFirstChild("KeyObtain") and v.Name == "KeyObtain" then
+KeyESP = workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)].DescendantAdded:Connect(function(v)
+if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
-elseif v:FindFirstChild("ElectricalKeyObtain") and v.Name == "ElectricalKeyObtain" then
+elseif v.Name == "ElectricalKeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
@@ -1542,23 +1490,23 @@ Text = "Lever ESP",
 Default = false,
 Callback = function(v)
 if v then
-for _,v in pairs(workspace:GetDescendants()) do
-if v:FindFirstChild("LeverForGate") and v.Name == "LeverForGate" then
+for _,v in pairs(workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do
+if v.Name == "LeverForGate" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
-elseif v:FindFirstChild("TimerLever") and v.Name == "TimerLever" then
+elseif v.Name == "TimerLever" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
 end
 end
-LeverESP = workspace.DescendantAdded:Connect(function(v)
-if v:FindFirstChild("LeverForGate") and v.Name == "LeverForGate" then
+LeverESP = workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)].DescendantAdded:Connect(function(v)
+if v.Name == "LeverForGate" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
-elseif v:FindFirstChild("TimerLever") and v.Name == "TimerLever" then
+elseif v.Name == "TimerLever" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
@@ -1607,14 +1555,14 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v:FindFirstChild("FuseObtain") and v.Name == "FuseObtain" then
+if v.Name == "FuseObtain" then
 if not v:FindFirstChild("FuseESP") then
 LibraryESP:AddESP(v, "Fuse", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "FuseESP")
 end
 end
 end
 FuseESP = workspace.DescendantAdded:Connect(function(v)
-if v:FindFirstChild("FuseObtain") and v.Name == "FuseObtain" then
+if v.Name == "FuseObtain" then
 if not v:FindFirstChild("FuseESP") then
 LibraryESP:AddESP(v, "Fuse", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "FuseESP")
 end
@@ -2544,12 +2492,143 @@ _G.PlaySoundAlert = v
 end})
 
 
+local Lighting = Tabs.Visual:AddRightGroupbox("Lighting")
+Lighting:AddSlider("Brightness",{
+Text = "Brightness",
+Min = 1,
+Default = 1,
+Max = 3,
+Rounding = 1,
+Compact = true,
+Callback = function(v)
+_G.Brightness = v
+end})
+Lighting:AddToggle("GlobalShadows",{
+Text = "No Shadows",
+Default = false,
+Callback = function(v)
+_G.GlobalShadows = v
+end})
+
+Lighting:AddDivider()
+Lighting:AddToggle("Fullbright",{
+Text = "Enabled",
+Default = false,
+Callback = function(v)
+_G.Fullbright = v
+pcall(function()
+if _G.NoFog then
+if not game.Lighting:GetAttribute("FogStart") then game.Lighting:SetAttribute("FogStart", game.Lighting.FogStart) end
+if not game.Lighting:GetAttribute("FogEnd") then game.Lighting:SetAttribute("FogEnd", game.Lighting.FogEnd) end
+game.Lighting.FogStart = _G.Fullbright and 0 or game.Lighting:GetAttribute("FogStart")
+game.Lighting.FogEnd = _G.Fullbright and math.huge or game.Lighting:GetAttribute("FogEnd")
+local fog = game.Lighting:FindFirstChildOfClass("Atmosphere")
+if fog then
+if not fog:GetAttribute("Density") then fog:SetAttribute("Density", fog.Density) end
+fog.Density = _G.Fullbright and 0 or fog:GetAttribute("Density")
+end
+end
+end)
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.Fullbright then
+game.Lighting.OutdoorAmbient = Color3.new(1,1,1)
+game.Lighting.Brightness = _G.Brightness or 1
+game.Lighting.GlobalShadow = not _G.GlobalShadows
+else
+game.Lighting.OutdoorAmbient = Color3.fromRGB(55,55,55)
+game.Lighting.Brightness = 0
+game.Lighting.GlobalShadow = true
+end
+end)
+end})
 
 
-
-
-
-
+local Camera = Tabs.Visual:AddRightGroupbox("Camera")
+Camera:AddSlider("SelectFOV",{
+Text = "Field Of View",
+Min = 70,
+Default = 70,
+Max = 120,
+Rounding = 1,
+Compact = true,
+Callback = function(v)
+_G.SelectFieldOfView = v
+end})
+Camera:AddToggle("FOV",{
+Text = "Field Of View",
+Default = false,
+Callback = function(v)
+_G.FieldOfView = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.FieldOfView then
+workspace.CurrentCamera.FieldOfView = _G.SelectFieldOfView or 70
+else
+workspace.CurrentCamera.FieldOfView = 70
+end
+end)
+end})
+Camera:AddToggle("NoCamBob",{
+Text = "No Camera Bob",
+Default = false,
+Callback = function(v)
+_G.NoCamBob = v
+game:GetService("RunService").RenderStepped:Connect(function()
+Main_Game.spring.Speed = _G.NoCamBob and 9e9 or 8
+end)
+end})
+Camera:AddToggle("NoCamShake",{
+Text = "No Camera Shake",
+Default = false,
+Callback = function(v)
+_G.NoCamShake = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.NoCamShake then
+Main_Game.csgo = CFrame.new()
+end
+end)
+end})
+Camera:AddDivider()
+Camera:AddToggle("Viewmodel",{
+Text = "Viewmodel",
+Default = false,
+Callback = function(v)
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.Viewmodel then
+Main_Game.tooloffset = Vector3.new(_G.ViewmodelX, _G.ViewmodelY, _G.ViewmodelZ)
+else
+Main_Game.tooloffset = Vector3.new(0,0,0)
+end)
+end})
+Camera:AddSlider("SelectViewmodelX",{
+Text = "X",
+Min = -5,
+Default = 0,
+Max = 5,
+Rounding = 1,
+Compact = true,
+Callback = function(v)
+_G.ViewmodelX = v
+end})
+Camera:AddSlider("SelectViewmodelY",{
+Text = "Y",
+Min = -5,
+Default = 0,
+Max = 5,
+Rounding = 1,
+Compact = true,
+Callback = function(v)
+_G.ViewmodelY = v
+end})
+Camera:AddSlider("SelectViewmodelZ",{
+Text = "Z",
+Min = -5,
+Default = 0,
+Max = 5,
+Rounding = 1,
+Compact = true,
+Callback = function(v)
+_G.ViewmodelZ = v
+end})
 local MenuGroup = Tabs.Settings:AddLeftGroupbox("Menu")
 local CreditsGroup = Tabs.Settings:AddRightGroupbox("Credits")
 
