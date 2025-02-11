@@ -2597,6 +2597,7 @@ if _G.Viewmodel then
 Main_Game.tooloffset = Vector3.new(_G.ViewmodelX, _G.ViewmodelY, _G.ViewmodelZ)
 else
 Main_Game.tooloffset = Vector3.new(0,0,0)
+end
 end)
 end})
 Camera:AddSlider("SelectViewmodelX",{
