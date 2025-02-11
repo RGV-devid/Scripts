@@ -326,7 +326,7 @@ Interact:AddDropdown("Auto-interact-drop", {
 })
 local function AutoInteractLoop()
     while true do wait()
-        task.wait(0.3)
+        task.wait(0.2)
         if _G.AutoInteractEnabled then
             local prompts = Script.Functions.GetAllPromptsWithCondition(function(prompt)
                 if not prompt.Parent then return false end
@@ -1747,14 +1747,14 @@ if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "GoldPile" then
 if not v:FindFirstChild("GoldESP") then
-LibraryESP:AddESP(v, "GoldPile" .. v:GetAttribute("GoldValue"), _G.GoldCE or Color3.fromRGB(255,255), 20, "GoldESP")
+LibraryESP:AddESP(v, "Gold " .. v:GetAttribute("GoldValue"), _G.GoldCE or Color3.fromRGB(255,255), 20, "GoldESP")
 end
 end
 end
 GoldESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "GoldPile" then
 if not v:FindFirstChild("GoldESP") then
-LibraryESP:AddESP(v, "GoldPile" .. v:GetAttribute("GoldValue"), _G.GoldCE or Color3.fromRGB(255,255), 20, "GoldESP")
+LibraryESP:AddESP(v, "Gold " .. v:GetAttribute("GoldValue"), _G.GoldCE or Color3.fromRGB(255,255), 20, "GoldESP")
 end
 end
 end)
