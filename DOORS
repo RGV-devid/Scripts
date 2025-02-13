@@ -1623,7 +1623,7 @@ Text = "Lever ESP",
 Default = false,
 Callback = function(v)
 if v then
-for _,v in pairs(workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do
+for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "LeverForGate" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
