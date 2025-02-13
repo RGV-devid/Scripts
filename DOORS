@@ -744,7 +744,21 @@ end}):AddKeyPicker("NC", {
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
-
+if Retro or Hotel or Mines or Backdoor then
+Players:AddButton({
+Text = "Godmode",
+DoubleClick = true,
+Func = function()
+game:GetService("RunService").RenderStepped:Connect(function()
+            game.Players.LocalPlayer.Character.Collision.CanCollide = false
+            game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = false
+            if game.Players.LocalPlayer.Character.Collision.Position ~= game.Players.LocalPlayer.Character.HumanoidRootPart.Position then
+            game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+            game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.Collision.Position + Vector3.new(0, -2.5, 0)
+        end
+end)
+end})
+end
 if not Fools or not Hotelold then
 local LocalPlayer = Tabs.Players:AddRightGroupbox("LocalPlayer")
 LocalPlayer:AddToggle("CanJump",{
@@ -1118,7 +1132,7 @@ Disabled:AddToggle("RemoveA90",{
 Text = "Removal-A90",
 Default = false,
 Callback = function(v)
-_G.RemovalA90
+_G.RemovalA90 = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.RemovalA90 then
 RemotesFolder.A90.Name = "_A90"
