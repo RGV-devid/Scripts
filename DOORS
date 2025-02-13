@@ -512,24 +512,6 @@ workspace.FallenPartsDestroyHeight = -50000
 end
 end})
 World:AddDivider()
-if not Hotelold or not Retro then
-World:AddToggle("NoHidingVignette",{
-Text = "No Hiding Vignette",
-Default = false,
-Callback = function(v)
-_G.NoHidingVignette = v
-task.spawn(function()
-while wait(0.1) do
-local vignette = game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.HideVignette
-        if _G.NoHidingVignette then
-            vignette.Size = UDim2.new(0,0,0,0)
-        else
-            vignette.Size = UDim2.new(1,0,1,0)
-        end
-      end
-   end)
-end})
-end
 local Misc = Tabs.Main:AddRightGroupbox("Misc")
 Misc:AddButton({
 Text = "Lobby",
@@ -685,22 +667,6 @@ end
 end)
 end})
 
-game:GetService("RunService").RenderStepped:Connect(function()
-            game.Players.LocalPlayer.Character.Collision.CanCollide = false
-            game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = false
-            if game.Players.LocalPlayer.Character.Collision.Position ~= game.Players.LocalPlayer.Character.HumanoidRootPart.Position then
-            game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-            game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.Collision.Position + Vector3.new(0, _G.Godmode and -2.5 or 0, 0)
-        end
-end)
-if Retro or Hotel or Mines then
-Players:AddToggle("Godmode",{
-Text = "Godmode",
-Default = false,
-Callback = function(v)
-_G.Godmode = v
-end})
-end
 if Fools or Hotelold then
 Players:AddToggle("Godmode",{
 Text = "Godmode",
@@ -779,7 +745,21 @@ end}):AddKeyPicker("NC", {
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
-
+if Retro or Hotel or Mines or Backdoor then
+Players:AddButton({
+Text = "Godmode",
+DoubleClick = true,
+Func = function()
+game:GetService("RunService").RenderStepped:Connect(function()
+            game.Players.LocalPlayer.Character.Collision.CanCollide = false
+            game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = false
+            if game.Players.LocalPlayer.Character.Collision.Position ~= game.Players.LocalPlayer.Character.HumanoidRootPart.Position then
+            game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+            game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.Collision.Position + Vector3.new(0, -2.5, 0)
+        end
+end)
+end})
+end
 if not Fools or not Hotelold then
 local LocalPlayer = Tabs.Players:AddRightGroupbox("LocalPlayer")
 LocalPlayer:AddToggle("CanJump",{
@@ -1153,13 +1133,16 @@ Disabled:AddToggle("RemoveA90",{
 Text = "Removal-A90",
 Default = false,
 Callback = function(v)
-if v then
+_G.RemovalA90
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalA90 then
 RemotesFolder.A90.Name = "_A90"
 game.Players.LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90").Parent = nil
 else
 RemotesFolder._A90.Name = "A90"
 game.Players.LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90").Parent = game.Players.LocalPlayers.PlayerGui.MainUI.Jumpscare
 end
+end)
 end})
 end
 Disabled:AddToggle("RemoveHalt",{
@@ -1179,9 +1162,10 @@ Callback = function(v)
 _G.AntiDread = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.AntiDread then
-RemotesFolder.Dread:FireServer(false)
+RemotesFolder.Dread.Name = "_Dread"
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.DamageVignetteDirectional.Visible = false
 else
-RemotesFolder.Dread:FireServer(true)
+RemotesFolder._Dread.Name = "Dread"
 end
 end)
 end})
@@ -1385,6 +1369,98 @@ end
 end)
 end})
 end
+Disabled:AddDivider()
+Disabled:AddLabel("Vignette")
+Disabled:AddToggle("RemoveDamageVignette",{
+Text = "Removal Damage",
+Default = false,
+Callback = function(v)
+_G.RemovalDV = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalDV then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.DamageVignette.Visible = false
+end
+end)
+end})
+Disabled:AddToggle("RemoveBrutalVignette",{
+Text = "Removal Brutal",
+Default = false,
+Callback = function(v)
+_G.RemovalBV = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalBV then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.BrutalVignette.Visible = false
+end
+end)
+end})
+Disabled:AddToggle("RemoveDamageVignetteDirectional",{
+Text = "Removal Damage Directional",
+Default = false,
+Callback = function(v)
+_G.RemovalDVD = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalDVD then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.DamageVignetteDirectional.Visible = false
+end
+end)
+end})
+Disabled:AddToggle("RemoveHideVignette",{
+Text = "Removal Hide",
+Default = false,
+Callback = function(v)
+_G.RemovalHV = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalHV then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.HideVignette.Visible = false
+end
+end)
+end})
+Disabled:AddToggle("RemovePumpkinVignette",{
+Text = "Removal Pumpkin",
+Default = false,
+Callback = function(v)
+_G.RemovalPV = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalPV then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.PumpkinVignette.Visible = false
+end
+end)
+end})
+Disabled:AddToggle("RemoveSeekVignette",{
+Text = "Removal Seek",
+Default = false,
+Callback = function(v)
+_G.RemovalSV = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalSV then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.SeekVignette.Visible = false
+end
+end)
+end})
+Disabled:AddToggle("RemoveWeirdVignette",{
+Text = "Removal Weird",
+Default = false,
+Callback = function(v)
+_G.RemovalWV = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalWV then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.WeirdVignette.Visible = false
+end
+end)
+end})
+Disabled:AddToggle("RemoveWhiteVignette",{
+Text = "Removal White",
+Default = false,
+Callback = function(v)
+_G.RemovalWhV = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalWhV then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.DamageVignette.Visible = false
+end
+end)
+end})
+
+
 local Troll = Tabs.Exploits:AddRightGroupbox("Trolling")
 if not Hotelold then
 Troll:AddToggle("Stunned",{
