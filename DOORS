@@ -653,6 +653,19 @@ end}):AddKeyPicker("SeekSpeed", {
     SyncToggleState = Library.IsMobile,
 })
 Players:AddDivider()
+Players:AddToggle("StandardMrinade",{
+Text = "Standard Mrinade",
+Default = false,
+Callback = function(v)
+_G.StandardMrinade = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.StandardMrinade then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.HitmarkerHead.Visible = _G.StandardMrinade
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.Hitmarker.Visible = _G.StandardMrinade
+end
+end)
+end})
+
 Players:AddToggle("EatCandies",{
 Text = "Eat Candies",
 Default = false,
@@ -1163,12 +1176,15 @@ Text = "Removal-Dread",
 Default = false,
 Callback = function(v)
 _G.AntiDread = v
-game:GetService("RunService").RenderStepped:Connect(function()
-if _G.AntiDread then
+_G.AntiDamageDread = v
+if _G.AntiDamageDread then
 RemotesFolder.Dread.Name = "_Dread"
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.DreadVignette.Visible = false
 else
 RemotesFolder._Dread.Name = "Dread"
+end
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.AntiDread then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.DreadVignette.Visible = false
 end
 end)
 end})
@@ -1373,20 +1389,20 @@ end)
 end})
 end
 Disabled:AddDivider()
-Disabled:AddLabel("Vignette")
 Disabled:AddToggle("RemoveDamageVignette",{
-Text = "Removal Damage",
+Text = "Removal Damage Vignette",
 Default = false,
 Callback = function(v)
 _G.RemovalDV = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.RemovalDV then
 game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.DamageVignette.Visible = false
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.DamageVignetteDirectional.Visible = false
 end
 end)
 end})
 Disabled:AddToggle("RemoveBrutalVignette",{
-Text = "Removal Brutal",
+Text = "Removal Brutal Vignette",
 Default = false,
 Callback = function(v)
 _G.RemovalBV = v
@@ -1396,19 +1412,9 @@ game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.BrutalVignette
 end
 end)
 end})
-Disabled:AddToggle("RemoveDamageVignetteDirectional",{
-Text = "Removal Damage Directional",
-Default = false,
-Callback = function(v)
-_G.RemovalDVD = v
-game:GetService("RunService").RenderStepped:Connect(function()
-if _G.RemovalDVD then
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.DamageVignetteDirectional.Visible = false
-end
-end)
-end})
+
 Disabled:AddToggle("RemoveHideVignette",{
-Text = "Removal Hide",
+Text = "Removal Hide Vignette",
 Default = false,
 Callback = function(v)
 _G.RemovalHV = v
@@ -1419,7 +1425,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemovePumpkinVignette",{
-Text = "Removal Pumpkin",
+Text = "Removal Pumpkin Vignette",
 Default = false,
 Callback = function(v)
 _G.RemovalPV = v
@@ -1430,7 +1436,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemoveSeekVignette",{
-Text = "Removal Seek",
+Text = "Removal Seek Vignette",
 Default = false,
 Callback = function(v)
 _G.RemovalSV = v
@@ -1441,7 +1447,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemoveWeirdVignette",{
-Text = "Removal Weird",
+Text = "Removal Weird Vignette",
 Default = false,
 Callback = function(v)
 _G.RemovalWV = v
@@ -1452,7 +1458,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemoveWhiteVignette",{
-Text = "Removal White",
+Text = "Removal White Vignette",
 Default = false,
 Callback = function(v)
 _G.RemovalWhV = v
@@ -2387,7 +2393,7 @@ end})
 local Notifying = Tabs.Visual:AddRightGroupbox("Notifying")
 Notifying:AddDropdown('SelectEntity',{
 	Text = "Select Entity",
-        Values = {'Rush', 'Ambush', 'Blitz', 'A60', 'A120', 'Lookman', 'Eyes', 'Seek Chase', 'JeffTheKiller', 'Sally', 'Halt', 'AR0xMBUSH', 'RNIUSHCg==', 'Gloombat Swarm'},
+        Values = {'Rush', 'Ambush', 'Blitz', 'A60', 'A120', 'Lookman', 'Eyes', 'Seek Chase', 'JeffTheKiller', 'AR0xMBUSH', 'RNIUSHCg==', 'Gloombat Swarm'},
 	Default = 0,
 	Multi = true
 })
@@ -2518,32 +2524,6 @@ Sound:Destroy()
 end
 if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Jeff The Killer has spawn!")
-end
-elseif Options.SelectEntity.Value["Sally"] and v.Name == "Window_BrokenSally" then
-Library:Notify("ENTITIES | Sally has spawn, in broken window!")
-if _G.SoundAlert then
-local Sound = Instance.new("Sound")
-Sound.Parent = game.SoundService
-Sound.SoundId = "rbxassetid://4590657391"
-Sound.Volume = _G.PlaySoundAlert
-Sound.PlayOnRemove = true
-Sound:Destroy()
-end
-if _G.PlayChatAlert then
-game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Sally has spawn!")
-end
-elseif Options.SelectEntity.Value["Halt"] and v.Name == "HaltHallway" then
-Library:Notify("ENTITIES | Halt has spawn, it in next door!")
-if _G.SoundAlert then
-local Sound = Instance.new("Sound")
-Sound.Parent = game.SoundService
-Sound.SoundId = "rbxassetid://4590657391"
-Sound.Volume = _G.PlaySoundAlert
-Sound.PlayOnRemove = true
-Sound:Destroy()
-end
-if _G.PlayChatAlert then
-game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Halt Room has spawn!")
 end
 elseif Options.SelectEntity.Value["AR0xMBUSH"] and v.Name == "GlitchAmbush" then
 Library:Notify("ENTITIES | AR0xMBUSH has spawn, find hiding place and hide now!")
