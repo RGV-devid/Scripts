@@ -377,6 +377,7 @@ RemotesFolder.EBF:FireServer()
 end
 end
 end})
+if not Hotelold then
 Automation:AddButton({
 Text = "Padlock Unlock",
 Default = false,
@@ -445,6 +446,7 @@ end
 end
 end
 end})
+end
 local World = Tabs.Main:AddLeftGroupbox("World")
 game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("MoveDirection"):Connect(function()
 if _G.ClosetsExitFix and game.Players.LocalPlayer.Character:GetAttribute("Hiding")==true then 
@@ -757,7 +759,7 @@ end}):AddKeyPicker("NC", {
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
-if Retro or Hotel or Mines or Backdoor then
+if not Hotelold and not Rooms then
 Players:AddButton({
 Text = "Godmode",
 DoubleClick = true,
@@ -772,7 +774,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 end)
 end})
 end
-if not Fools or not Hotelold then
+if (not Fools and not Hotelold) then
 local LocalPlayer = Tabs.Players:AddRightGroupbox("LocalPlayer")
 LocalPlayer:AddToggle("CanJump",{
 Text = "Can Jump",
@@ -1388,6 +1390,7 @@ end
 end)
 end})
 end
+if not Hotelold then
 Disabled:AddDivider()
 Disabled:AddToggle("RemoveDamageVignette",{
 Text = "Removal Damage Vignette",
@@ -1468,7 +1471,7 @@ game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.DamageVignette
 end
 end)
 end})
-
+end
 
 
 local Troll = Tabs.Exploits:AddRightGroupbox("Trolling")
