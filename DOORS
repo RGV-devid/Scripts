@@ -1133,12 +1133,16 @@ Text = "Removal-A90",
 Default = false,
 Callback = function(v)
 _G.RemovalA90 = v
-game:GetService("RunService").RenderStepped:Connect(function()
-if _G.RemovalA90 then
+_G.RemovalDamageA90 = v
+if _G.RemovalDamageA90 then
 RemotesFolder.A90.Name = "_A90"
-game.Players.LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90").Parent = nil
 else
 RemotesFolder._A90.Name = "A90"
+end
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalA90 then
+game.Players.LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90").Parent = nil
+else
 game.Players.LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90").Parent = game.Players.LocalPlayers.PlayerGui.MainUI.Jumpscare
 end
 end)
