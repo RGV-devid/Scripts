@@ -655,17 +655,15 @@ end}):AddKeyPicker("SeekSpeed", {
     SyncToggleState = Library.IsMobile,
 })
 Players:AddDivider()
+game:GetService("RunService").RenderStepped:Connect(function()
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.HitmarkerHead.Visible = _G.StandardMrinade
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.Hitmarker.Visible = _G.StandardMrinade
+end)
 Players:AddToggle("StandardMrinade",{
 Text = "Standard Mrinade",
 Default = false,
 Callback = function(v)
 _G.StandardMrinade = v
-game:GetService("RunService").RenderStepped:Connect(function()
-if _G.StandardMrinade then
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.HitmarkerHead.Visible = _G.StandardMrinade
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.Hitmarker.Visible = _G.StandardMrinade
-end
-end)
 end})
 
 Players:AddToggle("EatCandies",{
@@ -1156,9 +1154,7 @@ RemotesFolder._A90.Name = "A90"
 end
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.RemovalA90 then
-game.Players.LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90").Parent = nil
-else
-game.Players.LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90").Parent = game.Players.LocalPlayers.PlayerGui.MainUI.Jumpscare
+game.Players.LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90").Visible = false
 end
 end)
 end})
