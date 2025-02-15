@@ -503,6 +503,7 @@ end
 end
 end})
 end
+World:AddDivider()
 World:AddToggle("HidingVoidRoblox",{
 Text = "Hiding Void Roblox",
 Default = false,
@@ -513,7 +514,6 @@ else
 workspace.FallenPartsDestroyHeight = -50000
 end
 end})
-World:AddDivider()
 local Misc = Tabs.Main:AddRightGroupbox("Misc")
 Misc:AddButton({
 Text = "Lobby",
@@ -656,8 +656,10 @@ end}):AddKeyPicker("SeekSpeed", {
 })
 Players:AddDivider()
 game:GetService("RunService").RenderStepped:Connect(function()
+if not game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
 game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.HitmarkerHead.Visible = _G.StandardMrinade
 game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.Hitmarker.Visible = _G.StandardMrinade
+end
 end)
 Players:AddToggle("StandardMrinade",{
 Text = "Standard Mrinade",
@@ -757,7 +759,7 @@ end}):AddKeyPicker("NC", {
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
-if not Hotelold and not Rooms then
+if not Hotelold or not Rooms then
 Players:AddButton({
 Text = "Godmode",
 DoubleClick = true,
@@ -772,7 +774,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 end)
 end})
 end
-if (not Fools and not Hotelold) then
+if not Fools or not Hotelold then
 local LocalPlayer = Tabs.Players:AddRightGroupbox("LocalPlayer")
 LocalPlayer:AddToggle("CanJump",{
 Text = "Can Jump",
@@ -811,6 +813,7 @@ end
 end)
 end})
 end
+if not Hotelold then
 local Bypass = Tabs.Players:AddRightGroupbox("Bypass")
 local ClonedCollision = game:GetService("Players").LocalPlayer.Character.Collision:Clone()
 ClonedCollision.Name = "_CollisionClone"
@@ -837,7 +840,6 @@ end
 end
 end
 end)
-if not Hotelold then
 Bypass:AddToggle("SpeedBypass",{
 Text = "Speed Bypass",
 Default = false,
@@ -874,6 +876,7 @@ end
 end)
 end})
 end
+if not Hotelold then
 Bypass:AddToggle("ManipulateBypass",{
 Text = "Manipulate Bypass",
 Default = false,
@@ -890,7 +893,7 @@ end}):AddKeyPicker("ManiBypassKey", {
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
-
+end
 
 
 local Anti = Tabs.Exploits:AddLeftGroupbox("Anti")
@@ -1468,8 +1471,111 @@ end
 end)
 end})
 end
-
-
+local Glitch = Tabs.Exploits:AddLeftGroupbox("Glitch")
+Glitch:AddToggle("NoGlitchEffect",{
+Text = "No Glitch Effect",
+Default = false,
+Callback = function(v)
+_G.RemovalGE = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalGE then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.GlitchEffect.Visible = false
+end
+end)
+end})
+Glitch:AddToggle("NoGlitchScreen",{
+Text = "No Glitch Screen",
+Default = false,
+Callback = function(v)
+_G.RemovalGS = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalGS then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.GlitchScreen.Visible = false
+end
+end)
+end})
+if not Hotelold then
+Glitch:AddToggle("NoGlitchTrial",{
+Text = "No Glitch Trial",
+Default = false,
+Callback = function(v)
+_G.RemovalGT = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalGT then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.GlitchTrial.Visible = false
+end
+end)
+end})
+end
+local Jumpcares = Tabs.Exploits:AddLeftGroupbox("Jumpcares")
+Jumpcares:AddToggle("NoAmbushJumpcares",{
+Text = "No Ambush Jumpcares",
+Default = false,
+Callback = function(v)
+_G.RemovalAJ = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalAJ then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Ambush.Visible = false
+end
+end)
+end})
+Jumpcares:AddToggle("NoHideJumpcares",{
+Text = "No Hide Jumpcares",
+Default = false,
+Callback = function(v)
+_G.RemovalHJ = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalHJ then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Hide.Visible = false
+end
+end)
+end})
+Jumpcares:AddToggle("NoRushJumpcares",{
+Text = "No Rush Jumpcares",
+Default = false,
+Callback = function(v)
+_G.RemovalRJ = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalRJ then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.Visible = false
+end
+end)
+end})
+Jumpcares:AddToggle("NoSeekJumpcares",{
+Text = "No Seek Jumpcares",
+Default = false,
+Callback = function(v)
+_G.RemovalSJ = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalSJ then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Seek.Visible = false
+end
+end)
+end})
+Jumpcares:AddToggle("NoShadeJumpcares",{
+Text = "No Halt Jumpcares",
+Default = false,
+Callback = function(v)
+_G.RemovalHaltJ = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalHaltJ then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Shade.Visible = false
+end
+end)
+end})
+if Fools then
+Jumpcares:AddToggle("NoGreedJumpcares",{
+Text = "No Greed Jumpcares",
+Default = false,
+Callback = function(v)
+_G.RemovalGreedJ = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalGreedJ then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Jumpscare.Greed.Visible = false
+end
+end)
+end})
+end
 local Troll = Tabs.Exploits:AddRightGroupbox("Trolling")
 if not Hotelold then
 Troll:AddToggle("Stunned",{
