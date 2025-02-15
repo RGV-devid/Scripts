@@ -876,7 +876,6 @@ end
 end)
 end})
 end
-if not Hotelold then
 Bypass:AddToggle("ManipulateBypass",{
 Text = "Manipulate Bypass",
 Default = false,
@@ -893,7 +892,7 @@ end}):AddKeyPicker("ManiBypassKey", {
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
-end
+
 
 
 local Anti = Tabs.Exploits:AddLeftGroupbox("Anti")
