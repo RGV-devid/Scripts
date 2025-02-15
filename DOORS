@@ -813,8 +813,8 @@ end
 end)
 end})
 end
-if not Hotelold then
 local Bypass = Tabs.Players:AddRightGroupbox("Bypass")
+if not Hotelold then
 local ClonedCollision = game:GetService("Players").LocalPlayer.Character.Collision:Clone()
 ClonedCollision.Name = "_CollisionClone"
 ClonedCollision.Massless = true
