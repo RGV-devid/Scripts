@@ -496,7 +496,7 @@ Callback = function(v)
 _G.NoLiveSanity = v
 while _G.NoLiveSanity do wait(1)
 for _,v in workspace.CurrentCamera:GetChildren() do
-if v.Name == "LiveSanity" and workspace:FindFirstChild("EntityModel") then
+if v.Name == "LiveSanity" then
 v.Enabled = not _G.NoLiveSanity
 end
 end
@@ -656,10 +656,8 @@ end}):AddKeyPicker("SeekSpeed", {
 })
 Players:AddDivider()
 game:GetService("RunService").RenderStepped:Connect(function()
-if not game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
 game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.HitmarkerHead.Visible = _G.StandardMrinade
 game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.Hitmarker.Visible = _G.StandardMrinade
-end
 end)
 Players:AddToggle("StandardMrinade",{
 Text = "Standard Mrinade",
@@ -760,18 +758,20 @@ end}):AddKeyPicker("NC", {
     SyncToggleState = Library.IsMobile,
 })
 if not Hotelold or not Rooms then
-Players:AddButton({
-Text = "Godmode",
-DoubleClick = true,
-Func = function()
 game:GetService("RunService").RenderStepped:Connect(function()
-            game.Players.LocalPlayer.Character.Collision.CanCollide = false
-            game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = false
-            if game.Players.LocalPlayer.Character.Collision.Position ~= game.Players.LocalPlayer.Character.HumanoidRootPart.Position then
-            game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-            game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.Collision.Position + Vector3.new(0, -2.5, 0)
-        end
+if _G.GodmodeNew then
+game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y + 3, 0)
+game.Players.LocalPlayer.Character.Collision.CanCollide = false
+else
+game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 0, 0)
+game.Players.LocalPlayer.Character.Collision.CanCollide = true
+end
 end)
+Players:AddToggle("GodmodeNew",{
+Text = "Godmode",
+Default = true,
+Callback = function(v)
+_G.GodmodeNew = v
 end})
 end
 if not Fools or not Hotelold then
