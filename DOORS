@@ -760,7 +760,7 @@ end}):AddKeyPicker("NC", {
 if not Hotelold or not Rooms then
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.GodmodeNew then
-game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y + 3, 0)
+game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 2.5, 0)
 game.Players.LocalPlayer.Character.Collision.CanCollide = false
 else
 game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 0, 0)
