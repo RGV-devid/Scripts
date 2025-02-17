@@ -62,6 +62,7 @@ local Window = Library:CreateWindow({
 	Icon = 95869322194132,
 	NotifySide = "Right",
 	ShowCustomCursor = true,
+        AutoShow = true,
 })
 
 local Tabs = {
@@ -2841,11 +2842,6 @@ workspace.CurrentCamera.FieldOfView = 70
 end
 end)
 end})
-Camera:AddToggle("NoCutscenes",{
-Text = "No Cutscenes",
-Default = false,
-Callback = function(v)
-_G.NoCutscenes = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.NoCutscenes then
 game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Cutscenes.Name = "_Cutscenes"
@@ -2853,6 +2849,11 @@ else
 game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener._Cutscenes.Name = "Cutscenes"
 end
 end)
+Camera:AddToggle("NoCutscenes",{
+Text = "No Cutscenes",
+Default = false,
+Callback = function(v)
+_G.NoCutscenes = v
 end})
 Camera:AddToggle("NoCamBob",{
 Text = "No Camera Bob",
