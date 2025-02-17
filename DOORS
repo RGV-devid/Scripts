@@ -785,7 +785,7 @@ Text = "Godmode + Noclip",
 Default = false,
 Callback = function(v)
 _G.GodmodeNew = v
-if value then
+if v then
 Toggles.Noclip:SetValue(true)
 else
 Toggles.Noclip:SetValue(false)
@@ -2842,18 +2842,16 @@ workspace.CurrentCamera.FieldOfView = 70
 end
 end)
 end})
-game:GetService("RunService").RenderStepped:Connect(function()
-if _G.NoCutscenes then
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Cutscenes.Name = "_Cutscenes"
-else
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener._Cutscenes.Name = "Cutscenes"
-end
-end)
 Camera:AddToggle("NoCutscenes",{
 Text = "No Cutscenes",
 Default = false,
 Callback = function(v)
 _G.NoCutscenes = v
+if _G.NoCutscenes then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Cutscenes.Name = "_Cutscenes"
+else
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener._Cutscenes.Name = "Cutscenes"
+end
 end})
 Camera:AddToggle("NoCamBob",{
 Text = "No Camera Bob",
@@ -3034,8 +3032,6 @@ MenuGroup:AddButton("Unload", function() Library:Unload() end)
 
 CreditsGroup:AddLabel("Developers:")
 CreditsGroup:AddLabel("< Owner > | rechedmcvn")
-
-Library.ToggleKeybind = Options.MenuKeybind
 
 ThemeManager:SetLibrary(Library)
 SaveManager:SetLibrary(Library)
