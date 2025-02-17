@@ -2909,6 +2909,110 @@ Compact = true,
 Callback = function(v)
 _G.ViewmodelZ = v
 end})
+local FPS = Tabs.Visual:AddLeftGroupbox("FPS")
+FPS:AddToggle("UnbreakerLight",{
+Text = "Unbreaker Light",
+Default = false,
+Callback = function(v)
+if v then
+local Module_Events = require(game.ReplicatedStorage.ClientModules.Module_Events)
+local ShatterFunction = Module_Events.shatter
+Module_Events.shatter = function(v)
+table.insert({}, tostring(v))
+end
+else
+Module_Events.shatter = ShatterFunction
+end
+end})
+FPS:AddToggle("UnmessageDeathHint",{
+Text = "Unmessage Death Hint",
+Default = false,
+Callback = function(v)
+_G.RemoveDeathHint = v
+RemotesFolder.DeathHint.OnClientEvent:Connect(function()
+if _G.RemoveDeathHint then
+task.wait(1)
+firesignal(RemotesFolder.DeathHint.OnClientEvent,{},"Blue")
+end
+end)
+end})
+FPS:AddDivider()
+FPS:AddToggle("LowDetail",{
+Text = "Low Detail",
+Default = false,
+Callback = function(v)
+if v then
+for _, object in pairs(workspace:GetDescendants()) do
+if object:IsA("BasePart") then
+if not object:GetAttribute("Material") then object:SetAttribute("Material", object.Material) end
+if not object:GetAttribute("Reflectance") then object:SetAttribute("Reflectance", object.Reflectance) end
+object.Material = true and Enum.Material.Plastic or object:GetAttribute("Material")
+object.Reflectance = true and 0 or object:GetAttribute("Reflectance")
+elseif object:IsA("Decal") then
+if not object:GetAttribute("Transparency") then object:SetAttribute("Transparency", object.Transparency) end
+end
+end
+workspace.Terrain.WaterReflectance = true and 0 or 1
+workspace.Terrain.WaterTransparency = true and 0 or 1
+workspace.Terrain.WaterWaveSize = true and 0 or 0.05
+workspace.Terrain.WaterWaveSpeed = true and 0 or 8
+LowQuality = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+for _, object in pairs(workspace:GetDescendants()) do
+if object:IsA("BasePart") then
+if not object:GetAttribute("Material") then object:SetAttribute("Material", object.Material) end
+if not object:GetAttribute("Reflectance") then object:SetAttribute("Reflectance", object.Reflectance) end
+object.Material = true and Enum.Material.Plastic or object:GetAttribute("Material")
+object.Reflectance = true and 0 or object:GetAttribute("Reflectance")
+elseif object:IsA("Decal") then
+if not object:GetAttribute("Transparency") then object:SetAttribute("Transparency", object.Transparency) end
+end
+end
+workspace.Terrain.WaterReflectance = true and 0 or 1
+workspace.Terrain.WaterTransparency = true and 0 or 1
+workspace.Terrain.WaterWaveSize = true and 0 or 0.05
+workspace.Terrain.WaterWaveSpeed = true and 0 or 8
+end)
+else
+LowQuality:Disconnect()
+for _, object in pairs(workspace:GetDescendants()) do
+if object:IsA("BasePart") then
+if not object:GetAttribute("Material") then object:SetAttribute("Material", object.Material) end
+if not object:GetAttribute("Reflectance") then object:SetAttribute("Reflectance", object.Reflectance) end
+object.Material = false and Enum.Material.Plastic or object:GetAttribute("Material")
+object.Reflectance = false and 0 or object:GetAttribute("Reflectance")
+elseif object:IsA("Decal") then
+if not object:GetAttribute("Transparency") then object:SetAttribute("Transparency", object.Transparency) end
+end
+end
+workspace.Terrain.WaterReflectance = false and 0 or 1
+workspace.Terrain.WaterTransparency = false and 0 or 1
+workspace.Terrain.WaterWaveSize = false and 0 or 0.05
+workspace.Terrain.WaterWaveSpeed = false and 0 or 8
+end
+end})
+FPS:AddDivider()
+FPS:AddToggle("DeleteBatDecorate",{
+Text = "Delete Bat Decorate",
+Default = false,
+Callback = function(v)
+if v then
+for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do
+if v:IsA("Model") and v.Name == "HangingHalloweenDecor" then
+v:Destroy()
+end
+end
+NoBat = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do
+if v:IsA("Model") and v.Name == "HangingHalloweenDecor" then
+v:Destroy()
+end
+end
+end)
+else
+NoBat:Disconnect()
+end
+end})
+
 local MenuGroup = Tabs.Settings:AddLeftGroupbox("Menu")
 local CreditsGroup = Tabs.Settings:AddRightGroupbox("Credits")
 
