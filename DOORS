@@ -40,7 +40,8 @@ local repo = "https://raw.githubusercontent.com/deividcomsono/LinoriaLib/main/"
 local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))() 
-else
+end
+if _G.Library == "Obsidian" then
 local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
 local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
@@ -389,7 +390,7 @@ if not Hotelold then
 Automation:AddButton({
 Text = "Padlock Unlock",
 Default = false,
-Callback = function(v)
+Func = function(v)
 local Floor = game:GetService("ReplicatedStorage").GameData.Floor
 local Paper = workspace:FindFirstChild("LibraryHintPaper",true) or workspace:FindFirstChild("LibraryHintPaperHard",true) or Players:FindFirstChild("LibraryHintPaper",true) or Players:FindFirstChild("LibraryHintPaperHard",true)
 if not Paper then
