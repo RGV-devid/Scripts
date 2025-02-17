@@ -746,6 +746,7 @@ if v then
             end
         end)
     else
+     Toggles.GodmodeNew:SetValue(false)
         if noclipConnection then
             noclipConnection:Disconnect()
             noclipConnection = nil
@@ -770,10 +771,15 @@ game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = true
 end
 end)
 Players:AddToggle("GodmodeNew",{
-Text = "Godmode",
+Text = "Godmode + Noclip",
 Default = false,
 Callback = function(v)
 _G.GodmodeNew = v
+if value then
+Toggles.Noclip:SetValue(true)
+else
+Toggles.Noclip:SetValue(false)
+end
 end}):AddKeyPicker("GodmodeNewKeybind", {
     Default = "G",
     Text = "Godmode",
@@ -2823,6 +2829,19 @@ if _G.FieldOfView then
 workspace.CurrentCamera.FieldOfView = _G.SelectFieldOfView or 70
 else
 workspace.CurrentCamera.FieldOfView = 70
+end
+end)
+end})
+Camera:AddToggle("NoCutscenes",{
+Text = "No Cutscenes",
+Default = false,
+Callback = function(v)
+_G.NoCutscenes = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.NoCutscenes then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Cutscenes.Name = "_Cutscenes"
+else
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener._Cutscenes.Name = "Cutscenes"
 end
 end)
 end})
