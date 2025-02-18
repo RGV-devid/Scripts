@@ -59,10 +59,12 @@ if getgenv().RainbowESP then
         Text.TextColor3 = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         Highlight.FillColor = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         Highlight.OutlineColor = Color3.fromHSV(tick() % 10 / 10, 1, 1)
+        traceDrawing.Color = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         else
         Text.TextColor3 = Color
         Highlight.FillColor = Color
         Highlight.OutlineColor = Color
+        traceDrawing.Color = Color
 end          
 end)
 end)
