@@ -38,7 +38,7 @@ end
 end                                
 end)
 game:GetService("RunService").RenderStepped:Connect(function()
-if _G.TracerESP and Child.Parent ~= nil then
+if getgenv().TracerESP and Child.Parent ~= nil then
 camera = workspace.CurrentCamera
 local vector, onScreen = camera:WorldToViewportPoint(child:IsA("Model") and Child:GetPivot().Position or Child:IsA("BasePart") and Child.Position)
 if onScreen then
