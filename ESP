@@ -4,7 +4,6 @@ function Library:AddESP(Child, Name, Color, Size, Title)
 local Billboard = Instance.new("BillboardGui", Child)
 local Text = Instance.new("TextLabel", Billboard)
 local UIStroke = Instance.new("UIStroke", Text)
-local traceDrawing = Drawing.new('Line')
 local Highlight = Instance.new('Highlight', Child)
         Billboard.AlwaysOnTop = true
         Billboard.Size = UDim2.new(0,400,0,100)
@@ -37,6 +36,8 @@ Text.Text = Name
 end
 end                                
 end)
+task.spawn(function()
+local traceDrawing = Drawing.new('Line')
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().TracerESP and Child.Parent ~= nil then
 camera = workspace.CurrentCamera
@@ -52,9 +53,6 @@ end
 else
 traceDrawing.Visible = false
 end
-end)
-task.spawn(function()
-game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().RainbowESP then
         Text.TextColor3 = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         Highlight.FillColor = Color3.fromHSV(tick() % 10 / 10, 1, 1)
@@ -65,8 +63,8 @@ if getgenv().RainbowESP then
         Highlight.FillColor = Color
         Highlight.OutlineColor = Color
         traceDrawing.Color = Color
-end          
-end)
+        end          
+    end)
 end)
 
 end
