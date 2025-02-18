@@ -48,7 +48,7 @@ local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))
 local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
 end
 
-local LibraryESP = loadstring(game:HttpGet("https://github.com/Cold-Script/ESPBETA/blob/main/Esp?raw=true"))()
+local LibraryESP = loadstring(game:HttpGet("https://github.com/RGV-devid/Scripts/blob/main/ESP?raw=true"))()
 
 local Options = Library.Options
 local Toggles = Library.Toggles
@@ -70,7 +70,7 @@ local Tabs = {
   Players = Window:AddTab("Players"),
   Exploits = Window:AddTab("Exploits"),
   Visual = Window:AddTab("Visual"),
-  Settings = Window:AddTab("Settings"),
+  Settings = Window:AddTab("Configs"),
 }
 local Fast = Tabs.Main:AddLeftGroupbox("Fast")
 game:GetService("RunService").RenderStepped:Connect(function()
@@ -2509,6 +2509,12 @@ Default = false,
 Callback = function(v)
 getgenv().DistanceESP = v
 end})
+ESP:AddToggle("TracerESP",{
+Text = "Tracer ESP",
+Default = false,
+Callback = function(v)
+getgenv().TracerESP = v
+end})
 ESP:AddToggle("RainbowESP",{
 Text = "Rainbow ESP",
 Default = false,
@@ -3020,7 +3026,6 @@ else
 NoBat:Disconnect()
 end
 end})
-
 local MenuGroup = Tabs.Settings:AddLeftGroupbox("Menu")
 local CreditsGroup = Tabs.Settings:AddRightGroupbox("Credits")
 
@@ -3033,6 +3038,7 @@ MenuGroup:AddButton("Unload", function() Library:Unload() end)
 CreditsGroup:AddLabel("Developers:")
 CreditsGroup:AddLabel("< Owner > | rechedmcvn")
 
+if _G.Library == "Obsidian" then
 ThemeManager:SetLibrary(Library)
 SaveManager:SetLibrary(Library)
 
@@ -3045,7 +3051,7 @@ SaveManager:SetSubFolder("specific-place")
 SaveManager:BuildConfigSection(Tabs.Settings)
 
 ThemeManager:ApplyToTab(Tabs.Settings)
-
+end
 
 
 
