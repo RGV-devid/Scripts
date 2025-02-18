@@ -44,7 +44,7 @@ local vector, onScreen = camera:WorldToViewportPoint(child:IsA("Model") and Chil
 if onScreen then
 traceDrawing.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
 traceDrawing.To = Vector2.new(vector.X, vector.Y)
-traceDrawing.Color = Color3.fromRGB(255)
+traceDrawing.Color = Color
 traceDrawing.Visible = true
 else
 traceDrawing.Visible = false
