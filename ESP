@@ -36,12 +36,10 @@ Text.Text = Name
 end
 end                                
 end)
-task.spawn(function()
-local traceDrawing = Drawing.new('Line')
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().TracerESP and Child.Parent ~= nil then
 camera = workspace.CurrentCamera
-local vector, onScreen = camera:WorldToViewportPoint(child:IsA("Model") and Child:GetPivot().Position or Child:IsA("BasePart") and Child.Position)
+local vector, onScreen = camera:WorldToViewportPoint(Child:IsA("Model") and Child:GetPivot().Position or Child:IsA("BasePart") and Child.Position)
 if onScreen then
 traceDrawing.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
 traceDrawing.To = Vector2.new(vector.X, vector.Y)
@@ -53,6 +51,9 @@ end
 else
 traceDrawing.Visible = false
 end
+end)
+task.spawn(function()
+game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().RainbowESP then
         Text.TextColor3 = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         Highlight.FillColor = Color3.fromHSV(tick() % 10 / 10, 1, 1)
