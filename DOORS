@@ -506,7 +506,6 @@ end
 end
 end})
 end
-World:AddDivider()
 World:AddToggle("HidingVoidRoblox",{
 Text = "Hiding Void Roblox",
 Default = false,
@@ -516,6 +515,23 @@ workspace.FallenPartsDestroyHeight = 0 / 0
 else
 workspace.FallenPartsDestroyHeight = -50000
 end
+end})
+World:AddToggle("HidingJammin",{
+Text = "Hiding Jammin",
+Default = false,
+Callback = function(v)
+_G.HidingJam = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.HidingJam then
+if ReplicatedStorage:FindFirstChild("LiveModifiers"):FindFirstChild("Jammin") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.Health.Jam.Playing = false
+end
+else
+if ReplicatedStorage:FindFirstChild("LiveModifiers"):FindFirstChild("Jammin") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.Health.Jam.Playing = true
+end
+end
+end)
 end})
 local Misc = Tabs.Main:AddRightGroupbox("Misc")
 Misc:AddButton({
@@ -1177,6 +1193,19 @@ end
 end)
 end})
 end
+Disabled:AddToggle("RemoveFiredamp",{
+Text = "Removal-Firedamp",
+Default = false,
+Callback = function(v)
+_G.RemovalFiredamp = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalFiredamp then
+if workspace.Camera:FindFirstChild("LiveFiredamp") then
+workspace.Camera.LiveFiredamp:Destroy()
+end
+end
+end)
+end})
 Disabled:AddToggle("RemoveScreech",{
 Text = "Removal-Screech",
 Default = false,
@@ -1732,14 +1761,14 @@ Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-if not v:FindFirstChild("DoorESP") then
+if not v:GetAttribute("Opened") and not v:FindFirstChild("DoorESP") then
 LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end
 end
 DoorESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "Door" and v.Parent.Name == "Door" then
-if not v:FindFirstChild("DoorESP") then
+if not v:GetAttribute("Opened") and not v:FindFirstChild("DoorESP") then
 LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end
