@@ -38,6 +38,7 @@ end
 end)
 task.spawn(function()
 local traceDrawing = Drawing.new('Line')
+traceDrawing.Color = Color
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().TracerESP and Child.Parent ~= nil then
 local camera = workspace.CurrentCamera
@@ -45,7 +46,6 @@ local vector, onScreen = camera:WorldToViewportPoint(Child:IsA("Model") and Chil
 if onScreen then
 traceDrawing.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
 traceDrawing.To = Vector2.new(vector.X, vector.Y)
-traceDrawing.Color = Color
 traceDrawing.Visible = true
 else
 traceDrawing.Visible = false
