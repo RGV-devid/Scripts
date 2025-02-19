@@ -27,7 +27,7 @@ local Highlight = Instance.new('Highlight', Child)
         Highlight.FillTransparency = 1
         Highlight.OutlineTransparency =  0
         Highlight.Name = Title
-spawn(function()
+task.spawn(function()
 while wait(0.001) do
 if getgenv().DistanceESP then
 Text.Text = string.format("%s\n[%s]", Name or Child.Name, math.floor((game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position - Child:GetPivot().Position).Magnitude))
@@ -36,9 +36,11 @@ Text.Text = Name
 end
 end                                
 end)
+task.spawn(function()
+local traceDrawing = Drawing.new('Line')
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().TracerESP and Child.Parent ~= nil then
-camera = workspace.CurrentCamera
+local camera = workspace.CurrentCamera
 local vector, onScreen = camera:WorldToViewportPoint(Child:IsA("Model") and Child:GetPivot().Position or Child:IsA("BasePart") and Child.Position)
 if onScreen then
 traceDrawing.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
@@ -51,6 +53,7 @@ end
 else
 traceDrawing.Visible = false
 end
+end)
 end)
 task.spawn(function()
 game:GetService("RunService").RenderStepped:Connect(function()
