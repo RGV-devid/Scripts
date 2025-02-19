@@ -773,6 +773,17 @@ game.Players.LocalPlayer.Character.Collision.CanCollide = true
 game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = true
 end
 end)
+Players:AddToggle("NoFootsteps",{
+Text = "No Footsteps",
+Default = false,
+Callback = function(v)
+_G.NoFootsteps = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game:FindFirstChild('Footsteps') then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.Footsteps.Enabled = not _G.NoFootsteps
+end
+end)
+end})
 Players:AddToggle("GodmodeNew",{
 Text = "Godmode + Noclip",
 Default = false,
@@ -818,7 +829,7 @@ end
 end)
 end})
 LocalPlayer:AddToggle("CrouchBypass",{
-Text = "Crouch Spoof Bypass",
+Text = "Crouch Spoof",
 Default = false,
 Callback = function(v)
 _G.CrouchSpoof = v
@@ -1038,17 +1049,6 @@ Default = false,
 Callback = function(v)
 _G.AntiEyes = v
 end})
-Anti:AddToggle("RemoveScreech",{
-Text = "Anti-Screech",
-Default = false,
-Callback = function(v)
-_G.RemovalScreech = v
-if _G.RemovalScreech then
-RemotesFolder.Screech.Name = "_Screech"
-else
-RemotesFolder._Screech.Name = "Screech"
-end
-end})
 if not Hotelold then
 Anti:AddToggle("Anti-Lookman",{
 Text = "Anti-Lookman",
@@ -1164,19 +1164,36 @@ Text = "Removal-A90",
 Default = false,
 Callback = function(v)
 _G.RemovalA90 = v
-_G.RemovalDamageA90 = v
-if _G.RemovalDamageA90 then
-RemotesFolder.A90.Name = "_A90"
-else
-RemotesFolder._A90.Name = "A90"
-end
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.RemovalA90 then
-game.Players.LocalPlayer.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90").Visible = false
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("A90") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90.Name = "_A90"
+end
+else
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("_A90") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90.Name = "A90"
+end
 end
 end)
 end})
 end
+Disabled:AddToggle("RemoveScreech",{
+Text = "Removal-Screech",
+Default = false,
+Callback = function(v)
+_G.RemovalScreech = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.RemovalScreech then
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("Screech") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.Screech.Name = "_Screech"
+end
+else
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("_Screech") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules._Screech.Name = "Screech"
+end
+end
+end)
+end})
 Disabled:AddToggle("RemoveHalt",{
 Text = "Removal-Halt",
 Default = false,
@@ -1191,16 +1208,16 @@ Disabled:AddToggle("RemoveDread",{
 Text = "Removal-Dread",
 Default = false,
 Callback = function(v)
-_G.AntiDread = v
-_G.AntiDamageDread = v
-if _G.AntiDamageDread then
-RemotesFolder.Dread.Name = "_Dread"
-else
-RemotesFolder._Dread.Name = "Dread"
-end
+_G.RemovalDread = v
 game:GetService("RunService").RenderStepped:Connect(function()
-if _G.AntiDread then
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.DreadVignette.Visible = false
+if _G.RemovalDread then
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("Dread") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.Dread.Name = "_Dread"
+end
+else
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("_Dread") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.Dread.Name = "Dread"
+end
 end
 end)
 end})
@@ -1553,6 +1570,40 @@ _G.RemovalRJ = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.RemovalRJ then
 game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.Visible = false
+end
+end)
+end})
+Jumpcares:AddToggle("NoFigureJumpcares",{
+Text = "No Figure Jumpcares",
+Default = false,
+Callback = function(v)
+_G.NoFigureJumpscare = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.NoFigureJumpscare then
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Jumpscares:FindFirstChild("Figure") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Jumpscares.Figure.Name = "_Figure"
+end
+else
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Jumpscares:FindFirstChild("_Figure") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Jumpscares._Figure.Name = "Figure"
+end
+end
+end)
+end})
+Jumpcares:AddToggle("NoSpiderJumpcares",{
+Text = "No Spider Jumpcares",
+Default = false,
+Callback = function(v)
+_G.NoSpiderJumpscare = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.NoSpiderJumpcares then
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("SpiderJumpscare") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.SpiderJumpscare.Name = "_SpiderJumpscare"
+end
+else
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("_SpiderJumpscare") then
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules._SpiderJumpscare.Name = "SpiderJumpscare"
+end
 end
 end)
 end})
