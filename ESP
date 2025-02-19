@@ -1,4 +1,3 @@
-
 local Library = {}
 
 function Library:AddESP(Child, Name, Color, Size, Title)
@@ -76,7 +75,6 @@ if getgenv().RainbowESP then
         end          
     end)
 end)
-end
 end
 function Library:Delete(name)
 for _,v in pairs(workspace:GetDescendants()) do
