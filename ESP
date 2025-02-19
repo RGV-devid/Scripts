@@ -1,5 +1,6 @@
 
 local Library = {}
+
 function Library:AddESP(Child, Name, Color, Size, Title)
 local Billboard = Instance.new("BillboardGui", Child)
 local Text = Instance.new("TextLabel", Billboard)
@@ -38,9 +39,15 @@ end
 end)
 task.spawn(function()
 local traceDrawing = Drawing.new('Line')
-traceDrawing.Color = Color
 game:GetService("RunService").RenderStepped:Connect(function()
+if not getgenv().RainbowESP then
+traceDrawing.Color = Color
+end
+if getgenv().RainbowESP then
+traceDrawing.Color = Color3.fromHSV(tick() % 10 / 10, 1, 1)
+end
 if getgenv().TracerESP and Child.Parent ~= nil then
+if Child:FindFirstChild(Title) then
 local camera = workspace.CurrentCamera
 local vector, onScreen = camera:WorldToViewportPoint(Child:IsA("Model") and Child:GetPivot().Position or Child:IsA("BasePart") and Child.Position)
 if onScreen then
@@ -53,6 +60,7 @@ end
 else
 traceDrawing.Visible = false
 end
+end
 end)
 end)
 task.spawn(function()
@@ -61,16 +69,14 @@ if getgenv().RainbowESP then
         Text.TextColor3 = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         Highlight.FillColor = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         Highlight.OutlineColor = Color3.fromHSV(tick() % 10 / 10, 1, 1)
-        traceDrawing.Color = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         else
         Text.TextColor3 = Color
         Highlight.FillColor = Color
         Highlight.OutlineColor = Color
-        traceDrawing.Color = Color
         end          
     end)
 end)
-
+end
 end
 function Library:Delete(name)
 for _,v in pairs(workspace:GetDescendants()) do
