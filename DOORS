@@ -2842,9 +2842,9 @@ Callback = function(v)
 _G.FieldOfView = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.FieldOfView then
-workspace.CurrentCamera.FieldOfView = _G.SelectFieldOfView or 70
+Main_Game.fovtarget = _G.SelectFieldOfView or 70
 else
-workspace.CurrentCamera.FieldOfView = 70
+Main_Game.fovtarget = 70
 end
 end)
 end})
