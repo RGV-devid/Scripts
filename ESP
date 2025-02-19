@@ -30,7 +30,7 @@ local Highlight = Instance.new('Highlight', Child)
 task.spawn(function()
 while wait(0.001) do
 if getgenv().DistanceESP then
-Text.Text = string.format("%s\n[%s]", Name or Child.Name, math.floor((game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position - Child:GetPivot().Position).Magnitude))
+Text.Text = string.format("%s\n[%s]", Name or Child.Name, math.floor((workspace.Camera.CFrame.Position - Child:GetPivot().Position).Magnitude))
 else
 Text.Text = Name
 end
