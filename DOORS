@@ -2553,12 +2553,6 @@ Default = false,
 Callback = function(v)
 getgenv().DistanceESP = v
 end})
-ESP:AddToggle("TracerESP",{
-Text = "Tracer ESP",
-Default = false,
-Callback = function(v)
-getgenv().TracerESP = v
-end})
 ESP:AddToggle("RainbowESP",{
 Text = "Rainbow ESP",
 Default = false,
