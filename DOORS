@@ -35,18 +35,11 @@ RemotesFolder = ReplicatedStorage.Bricks
 else
 RemotesFolder = ReplicatedStorage.RemotesFolder
 end
-if _G.Library == "Linoria" then
-local repo = "https://raw.githubusercontent.com/deividcomsono/LinoriaLib/main/"
-local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
-local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
-local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))() 
-end
-if _G.Library == "Obsidian" then
 local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
 local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
-end
+
 
 local LibraryESP = loadstring(game:HttpGet("https://github.com/RGV-devid/Scripts/blob/main/ESP?raw=true"))()
 
@@ -2853,11 +2846,17 @@ Text = "No Cutscenes",
 Default = false,
 Callback = function(v)
 _G.NoCutscenes = v
+game:GetService("RunService").RenderStepped:Connect(function()
 if _G.NoCutscenes then
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener:FindFirstChild("Cutscenes") then
 game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Cutscenes.Name = "_Cutscenes"
+end
 else
+if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener:FindFirstChild("_Cutscenes") then
 game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener._Cutscenes.Name = "Cutscenes"
 end
+end
+end)
 end})
 Camera:AddToggle("NoCamBob",{
 Text = "No Camera Bob",
@@ -3038,7 +3037,6 @@ MenuGroup:AddButton("Unload", function() Library:Unload() end)
 CreditsGroup:AddLabel("Developers:")
 CreditsGroup:AddLabel("< Owner > | rechedmcvn")
 
-if _G.Library == "Obsidian" then
 ThemeManager:SetLibrary(Library)
 SaveManager:SetLibrary(Library)
 
@@ -3051,7 +3049,7 @@ SaveManager:SetSubFolder("specific-place")
 SaveManager:BuildConfigSection(Tabs.Settings)
 
 ThemeManager:ApplyToTab(Tabs.Settings)
-end
+
 
 
 
