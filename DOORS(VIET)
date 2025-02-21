@@ -2043,53 +2043,53 @@ Callback = function(v)
 _G.GoldCE = v
 end})
 ESP:AddToggle("ChestESP",{
-Text = "Chest ESP",
+Text = "Rương ESP",
 Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "ChestBox" then
 if not v:FindFirstChild("ChestESP") then
-LibraryESP:AddESP(v, "Chest", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
+LibraryESP:AddESP(v, "Rương", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
 end
 elseif v.Name == "ChestBoxLocked" then
 if not v:FindFirstChild("ChestESP") then
-LibraryESP:AddESP(v, "Chest [Locked]", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
+LibraryESP:AddESP(v, "Rương [Khoá]", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
 end
 elseif v.Name == "Chest_Vine" then
 if not v:FindFirstChild("ChestESP") then
-LibraryESP:AddESP(v, "Chest", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
+LibraryESP:AddESP(v, "Rương [Reo]", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
 end
 elseif v.Name == "Toolbox_Locked" then
 if not v:FindFirstChild("ChestESP") then
-LibraryESP:AddESP(v, "Toolbox [Locked]", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
+LibraryESP:AddESP(v, "Hộp [Khoá]", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
 end
 elseif v.Name == "Toolbox" then
 if not v:FindFirstChild("ChestESP") then
-LibraryESP:AddESP(v, "Toolbox", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
+LibraryESP:AddESP(v, "Hộp", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
 end
 end
 end
 ChestESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "ChestBox" then
 if not v:FindFirstChild("ChestESP") then
-LibraryESP:AddESP(v, "Chest", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
+LibraryESP:AddESP(v, "Rương", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
 end
 elseif v.Name == "ChestBoxLocked" then
 if not v:FindFirstChild("ChestESP") then
-LibraryESP:AddESP(v, "Chest [Locked]", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
+LibraryESP:AddESP(v, "Rương [Khoá]", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
 end
 elseif v.Name == "Chest_Vine" then
 if not v:FindFirstChild("ChestESP") then
-LibraryESP:AddESP(v, "Chest", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
+LibraryESP:AddESP(v, "Rương [Reo]", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
 end
 elseif v.Name == "Toolbox_Locked" then
 if not v:FindFirstChild("ChestESP") then
-LibraryESP:AddESP(v, "Toolbox [Locked]", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
+LibraryESP:AddESP(v, "Hộp [Khoá]", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
 end
 elseif v.Name == "Toolbox" then
 if not v:FindFirstChild("ChestESP") then
-LibraryESP:AddESP(v, "Toolbox", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
+LibraryESP:AddESP(v, "Hộp", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
 end
 end
 end)
@@ -2103,21 +2103,21 @@ Callback = function(v)
 _G.ChestCE = v
 end})
 ESP:AddToggle("WaterPumpESP",{
-Text = "Waterpump ESP",
+Text = "Vạt ESP",
 Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "WaterPump" then
 if not v:FindFirstChild("PumpESP") then
-LibraryESP:AddESP(v, "Waterpump", _G.PumpCE or Color3.fromRGB(0,255,255), 20, "PumpESP")
+LibraryESP:AddESP(v, "Vạt", _G.PumpCE or Color3.fromRGB(0,255,255), 20, "PumpESP")
 end
 end
 end
 PumpESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "WaterPump" then
 if not v:FindFirstChild("PumpESP") then
-LibraryESP:AddESP(v, "Waterpump", _G.PumpCE or Color3.fromRGB(0,255,255), 20, "PumpESP")
+LibraryESP:AddESP(v, "Vạt", _G.PumpCE or Color3.fromRGB(0,255,255), 20, "PumpESP")
 end
 end
 end)
@@ -2131,7 +2131,7 @@ Callback = function(v)
 _G.PumpCE = v
 end})
 ESP:AddToggle("EntityESP",{
-Text = "Entity ESP",
+Text = "Thực Thể ESP",
 Default = false,
 Callback = function(v)
 if v then
@@ -2297,131 +2297,127 @@ for _,v in pairs(workspace:GetDescendants()) do
 if v:IsA("Model") then
 if v.Name == "StarJug" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Star Jug", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bình sao", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "StarBottle" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Star Bottle", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Chai sao", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "AlarmClock" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Alarm Clock", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đồng hồ", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "StarVial" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Star Vial", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Lọ sao", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "GweenSoda" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Gween Soda", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Soda xanh", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Bread" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Bread", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bánh mì", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Cheese" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Cheese", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Phô mai", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "BandagePack" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Bandage Pack", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Hộp cá nhân", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "BatteryPack" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Battery Pack", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Hộp pin", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "LaserPointer" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Laser pointer", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đèn laser", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Glowsticks" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Glowstick", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Que phát sáng", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Smoothie" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Smoothie", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bia", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Straplight" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Straplight", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đèn treo cổ", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Bulklight" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Bulklight", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đèn lớn", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Lighter" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Lighter", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bật lửa", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Lockpick" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Lockpick", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đồ khoá phá", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Vitamins" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Vitamin", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Thuốc", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Crucifix" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Crucifix", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Thánh giá", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "CrucifixWall" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Crucifix", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Thánh giá tường", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "SkeletonKey" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Skeleton Key", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
-end
-elseif v.Name == "GweenSoda" then
-if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Gween Soda", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Chìa khoá đầu lâu", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Flashlight" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Flashlight", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đèn pin", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Candle" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Candle", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Nến", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Shears" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Shears", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Kéo tỉa", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Battery" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Battery", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Pin", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Bandage" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Bandage", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Băng cá nhân", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "PickupItem" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Paper", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Giấy mã", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Shakelight" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Shakelight", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đèn lắc", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Scanner" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "NVCS-3000", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Máy dò", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "ShieldMini" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Shield Vial", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Lọ thiêng", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "ShieldBig" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Shield Big", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bình thiêng", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "HolyGrenade" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Holy Hand Grenade", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bom thánh", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 end
 end
@@ -2430,131 +2426,127 @@ ItemsESP = workspace.DescendantAdded:Connect(function(v)
 if v:IsA("Model") then
 if v.Name == "StarJug" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Star Jug", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bình sao", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "StarBottle" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Star Bottle", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Chai sao", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "AlarmClock" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Alarm Clock", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đồng hồ", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "StarVial" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Star Vial", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Lọ sao", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "GweenSoda" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Gween Soda", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Soda xanh", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Bread" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Bread", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bánh mì", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Cheese" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Cheese", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Phô mai", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "BandagePack" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Bandage Pack", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Hộp cá nhân", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "BatteryPack" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Battery Pack", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Hộp pin", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "LaserPointer" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Laser pointer", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đèn laser", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Glowsticks" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Glowstick", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Que phát sáng", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Smoothie" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Smoothie", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bia", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Straplight" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Straplight", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đèn treo cổ", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Bulklight" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Bulklight", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đèn lớn", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Lighter" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Lighter", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bật lửa", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Lockpick" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Lockpick", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đồ khoá phá", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Vitamins" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Vitamin", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Thuốc", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Crucifix" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Crucifix", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Thánh giá", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "CrucifixWall" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Crucifix", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Thánh giá tường", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "SkeletonKey" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Skeleton Key", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
-end
-elseif v.Name == "GweenSoda" then
-if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Gween Soda", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Chìa khoá đầu lâu", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Flashlight" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Flashlight", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đèn pin", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Candle" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Candle", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Nến", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Shears" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Shears", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Kéo tỉa", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Battery" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Battery", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Pin", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Bandage" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Bandage", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Băng cá nhân", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "PickupItem" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Paper", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Giấy mã", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Shakelight" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Shakelight", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Đèn lắc", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "Scanner" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "NVCS-3000", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Máy dò", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "ShieldMini" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Shield Vial", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Lọ thiêng", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "ShieldBig" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Shield Big", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bình thiêng", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 elseif v.Name == "HolyGrenade" then
 if not v:FindFirstChild("ItemsESP") then
-LibraryESP:AddESP(v, "Holy Hand Grenade", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
+LibraryESP:AddESP(v, "Bom thánh", _G.ItemsCE or Color3.fromRGB(255,0,255), 20, "ItemsESP")
 end
 end
 end
@@ -2571,13 +2563,13 @@ end})
 
 ESP:AddDivider()
 ESP:AddToggle("DistanceESP",{
-Text = "Distance ESP",
+Text = "Khoảng Cách ESP",
 Default = false,
 Callback = function(v)
 getgenv().DistanceESP = v
 end})
 ESP:AddToggle("RainbowESP",{
-Text = "Rainbow ESP",
+Text = "Bảy Màu ESP",
 Default = false,
 Callback = function(v)
 getgenv().RainbowESP = v
