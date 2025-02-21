@@ -382,7 +382,7 @@ if not Hotelold then
 Automation:AddButton({
 Text = "Mở Khoá Ổ Khoá",
 Default = false,
-Func = function(v)
+Callback = function(v)
 local Floor = game:GetService("ReplicatedStorage").GameData.Floor
 local Paper = workspace:FindFirstChild("LibraryHintPaper",true) or workspace:FindFirstChild("LibraryHintPaperHard",true) or Players:FindFirstChild("LibraryHintPaper",true) or Players:FindFirstChild("LibraryHintPaperHard",true)
 if not Paper then
@@ -516,7 +516,7 @@ end
 end})
 if ReplicatedStorage:FindFirstChild("LiveModifiers"):FindFirstChild("Jammin") then
 World:AddToggle("HidingJammin",{
-Text = "Ẩn Nhạc Jeff",
+Text = "Ẩn Nhạc Jeff (Modifier)",
 Default = false,
 Callback = function(v)
 _G.HidingJam = v
@@ -566,9 +566,9 @@ game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end})
 
 
-local Players = Tabs.Players:AddLeftGroupbox("Players")
+local Players = Tabs.Players:AddLeftGroupbox("Người Chơi")
 Players:AddSlider("SpeedBoostSlider",{
-Text = "Speed Boost",
+Text = "Tốc Độ",
 Min = 15,
 Default = 15,
 Max = 50,
@@ -578,7 +578,7 @@ Callback = function(v)
 _G.SpeedBoost = v
 end})
 Players:AddToggle("SpeedBoost",{
-Text = "Speed Boost",
+Text = "Nhận Tốc Độ",
 Default = false,
 Callback = function(v)
 _G.EnabledSpeed = v
@@ -593,7 +593,7 @@ end
 end)
 end})
 Players:AddSlider("SpeedFly",{
-    Text = "Speed Fly",
+    Text = "Tốc Độ Bay",
     Default = 16,
     Min = 16,
     Max = 50,
@@ -604,7 +604,7 @@ _G.SetSpeedFly = v
 end})
 _G.SetSpeedFly = 16
 Players:AddToggle("StFly",{
-    Text = "Fly",
+    Text = "Bay",
     Default = false,
     Callback = function(v)
 _G.StartFly = v
@@ -653,12 +653,12 @@ task.wait()
 end
 end}):AddKeyPicker("Fly", {
    Default = "F",
-   Text = "Fly",
+   Text = "Bay",
    Mode = Library.IsMobile and "Toggle",
    SyncToggleState = Library.IsMobile
 })
 Players:AddToggle("SpeedOftion",{
-Text = "Speed Offtion",
+Text = "Tắt Tốc Độ",
 Default = false,
 Callback = function(v)
 _G.SeekSpeed = v
@@ -669,7 +669,7 @@ end
 end)
 end}):AddKeyPicker("SeekSpeed", {
     Default = "Q",
-    Text = "Speed Offtion",
+    Text = "Tắt Tốc Độ",
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
@@ -679,14 +679,14 @@ game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.Hitm
 game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Crosshair.Hitmarker.Visible = _G.StandardMrinade
 end)
 Players:AddToggle("StandardMrinade",{
-Text = "Standard Mrinade",
+Text = "Tâm Chuẩn",
 Default = false,
 Callback = function(v)
 _G.StandardMrinade = v
 end})
 
 Players:AddToggle("EatCandies",{
-Text = "Eat Candies",
+Text = "Nhai Kẹo",
 Default = false,
 Callback = function(v)
 _G.EatCandy = v
@@ -701,7 +701,7 @@ end})
 
 if Fools or Hotelold then
 Players:AddToggle("Godmode",{
-Text = "Godmode",
+Text = "Bất Tử",
 Default = false,
 Callback = function(v)
 if v then
@@ -720,13 +720,13 @@ end
 end)
 end}):AddKeyPicker("Godmode", {
     Default = "G",
-    Text = "Godmode",
+    Text = "Bất Tử",
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
 end
 Players:AddToggle("NoAccessories",{
-Text = "No Accessories",
+Text = "Không Sàn Trơn",
 Default = false,
 Callback = function(v)
 _G.NoSlow = v
@@ -750,7 +750,7 @@ game.Players.LocalPlayer.Character.UpperTorso.Massless = not _G.NoSlow;
 end)
 end})
 Players:AddToggle("Noclip",{
-Text = "Noclip",
+Text = "Đi Xuyên Tường",
 Default = false,
 Callback = function(v)
 if v then
@@ -765,7 +765,6 @@ if v then
             end
         end)
     else
-     Toggles.GodmodeNew:SetValue(false)
         if noclipConnection then
             noclipConnection:Disconnect()
             noclipConnection = nil
@@ -773,7 +772,7 @@ if v then
     end
 end}):AddKeyPicker("NC", {
     Default = "N",
-    Text = "Noclip ",
+    Text = "Đi Xuyên Tường ",
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
@@ -790,7 +789,7 @@ game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = true
 end
 end)
 Players:AddToggle("NoFootsteps",{
-Text = "No Footsteps",
+Text = "Không Những Bước Chân",
 Default = false,
 Callback = function(v)
 _G.NoFootsteps = v
@@ -801,15 +800,10 @@ end
 end)
 end})
 Players:AddToggle("GodmodeNew",{
-Text = "Godmode + Noclip",
+Text = "Bất Tử + Xuyên Tường Vĩnh Viễn",
 Default = false,
 Callback = function(v)
 _G.GodmodeNew = v
-if v then
-Toggles.Noclip:SetValue(true)
-else
-Toggles.Noclip:SetValue(false)
-end
 end}):AddKeyPicker("GodmodeNewKeybind", {
     Default = "G",
     Text = "Godmode",
@@ -818,9 +812,9 @@ end}):AddKeyPicker("GodmodeNewKeybind", {
 })
 end
 if not Fools or not Hotelold then
-local LocalPlayer = Tabs.Players:AddRightGroupbox("LocalPlayer")
+local LocalPlayer = Tabs.Players:AddRightGroupbox("Địa Vị Ngươi Chơi")
 LocalPlayer:AddToggle("CanJump",{
-Text = "Can Jump",
+Text = "Nhảy",
 Default = false,
 Callback = function(v)
 _G.Jump = v
@@ -829,12 +823,12 @@ game.Players.LocalPlayer.Character:SetAttribute("CanJump", _G.Jump)
 end)
 end}):AddKeyPicker("CanJump", {
     Default = "J",
-    Text = "Can Jump ",
+    Text = "Nhảy ",
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
 LocalPlayer:AddToggle("AutoJump",{
-Text = "Auto Jump",
+Text = "Tự Nhảy",
 Default = false,
 Callback = function(v)
 _G.AutoJump = v
@@ -845,7 +839,7 @@ end
 end)
 end})
 LocalPlayer:AddToggle("CrouchBypass",{
-Text = "Crouch Spoof",
+Text = "Ngồi Giả Tạo",
 Default = false,
 Callback = function(v)
 _G.CrouchSpoof = v
@@ -884,7 +878,7 @@ end
 end
 end)
 Bypass:AddToggle("SpeedBypass",{
-Text = "Speed Bypass",
+Text = "Tốc Độ Bypass",
 Default = false,
 Callback = function(v)
 _G.SpeedBypass = v
@@ -892,7 +886,7 @@ end})
 end
 if Mines then
 Bypass:AddToggle("LadderBypass",{
-Text = "Ladder Bypass",
+Text = "Cầu Thang Bypass",
 Default = false,
 Callback = function(v)
 _G.LadderBypass = v
@@ -908,7 +902,7 @@ end
 if _G.LadderBypass and game.Players.LocalPlayer.Character:GetAttribute("Climbing") then
 task.wait()
 game.Players.LocalPlayer.Character:SetAttribute("Climbing", false)
-Library:Notify("WARNING | Complete Ladder Bypass!")
+Library:Notify("CẢNH BÁO | Hoàn Thành Cầu Thang Bypass!")
 end
 else
 if workspace:FindFirstChild("Ladder_Bypass") then 
@@ -920,7 +914,7 @@ end)
 end})
 end
 Bypass:AddToggle("ManipulateBypass",{
-Text = "Manipulate Bypass",
+Text = "Lừa Bypass",
 Default = false,
 Callback = function(v)
 _G.ManipulateBypass = v
@@ -931,14 +925,14 @@ end
 end)
 end}):AddKeyPicker("ManiBypassKey", {
     Default = "B",
-    Text = "Manipulate Bypass",
+    Text = "Lừa Bypass",
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
 
 
 
-local Anti = Tabs.Exploits:AddLeftGroupbox("Anti")
+local Anti = Tabs.Exploits:AddLeftGroupbox("Tránh Xa")
 if not Hotelold then
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.AntiSnare then
@@ -952,13 +946,13 @@ end
 end 
 end)
 Anti:AddToggle("Anti-Snare",{
-Text = "Anti-Snare",
+Text = "Tránh Bẫy",
 Default = false,
 Callback = function(v)
 _G.AntiSnare = v
 end})
 Anti:AddToggle("Anti-Dupe",{
-Text = "Anti-Dupe",
+Text = "Tránh Dupe",
 Default = false,
 Callback = function(v)
 _G.AntiDupe = v
@@ -1006,7 +1000,7 @@ end
 end 
 end)
 Anti:AddToggle("Anti-Chandelier",{
-Text = "Anti-Chandelier",
+Text = "Tránh Đèn Dầu",
 Default = false,
 Callback = function(v)
 _G.AntiChandelier = v
@@ -1023,7 +1017,7 @@ end
 end 
 end)
 Anti:AddToggle("Anti-SeekArms",{
-Text = "Anti-Seek Arms",
+Text = "Tránh Tay Seek",
 Default = false,
 Callback = function(v)
 _G.AntiSeekArms = v
@@ -1060,14 +1054,14 @@ end
 end
 end)
 Anti:AddToggle("Anti-Eyes",{
-Text = "Anti-Eyes",
+Text = "Tránh Eyes",
 Default = false,
 Callback = function(v)
 _G.AntiEyes = v
 end})
 if not Hotelold then
 Anti:AddToggle("Anti-Lookman",{
-Text = "Anti-Lookman",
+Text = "Tránh Lookman",
 Default = false,
 Callback = function(v)
 _G.AntiLookman = v
@@ -1084,7 +1078,7 @@ end
 end)
 end)
 Anti:AddToggle("Anti-Giggle",{
-Text = "Anti-Giggle",
+Text = "Tránh Giggle",
 Default = false,
 Callback = function(v)
 _G.AntiGiggle = v
@@ -1093,7 +1087,7 @@ end
 if Retro then
 Anti:AddDivider()
 Anti:AddToggle("Anti-Lava",{
-Text = "Anti-Lava",
+Text = "Tránh Lava",
 Default = false,
 Callback = function(v)
 if v then
@@ -1119,7 +1113,7 @@ end
 end
 end})
 Anti:AddToggle("AntiSeekWall",{
-Text = "Anti-Seek Wall",
+Text = "Tránh Tường Seek",
 Default = false,
 Callback = function(v)
 if v then
@@ -1148,7 +1142,7 @@ end
 if Fools then
 Anti:AddDivider()
 Anti:AddToggle("AntiBanana",{
-Text = "Anti-Banana",
+Text = "Tránh Chuối",
 Default = false,
 Callback = function(v)
 if v then
@@ -1173,10 +1167,10 @@ end})
 end
 
 
-local Disabled = Tabs.Exploits:AddRightGroupbox("Disabled")
+local Disabled = Tabs.Exploits:AddRightGroupbox("Xoá")
 if not Hotelold then
 Disabled:AddToggle("RemoveA90",{
-Text = "Removal-A90",
+Text = "Xoá A90",
 Default = false,
 Callback = function(v)
 _G.RemovalA90 = v
@@ -1194,7 +1188,7 @@ end)
 end})
 end
 Disabled:AddToggle("RemoveFiredamp",{
-Text = "Removal-Firedamp",
+Text = "Xoá Sương Lửa",
 Default = false,
 Callback = function(v)
 _G.RemovalFiredamp = v
@@ -1207,7 +1201,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemoveScreech",{
-Text = "Removal-Screech",
+Text = "Xoá Screech",
 Default = false,
 Callback = function(v)
 _G.RemovalScreech = v
@@ -1224,7 +1218,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemoveHalt",{
-Text = "Removal-Halt",
+Text = "Xoá Halt",
 Default = false,
 Callback = function(v)
 _G.AntiHalt = v
@@ -1234,7 +1228,7 @@ end
 end})
 if not Fools or not Hotelold then
 Disabled:AddToggle("RemoveDread",{
-Text = "Removal-Dread",
+Text = "Xoá Dread",
 Default = false,
 Callback = function(v)
 _G.RemovalDread = v
@@ -1254,7 +1248,7 @@ end
 if Retro then
 Disabled:AddDivider()
 Disabled:AddToggle("RemoveDrakoBloxxer",{
-Text = "Removal-DrakoBloxxer",
+Text = "Xoá DrakoBloxxer",
 Default = false,
 Callback = function(v)
 if v then
@@ -1278,7 +1272,7 @@ end
 if Fools then
 Disabled:AddDivider()
 Disabled:AddToggle("RemoveJeff",{
-Text = "Removal-Jeff",
+Text = "Xoá Jeff",
 Default = false,
 Callback = function(v)
 if v then
@@ -1390,7 +1384,7 @@ end
 if Hotelold or Fools then
 Disabled:AddDivider()
 Disabled:AddToggle("RemoveSeek",{
-Text = "Removal-Seek Chase",
+Text = "Xoá Cuộc Chạy Seek",
 Default = false,
 Callback = function(v)
 _G.AntiSeekCar = v
@@ -1405,7 +1399,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemoveGate",{
-Text = "Removal-Gate",
+Text = "Xoá Rào Sắt",
 Default = false,
 Callback = function(v)
 _G.RemovalGate = v
@@ -1420,7 +1414,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemoveSkeleton",{
-Text = "Removal-Skeleton Door",
+Text = "Xoá Cửa Đầu Lâu",
 Default = false,
 Callback = function(v)
 _G.RemovalSkeleton = v
@@ -1435,7 +1429,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemovePuzzle",{
-Text = "Removal-Puzzle Door",
+Text = "Xoá Cửa Xếp Tranh",
 Default = false,
 Callback = function(v)
 _G.RemovalPuzzle = v
@@ -1453,7 +1447,7 @@ end
 if not Hotelold then
 Disabled:AddDivider()
 Disabled:AddToggle("RemoveDamageVignette",{
-Text = "Removal Damage Vignette",
+Text = "Xoá Hình Ảnh Hư Hại",
 Default = false,
 Callback = function(v)
 _G.RemovalDV = v
@@ -1465,7 +1459,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemoveBrutalVignette",{
-Text = "Removal Brutal Vignette",
+Text = "Xoá Hình Ảnh Tàn Bạo",
 Default = false,
 Callback = function(v)
 _G.RemovalBV = v
@@ -1477,7 +1471,7 @@ end)
 end})
 
 Disabled:AddToggle("RemoveHideVignette",{
-Text = "Removal Hide Vignette",
+Text = "Xoá Hình Ảnh Trốn",
 Default = false,
 Callback = function(v)
 _G.RemovalHV = v
@@ -1488,7 +1482,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemovePumpkinVignette",{
-Text = "Removal Pumpkin Vignette",
+Text = "Xoá Hình Ảnh Bí Ngô",
 Default = false,
 Callback = function(v)
 _G.RemovalPV = v
@@ -1499,7 +1493,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemoveSeekVignette",{
-Text = "Removal Seek Vignette",
+Text = "Xoá Hình Ảnh Seek",
 Default = false,
 Callback = function(v)
 _G.RemovalSV = v
@@ -1510,7 +1504,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemoveWeirdVignette",{
-Text = "Removal Weird Vignette",
+Text = "Xoá Hình Ảnh Kỳ Quặc",
 Default = false,
 Callback = function(v)
 _G.RemovalWV = v
@@ -1521,7 +1515,7 @@ end
 end)
 end})
 Disabled:AddToggle("RemoveWhiteVignette",{
-Text = "Removal White Vignette",
+Text = "Xoá Hình Ảnh Trắng",
 Default = false,
 Callback = function(v)
 _G.RemovalWhV = v
@@ -1532,9 +1526,9 @@ end
 end)
 end})
 end
-local Glitch = Tabs.Exploits:AddLeftGroupbox("Glitch")
+local Glitch = Tabs.Exploits:AddLeftGroupbox("Lỗi Glitch")
 Glitch:AddToggle("NoGlitchEffect",{
-Text = "No Glitch Effect",
+Text = "Không Hiệu Ứng Lỗi",
 Default = false,
 Callback = function(v)
 _G.RemovalGE = v
@@ -1545,7 +1539,7 @@ end
 end)
 end})
 Glitch:AddToggle("NoGlitchScreen",{
-Text = "No Glitch Screen",
+Text = "Không Màn Hình Lỗi",
 Default = false,
 Callback = function(v)
 _G.RemovalGS = v
@@ -1557,7 +1551,7 @@ end)
 end})
 if not Hotelold then
 Glitch:AddToggle("NoGlitchTrial",{
-Text = "No Glitch Trial",
+Text = "Không Xem Khối Lỗi",
 Default = false,
 Callback = function(v)
 _G.RemovalGT = v
@@ -1568,9 +1562,9 @@ end
 end)
 end})
 end
-local Jumpcares = Tabs.Exploits:AddLeftGroupbox("Jumpcares")
+local Jumpcares = Tabs.Exploits:AddLeftGroupbox("Thù Doạ")
 Jumpcares:AddToggle("NoAmbushJumpcares",{
-Text = "No Ambush Jumpcares",
+Text = "Không Ambush Thù Doạ",
 Default = false,
 Callback = function(v)
 _G.RemovalAJ = v
@@ -1581,7 +1575,7 @@ end
 end)
 end})
 Jumpcares:AddToggle("NoHideJumpcares",{
-Text = "No Hide Jumpcares",
+Text = "Không Hide Thù Doạ",
 Default = false,
 Callback = function(v)
 _G.RemovalHJ = v
@@ -1592,7 +1586,7 @@ end
 end)
 end})
 Jumpcares:AddToggle("NoRushJumpcares",{
-Text = "No Rush Jumpcares",
+Text = "Không Rush Thù Doạ",
 Default = false,
 Callback = function(v)
 _G.RemovalRJ = v
@@ -1603,7 +1597,7 @@ end
 end)
 end})
 Jumpcares:AddToggle("NoFigureJumpcares",{
-Text = "No Figure Jumpcares",
+Text = "Không Figure Thù Doạ",
 Default = false,
 Callback = function(v)
 _G.NoFigureJumpscare = v
@@ -1620,7 +1614,7 @@ end
 end)
 end})
 Jumpcares:AddToggle("NoSpiderJumpcares",{
-Text = "No Spider Jumpcares",
+Text = "Không Nhện Thù Doạ",
 Default = false,
 Callback = function(v)
 _G.NoSpiderJumpscare = v
@@ -1637,7 +1631,7 @@ end
 end)
 end})
 Jumpcares:AddToggle("NoSeekJumpcares",{
-Text = "No Seek Jumpcares",
+Text = "Không Seek Thù Doạ",
 Default = false,
 Callback = function(v)
 _G.RemovalSJ = v
@@ -1648,7 +1642,7 @@ end
 end)
 end})
 Jumpcares:AddToggle("NoShadeJumpcares",{
-Text = "No Halt Jumpcares",
+Text = "Không Halt Thù Doạ",
 Default = false,
 Callback = function(v)
 _G.RemovalHaltJ = v
@@ -1660,7 +1654,7 @@ end)
 end})
 if Fools then
 Jumpcares:AddToggle("NoGreedJumpcares",{
-Text = "No Greed Jumpcares",
+Text = "Không Greed Thù Doạ",
 Default = false,
 Callback = function(v)
 _G.RemovalGreedJ = v
@@ -1671,10 +1665,10 @@ end
 end)
 end})
 end
-local Troll = Tabs.Exploits:AddRightGroupbox("Trolling")
+local Troll = Tabs.Exploits:AddRightGroupbox("Troll VN")
 if not Hotelold then
 Troll:AddToggle("Stunned",{
-Text = "Stunned",
+Text = "Làm Chậm",
 Default = false,
 Callback = function(v)
 local lplr = game.Players.LocalPlayer
@@ -1688,7 +1682,7 @@ local lplr = game.Players.LocalPlayer
 end})
 end
 Troll:AddToggle("Thoughts",{
-Text = "Thoughts",
+Text = "Suy Nghĩ",
 Default = false,
 Callback = function(v)
 local lplr = game.Players.LocalPlayer
@@ -1708,7 +1702,7 @@ local lplr = game.Players.LocalPlayer
         end
 end})
 Troll:AddToggle("UpsideDown",{
-Text = "Upside Down",
+Text = "Lộn Ngược",
 Default = false,
 Callback = function(v)
 local collision = game.Players.LocalPlayer.Character.Collision
@@ -1729,7 +1723,7 @@ if not collision then return end
     end
 end})
 Troll:AddToggle("LagMove",{
-Text = "Lag Move",
+Text = "Di Chuyển Lag",
 Default = false,
 Callback = function(v)
 _G.LagBody = v
@@ -1740,7 +1734,7 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
 end
 end})
 Troll:AddToggle("SpamMotorReplication",{
-Text = "Spam Motor Replication",
+Text = "Đổi Cử Động",
 Default = false,
 Callback = function(v)
 if v then
@@ -1755,21 +1749,21 @@ end})
 
 local ESP = Tabs.Visual:AddLeftGroupbox("ESP")
 ESP:AddToggle("DoorESP",{
-Text = "Door ESP",
+Text = "Cửa ESP",
 Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-if not v:GetAttribute("Opened") and not v:FindFirstChild("DoorESP") then
-LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
+if not v:GetAttribute("Opened", true) and not v:FindFirstChild("DoorESP") then
+LibraryESP:AddESP(v, "Cửa", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end
 end
 DoorESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "Door" and v.Parent.Name == "Door" then
-if not v:GetAttribute("Opened") and not v:FindFirstChild("DoorESP") then
-LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
+if not v:GetAttribute("Opened", true) and not v:FindFirstChild("DoorESP") then
+LibraryESP:AddESP(v, "Cửa", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end
 end)
@@ -1783,29 +1777,29 @@ Callback = function(v)
 _G.DoorCE = v
 end})
 ESP:AddToggle("KeyESP",{
-Text = "Key ESP",
+Text = "Chìa Khoá ESP",
 Default = false,
 Callback = function(v)
 if v then
-for _,v in pairs(workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do
+for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
-LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
+LibraryESP:AddESP(v, "Chìa Khoá", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
 elseif v.Name == "ElectricalKeyObtain" then
 if not v:FindFirstChild("KeyESP") then
-LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
+LibraryESP:AddESP(v, "Chìa Khoá Điện", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
 end
 end
 KeyESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
-LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
+LibraryESP:AddESP(v, "Chìa Khoá", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
 elseif v.Name == "ElectricalKeyObtain" then
 if not v:FindFirstChild("KeyESP") then
-LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
+LibraryESP:AddESP(v, "Chìa Khoá Điện", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
 end
 end
 end)
@@ -1819,29 +1813,29 @@ Callback = function(v)
 _G.KeyCE = v
 end})
 ESP:AddToggle("LeverESP",{
-Text = "Lever ESP",
+Text = "Đồ Gạt ESP",
 Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "LeverForGate" then
 if not v:FindFirstChild("LeverESP") then
-LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
+LibraryESP:AddESP(v, "Đồ Gạt", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
 elseif v.Name == "TimerLever" then
 if not v:FindFirstChild("LeverESP") then
-LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
+LibraryESP:AddESP(v, "Đồ Gạt Thời Gian", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
 end
 end
 LeverESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "LeverForGate" then
 if not v:FindFirstChild("LeverESP") then
-LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
+LibraryESP:AddESP(v, "Đồ Gạt", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
 elseif v.Name == "TimerLever" then
 if not v:FindFirstChild("LeverESP") then
-LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
+LibraryESP:AddESP(v, "Đô Gạt Thời Gian", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
 end
 end
 end)
@@ -1855,21 +1849,21 @@ Callback = function(v)
 _G.LeverCE = v
 end})
 ESP:AddToggle("GeneratorESP",{
-Text = "Generator ESP",
+Text = "Máy Phát Điện ESP",
 Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MinesGenerator" then
 if not v:FindFirstChild("GeneratorESP") then
-LibraryESP:AddESP(v, "Generator", _G.GeneratorCE or Color3.fromRGB(0,255), 20, "GeneratorESP")
+LibraryESP:AddESP(v, "Máy Phát Điện", _G.GeneratorCE or Color3.fromRGB(0,255), 20, "GeneratorESP")
 end
 end
 end
 GeneratorESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "MinesGenerator" then
 if not v:FindFirstChild("GeneratorESP") then
-LibraryESP:AddESP(v, "Generator", _G.GeneratorCE or Color3.fromRGB(0,255), 20, "GeneratorESP")
+LibraryESP:AddESP(v, "Máy Phát Điện", _G.GeneratorCE or Color3.fromRGB(0,255), 20, "GeneratorESP")
 end
 end
 end)
@@ -1883,21 +1877,21 @@ Callback = function(v)
 _G.GeneratorCE = v
 end})
 ESP:AddToggle("FuseESP",{
-Text = "Fuse ESP",
+Text = "Ổ Phát Điện ESP",
 Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "FuseObtain" then
 if not v:FindFirstChild("FuseESP") then
-LibraryESP:AddESP(v, "Fuse", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "FuseESP")
+LibraryESP:AddESP(v, "Ổ Phát Điện", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "FuseESP")
 end
 end
 end
 FuseESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "FuseObtain" then
 if not v:FindFirstChild("FuseESP") then
-LibraryESP:AddESP(v, "Fuse", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "FuseESP")
+LibraryESP:AddESP(v, "Ổ Phát Điện", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "FuseESP")
 end
 end
 end)
@@ -1911,21 +1905,21 @@ Callback = function(v)
 _G.FuseCE = v
 end})
 ESP:AddToggle("BookESP",{
-Text = "Book ESP",
+Text = "Sách ESP",
 Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "LiveHintBook" then
 if not v:FindFirstChild("BookESP") then
-LibraryESP:AddESP(v, "Book", _G.BookCE or Color3.fromRGB(255,0,255), 20, "BookESP")
+LibraryESP:AddESP(v, "Sách", _G.BookCE or Color3.fromRGB(255,0,255), 20, "BookESP")
 end
 end
 end
 BookESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "LiveHintBook" then
 if not v:FindFirstChild("BookESP") then
-LibraryESP:AddESP(v, "Book", _G.BookCE or Color3.fromRGB(255,0,255), 20, "BookESP")
+LibraryESP:AddESP(v, "Sách", _G.BookCE or Color3.fromRGB(255,0,255), 20, "BookESP")
 end
 end
 end)
@@ -1939,21 +1933,21 @@ Callback = function(v)
 _G.BookCE = v
 end})
 ESP:AddToggle("BreakerESP",{
-Text = "Breaker ESP",
+Text = "Cầu Trì ESP",
 Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "LiveBreakerPolePickup" then
 if not v:FindFirstChild("BreakerESP") then
-LibraryESP:AddESP(v, "Breaker", _G.BreakerCE or Color3.fromRGB(255,255,255), 20, "BreakerESP")
+LibraryESP:AddESP(v, "Cầu Trì", _G.BreakerCE or Color3.fromRGB(255,255,255), 20, "BreakerESP")
 end
 end
 end
 BreakerESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "LiveBreakerPolePickup" then
 if not v:FindFirstChild("BreakerESP") then
-LibraryESP:AddESP(v, "Breaker", _G.BreakerCE or Color3.fromRGB(255,255,255), 20, "BreakerESP")
+LibraryESP:AddESP(v, "Cầu Trì", _G.BreakerCE or Color3.fromRGB(255,255,255), 20, "BreakerESP")
 end
 end
 end)
@@ -1967,21 +1961,21 @@ Callback = function(v)
 _G.BreakerCE = v
 end})
 ESP:AddToggle("AnchorESP",{
-Text = "Anchor ESP",
+Text = "Máy Bấm Số ESP",
 Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "MinesAnchor" then
 if not v:FindFirstChild("AnchorESP") then
-LibraryESP:AddESP(v, "Anchor " .. v.Sign.TextLabel.Text, _G.AnchorCE or Color3.fromRGB(255,255,255), 20, "AnchorESP")
+LibraryESP:AddESP(v, "Máy Bấm Số " .. v.Sign.TextLabel.Text, _G.AnchorCE or Color3.fromRGB(255,255,255), 20, "AnchorESP")
 end
 end
 end
 AnchorESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "MinesAnchor" then
 if not v:FindFirstChild("AnchorESP") then
-LibraryESP:AddESP(v, "Anchor " .. v.Sign.TextLabel.Text, _G.AnchorCE or Color3.fromRGB(255,255,255), 20, "AnchorESP")
+LibraryESP:AddESP(v, "Máy Bấm Số " .. v.Sign.TextLabel.Text, _G.AnchorCE or Color3.fromRGB(255,255,255), 20, "AnchorESP")
 end
 end
 end)
@@ -1995,7 +1989,7 @@ Callback = function(v)
 _G.AnchorCE = v
 end})
 ESP:AddToggle("PlayerESP",{
-Text = "Players ESP",
+Text = "Người Chơi ESP",
 Default = false,
 Callback = function(v)
 if v then
@@ -2021,21 +2015,21 @@ Callback = function(v)
 _G.PlayerCE = v
 end})
 ESP:AddToggle("GoldESP",{
-Text = "Gold ESP",
+Text = "Vàng ESP",
 Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "GoldPile" then
 if not v:FindFirstChild("GoldESP") then
-LibraryESP:AddESP(v, "Gold " .. v:GetAttribute("GoldValue"), _G.GoldCE or Color3.fromRGB(255,255), 20, "GoldESP")
+LibraryESP:AddESP(v, "Vàng " .. v:GetAttribute("GoldValue"), _G.GoldCE or Color3.fromRGB(255,255), 20, "GoldESP")
 end
 end
 end
 GoldESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "GoldPile" then
 if not v:FindFirstChild("GoldESP") then
-LibraryESP:AddESP(v, "Gold " .. v:GetAttribute("GoldValue"), _G.GoldCE or Color3.fromRGB(255,255), 20, "GoldESP")
+LibraryESP:AddESP(v, "Vàng " .. v:GetAttribute("GoldValue"), _G.GoldCE or Color3.fromRGB(255,255), 20, "GoldESP")
 end
 end
 end)
