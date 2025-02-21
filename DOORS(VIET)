@@ -50,8 +50,8 @@ Library.ForceCheckbox = false
 Library.ShowToggleFrameInKeybinds = true
 
 local Window = Library:CreateWindow({
-	Title = "YOUHUB | DOORS",
-	Footer = "BETA v0.0.2",
+	Title = "YOUHUB | DOORS (VIỆT)",
+	Footer = "CHÍNH THỨC - v0.0.2",
 	Icon = 95869322194132,
 	NotifySide = "Right",
 	ShowCustomCursor = true,
@@ -59,13 +59,13 @@ local Window = Library:CreateWindow({
 })
 
 local Tabs = {
-  Main = Window:AddTab("Main"),
-  Players = Window:AddTab("Players"),
-  Exploits = Window:AddTab("Exploits"),
-  Visual = Window:AddTab("Visual"),
-  Settings = Window:AddTab("Configs"),
+  Main = Window:AddTab("Chính"),
+  Players = Window:AddTab("Người Chơi"),
+  Exploits = Window:AddTab("Gian Lận"),
+  Visual = Window:AddTab("Thị Giác"),
+  Settings = Window:AddTab("Cài Đặt"),
 }
-local Fast = Tabs.Main:AddLeftGroupbox("Fast")
+local Fast = Tabs.Main:AddLeftGroupbox("Nhanh Chóng")
 game:GetService("RunService").RenderStepped:Connect(function()
 pcall(function()
 if _G.FastDoors then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Door"):SetAttribute("FastOpen", true)
@@ -73,12 +73,12 @@ end
 end)
 end)
 Fast:AddToggle("DoorsFast",{
-Text = "Doors Fast",
+Text = "Mở Cửa Nhanh",
 Default = false,
 Callback = function(v)
 _G.FastDoors = v
 end})
-local Reach = Tabs.Main:AddRightGroupbox("Reach")
+local Reach = Tabs.Main:AddRightGroupbox("Tầm Xa")
 game:GetService("RunService").RenderStepped:Connect(function()
 pcall(function()
 if _G.DoorsReach then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Door").ClientOpen:FireServer()
@@ -86,13 +86,13 @@ end
 end)
 end)
 Reach:AddToggle("DoorsReach",{
-Text = "Doors Reach",
+Text = "Mở Cửa Xa",
 Default = false,
 Callback = function(v)
 _G.DoorsReach = v
 end})
 Reach:AddToggle("Reach",{
-Text = "Reach",
+Text = "Nhấn Xa",
 Default = false,
 Callback = function(v)
 if v then
@@ -115,9 +115,9 @@ end
 end
 end
 end})
-local Interact = Tabs.Main:AddLeftGroupbox("Interact")
+local Interact = Tabs.Main:AddLeftGroupbox("Tương Tác")
 Interact:AddToggle("ThroughInteract",{
-Text = "Through Interact",
+Text = "Tương Tác Xuyên",
 Default = false,
 Callback = function(v)
 if v then
@@ -141,7 +141,7 @@ end
 end
 end})
 Interact:AddToggle("InstanceInteract",{
-Text = "Instance Interact",
+Text = "Tương Tác Bất Ngờ",
 Default = false,
 Callback = function(v)
 if v then
@@ -285,31 +285,30 @@ Script.Functions = {
 
 local AutoInteractEnabled = false
 local IgnoreSettings = {
-    ["Jeff Items"] = true,
-    ["Unlock Lockpick"] = false,
-    ["Paintings"] = false,
-    ["Gold"] = false,
-    ["Light Source Items"] = false,
-    ["Skull Prompt"] = false
+    ["Cửa Hàng Của Jeff Shop"] = true,
+    ["Ngừng Dùng Đồ Mở Khoá (Lockpick)"] = false,
+    ["Vàng"] = false,
+    ["Vật Phẩm Phát Sáng Vàng"] = false,
+    ["Đầu Lâu"] = false
 }
 Interact:AddDivider()
 Interact:AddToggle("Auto-interact", {
-	Text = "Auto Interact",
+	Text = "Tự Động Tương Tác",
 	Default = false,
 	Callback = function(v)
         _G.AutoInteractEnabled = v
 end}):AddKeyPicker("AutoInteractKeybind", {
    Default = "R",
-   Text = "Auto Interact",
+   Text = "Tự Động Tương Tác",
    Mode = Library.IsMobile and "Toggle" or "Hold",
    SyncToggleState = Library.IsMobile
 })
 
 Interact:AddDropdown("Auto-interact-drop", {
-	Values = {"Jeff Items", "Unlock Lockpick", "Paintings", "Gold", "Light Source Items", "Skull Prompt"},
+	Values = {"Cửa Hàng Của Jeff Shop", "Ngừng Dùng Đồ Mở Khoá (Lockpick)", "Vàng", "Vật Phẩm Phát Sáng Vàng", "Đầu Lâu"},
 	Default = 1,
 	Multi = true,
-	Text = "Ignore list",
+	Text = "Chặn Tương Tác",
 	Searchable = false,
 	Callback = function(v)
         for k, _ in pairs(IgnoreSettings) do
@@ -328,12 +327,11 @@ local function AutoInteractLoop()
         if _G.AutoInteractEnabled then
             local prompts = Script.Functions.GetAllPromptsWithCondition(function(prompt)
                 if not prompt.Parent then return false end
-                if IgnoreSettings["Jeff Items"] and prompt.Parent:GetAttribute("JeffShop") then return false end
-                if IgnoreSettings["Unlock Lockpick"] and (prompt.Name == "UnlockPrompt" or prompt.Parent:GetAttribute("Locked")) and shared.Character:FindFirstChild("Lockpick") then return false end
-                if IgnoreSettings["Paintings"] and prompt.Name == "PropPrompt" then return false end
-                if IgnoreSettings["Gold"] and prompt.Name == "LootPrompt" then return false end
-                if IgnoreSettings["Light Source Items"] and prompt.Parent:GetAttribute("Tool_LightSource") and not prompt.Parent:GetAttribute("Tool_CanCutVines") then return false end
-                if IgnoreSettings["Skull Prompt"] and prompt.Name == "SkullPrompt" then return false end
+                if IgnoreSettings["Cửa Hàng Của Jeff Shop"] and prompt.Parent:GetAttribute("JeffShop") then return false end
+                if IgnoreSettings["Ngừng Dùng Đồ Mở Khoá (Lockpick)"] and (prompt.Name == "UnlockPrompt" or prompt.Parent:GetAttribute("Locked")) and shared.Character:FindFirstChild("Lockpick") then return false end
+                if IgnoreSettings["Vàng"] and prompt.Name == "LootPrompt" then return false end
+                if IgnoreSettings["Vật Phẩm Phát Sáng Vàng"] and prompt.Parent:GetAttribute("Tool_LightSource") and not prompt.Parent:GetAttribute("Tool_CanCutVines") then return false end
+                if IgnoreSettings["Đầu Lâu"] and prompt.Name == "SkullPrompt" then return false end
                 if prompt.Parent:GetAttribute("PropType") == "Battery" and not (shared.Character:FindFirstChildOfClass("Tool") and (shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("RechargeProp") == "Battery" or shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("StorageProp") == "Battery")) then return false end 
                 if prompt.Parent:GetAttribute("PropType") == "Heal" and shared.Humanoid and shared.Humanoid.Health == shared.Humanoid.MaxHealth then return false end
                 if prompt.Parent.Name == "MinesAnchor" then return false end
@@ -368,9 +366,9 @@ local function AutoInteractLoop()
 end
 InitializeScript()
 task.spawn(AutoInteractLoop)
-local Automation = Tabs.Main:AddRightGroupbox("Automation")
+local Automation = Tabs.Main:AddRightGroupbox("Tự Động")
 Automation:AddToggle("AutoBreaker",{
-Text = "Auto Breaker",
+Text = "Tự Động Điện",
 Default = false,
 Callback = function(v)
 _G.AutoBreaker = v
@@ -382,7 +380,7 @@ end
 end})
 if not Hotelold then
 Automation:AddButton({
-Text = "Padlock Unlock",
+Text = "Mở Khoá Ổ Khoá",
 Default = false,
 Func = function(v)
 local Floor = game:GetService("ReplicatedStorage").GameData.Floor
@@ -450,21 +448,21 @@ end
 end
 end})
 end
-local World = Tabs.Main:AddLeftGroupbox("World")
+local World = Tabs.Main:AddLeftGroupbox("Thế Giới")
 game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("MoveDirection"):Connect(function()
 if _G.ClosetsExitFix and game.Players.LocalPlayer.Character:GetAttribute("Hiding")==true then 
 RemotesFolder.CamLock:FireServer()
 end 
 end)
 World:AddToggle("ClosetsExitFix",{
-Text = "Closets Exit Fix",
+Text = "Thoát Ra Tủ Nhanh",
 Default = false,
 Callback = function(v)
 _G.ClosetsExitFix = v
 end})
 if Retro then
 World:AddToggle("BlurFakeBridge",{
-Text = "Blur Fake Brigde",
+Text = "Ẩn Cầu Giả",
 Default = false,
 Callback = function(v)
 _G.BlurFakeBridge = v
@@ -493,7 +491,7 @@ end})
 end
 if not Hotelold or not Fools or not Retro then
 World:AddToggle("HidingLiveSanity",{
-Text = "Hiding Live Sanity",
+Text = "Ẩn Hiệu Ứng Phát Sáng",
 Default = false,
 Callback = function(v)
 _G.NoLiveSanity = v
@@ -507,7 +505,7 @@ end
 end})
 end
 World:AddToggle("HidingVoidRoblox",{
-Text = "Hiding Void Roblox",
+Text = "Ẩn Hư Vô ROBLOX",
 Default = false,
 Callback = function(v)
 if v then
@@ -516,8 +514,9 @@ else
 workspace.FallenPartsDestroyHeight = -50000
 end
 end})
+if ReplicatedStorage:FindFirstChild("LiveModifiers"):FindFirstChild("Jammin") then
 World:AddToggle("HidingJammin",{
-Text = "Hiding Jammin",
+Text = "Ẩn Nhạc Jeff",
 Default = false,
 Callback = function(v)
 _G.HidingJam = v
@@ -533,33 +532,34 @@ end
 end
 end)
 end})
-local Misc = Tabs.Main:AddRightGroupbox("Misc")
+end
+local Misc = Tabs.Main:AddRightGroupbox("Lặt Vặt")
 Misc:AddButton({
-Text = "Lobby",
+Text = "Trở Về Sảnh",
 DoubleClick = true,
 Func = function()
 RemotesFolder.Lobby:FireServer()
 end})
 Misc:AddButton({
-Text = "Revive",
+Text = "Hồi Sinh",
 DoubleClick = true,
 Func = function()
 RemotesFolder.Revive:FireServer()
 end})
 Misc:AddButton({
-Text = "Exit",
+Text = "Thoát Game",
 DoubleClick = true,
 Func = function()
 game:Shutdown()
 end})
 Misc:AddButton({
-Text = "Play Again",
+Text = "Chơi Tiếp",
 DoubleClick = true,
 Func = function()
 RemotesFolder.PlayAgain:FireServer()
 end})
 Misc:AddButton({
-Text = "Reset Character",
+Text = "Xin Vĩnh Biệt Cụ",
 DoubleClick = true,
 Func = function()
 game.Players.LocalPlayer.Character.Humanoid.Health = 0
