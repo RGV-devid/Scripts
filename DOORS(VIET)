@@ -2574,7 +2574,12 @@ Default = false,
 Callback = function(v)
 getgenv().RainbowESP = v
 end})
-
+ESP:AddToggle("RainbowESP",{
+Text = "Chữ ESP",
+Default = false,
+Callback = function(v)
+getgenv().TextESP = v
+end})
 
 local Notifying = Tabs.Visual:AddRightGroupbox("Notifying")
 Notifying:AddDropdown('SelectEntity',{
