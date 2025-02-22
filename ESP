@@ -14,7 +14,7 @@ local Highlight = Instance.new('Highlight', Child)
         Text.BackgroundTransparency = 1
         Text.BackgroundColor3 = Color3.new(0,0,0)
         Text.TextColor3 = Color
-        Text.Font = "Roboto"
+        Text.Font = "FredokaOne"
         Text.TextSize = Size
         Text.TextTransparency = 0
         Text.Visible = true
@@ -24,15 +24,19 @@ local Highlight = Instance.new('Highlight', Child)
         Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
         Highlight.FillColor = Color
         Highlight.OutlineColor = Color
-        Highlight.FillTransparency = 1
+        Highlight.FillTransparency = 0.8
         Highlight.OutlineTransparency =  0
         Highlight.Name = Title
 task.spawn(function()
 while wait(0.001) do
 if getgenv().DistanceESP then
+if getgenv().TextESP then
 Text.Text = string.format("%s\n[%s]", Name or Child.Name, math.floor((workspace.Camera.CFrame.Position - Child:GetPivot().Position).Magnitude))
+end
 else
+if getgenv().TextESP then
 Text.Text = Name
+end
 end
 end                                
 end)
