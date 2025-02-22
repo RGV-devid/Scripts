@@ -50,7 +50,7 @@ Library.ForceCheckbox = false
 Library.ShowToggleFrameInKeybinds = true
 
 local Window = Library:CreateWindow({
-	Title = "YOUHUB | DOORS (VIỆT)",
+	Title = "YOUHUB | DOORS",
 	Footer = "CHÍNH THỨC - v0.0.2",
 	Icon = 95869322194132,
 	NotifySide = "Right",
@@ -2289,7 +2289,7 @@ Callback = function(v)
 _G.EntityCE = v
 end})
 ESP:AddToggle("ItemsESP",{
-Text = "Items ESP",
+Text = "Vật Phẩm ESP",
 Default = false,
 Callback = function(v)
 if v then
@@ -2583,14 +2583,14 @@ end})
 
 local Notifying = Tabs.Visual:AddRightGroupbox("Notifying")
 Notifying:AddDropdown('SelectEntity',{
-	Text = "Select Entity",
+	Text = "Chọn Thực Thể",
         Values = {'Rush', 'Ambush', 'Blitz', 'A60', 'A120', 'Lookman', 'Eyes', 'Seek Chase', 'JeffTheKiller', 'AR0xMBUSH', 'RNIUSHCg==', 'Gloombat Swarm'},
 	Default = 0,
 	Multi = true
 })
 _G.PlaySoundAlert = 5
 Notifying:AddToggle("EntityNotify",{
-Text = "Entity Notify",
+Text = "Thông Báo Thực Thể",
 Default = false,
 Callback = function(v)
 if v then
@@ -2600,7 +2600,7 @@ if table.find(Entity,v.Name) then
 repeat task.wait() until game.Players.LocalPlayer:DistanceFromCharacter(v:GetPivot().Position) < 750 or not v:IsDescendantOf(workspace)
 if v:IsDescendantOf(workspace) then
 if Options.SelectEntity.Value["Rush"] and v.Name == "RushMoving" then
-Library:Notify("ENTITIES | Rush has spawn, find hiding place and hide now!")
+Library:Notify("THỰC THỂ | Rush xuất hiện, tìm chỗ trốn và trốn ngay!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2613,7 +2613,7 @@ if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Rush has spawn!")
 end
 elseif Options.SelectEntity.Value["Ambush"] and v.Name == "AmbushMoving" then
-Library:Notify("ENTITIES | Ambush has spawn, find hiding place and hide now!")
+Library:Notify("THỰC THỂ | Ambush xuất hiện, tìm chỗ trốn và trốn ngay!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2626,7 +2626,7 @@ if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Ambush has spawn!")
 end
 elseif Options.SelectEntity.Value["Blitz"] and v.Name == "BackdoorRush" then
-Library:Notify("ENTITIES | Blitz has spawn, find hiding place and hide now!")
+Library:Notify("THỰC THỂ | Blitz xuất hiện, tìm chỗ trốn và trốn ngay!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2639,7 +2639,7 @@ if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Blitz has spawn!")
 end
 elseif Options.SelectEntity.Value["A60"] and v.Name == "A60" then
-Library:Notify("ENTITIES | A60 has spawn, find hiding place and hide now!")
+Library:Notify("THỰC THỂ | A60 xuất hiện, tìm chỗ trốn và trốn ngay!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2652,7 +2652,7 @@ if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] A60 has spawn!")
 end
 elseif Options.SelectEntity.Value["A120"] and v.Name == "A120" then
-Library:Notify("ENTITIES | A120 has spawn, find hiding place and hide now!")
+Library:Notify("THỰC THỂ | Ambush xuất hiện, tìm chỗ trốn và trốn ngay!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2665,7 +2665,7 @@ if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] A120 has spawn!")
 end
 elseif Options.SelectEntity.Value["Lookman"] and v.Name == "BackdoorLookman" then
-Library:Notify("ENTITIES | Lookman has spawn, dont look at it!")
+Library:Notify("THỰC THỂ | Lookman xuất hiện, đừng nhìn vào nó!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2678,7 +2678,7 @@ if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Lookman has spawn!")
 end
 elseif Options.SelectEntity.Value["Eyes"] and v.Name == "Eyes" then
-Library:Notify("ENTITIES | Eyes has spawn, dont look at it!")
+Library:Notify("THỰC THỂ | Eyes xuất hiện, đừng nhìn vào nó!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2691,7 +2691,7 @@ if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Eyes has spawn!")
 end
 elseif Options.SelectEntity.Value["Seek Chase"] and v.Name == "SeekMoving" or v.Name == "SeekMovingNewClone" then
-Library:Notify("ENTITIES | Seek has spawn, goodluck for chase!")
+Library:Notify("THỰC THỂ | Seek xuất hiện cho cuộc chạy, chúc may mắn!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2704,7 +2704,7 @@ if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Seek Chase goodluck!")
 end
 elseif Options.SelectEntity.Value["JeffTheKiller"] and v.Name == "JeffTheKiller" then
-Library:Notify("ENTITIES | Jeff The Killer has spawn, careful with knife it!")
+Library:Notify("THỰC THỂ | Jeff The Killer xuất hiện, cẩn thận với sự máu lạnh của nó!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2717,7 +2717,7 @@ if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Jeff The Killer has spawn!")
 end
 elseif Options.SelectEntity.Value["AR0xMBUSH"] and v.Name == "GlitchAmbush" then
-Library:Notify("ENTITIES | AR0xMBUSH has spawn, find hiding place and hide now!")
+Library:Notify("THỰC THỂ | AR0xMBUSH xuất hiện, tìm chỗ trốn và trốn ngay!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2727,7 +2727,7 @@ Sound.PlayOnRemove = true
 Sound:Destroy()
 end
 elseif Options.SelectEntity.Value["RNIUSHCg=="] and v.Name == "GlitchRush" then
-Library:Notify("ENTITIES | RNIUSHCg== has spawn, find hiding place and hide now!")
+Library:Notify("THỰC THỂ | RNIUSHCg== xuất hiện, tìm chỗ trốn và trốn ngay!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2737,7 +2737,7 @@ Sound.PlayOnRemove = true
 Sound:Destroy()
 end
 elseif Options.SelectEntity.Value["Gloombat Swarm"] and v.Name == "GloombatSwarm" then
-Library:Notify("ENTITIES | Gloombat Swarm has spawn!")
+Library:Notify("THỰC THỂ | Đom đóm [J97] xuất hiện")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
 Sound.Parent = game.SoundService
@@ -2758,14 +2758,14 @@ NotificationEntity:Disconnect()
 end
 end})
 Notifying:AddToggle("OxyNotify",{
-Text = "Oxygen Notify",
+Text = "Thông Báo Oxy",
 Default = false,
 Callback = function(v)
 _G.OxygenNotify = v
 if v then
 OxygenNotify = game.Players.LocalPlayer.Character:GetAttributeChangedSignal("Oxygen"):Connect(function()
 if game.Players.LocalPlayer.Character:GetAttribute("Oxygen") < 100 and _G.OxygenNotify then
-firesignal(RemotesFolder.Caption.OnClientEvent, string.format("Oxygen: %.1f", game.Players.LocalPlayer.Character:GetAttribute("Oxygen")))
+firesignal(RemotesFolder.Caption.OnClientEvent, string.format("Oxy còn lại : %.1f", game.Players.LocalPlayer.Character:GetAttribute("Oxygen")))
 end
 end)
 else
@@ -2773,13 +2773,13 @@ OxygenNotify:Disconnect()
 end
 end})
 Notifying:AddToggle("PlaySound",{
-Text = "Playing Sound",
+Text = "Chơi Nhạc",
 Default = false,
 Callback = function(v)
 _G.SoundAlert = v
 end})
 Notifying:AddSlider("VolumeSound",{
-Text = "Volume",
+Text = "Âm Lượng",
 Min = 5,
 Default = 5,
 Max = 10,
@@ -2791,9 +2791,9 @@ end})
 
 
 local LightingTabbox = Tabs.Visual:AddRightTabbox()
-local Lighting = LightingTabbox:AddTab("Lighting")
+local Lighting = LightingTabbox:AddTab("Độ Sáng")
 Lighting:AddSlider("Brightness",{
-Text = "Brightness",
+Text = "Độ sáng",
 Min = 0,
 Default = 0,
 Max = 3,
@@ -2803,20 +2803,20 @@ Callback = function(v)
 _G.Brightness = v
 end})
 Lighting:AddToggle("GlobalShadows",{
-Text = "No Shadows",
+Text = "Không bóng",
 Default = false,
 Callback = function(v)
 _G.GlobalShadows = v
 end})
 Lighting:AddToggle("NoFog",{
-Text = "No Fog",
+Text = "Không sương mù",
 Default = false,
 Callback = function(v)
 _G.NoFog = v
 end})
 Lighting:AddDivider()
 Lighting:AddToggle("Fullbright",{
-Text = "Enabled",
+Text = "Nhận",
 Default = false,
 Callback = function(v)
 _G.Fullbright = v
@@ -2847,9 +2847,9 @@ game.Lighting.GlobalShadows = true
 end
 end)
 end})
-local Ambient = LightingTabbox:AddTab("Ambient")
+local Ambient = LightingTabbox:AddTab("Xung Quanh")
 Ambient:AddSlider("HeadBrightness",{
-Text = "Brightness",
+Text = "Độ Sáng",
 Min = 0,
 Default = 0,
 Max = 3,
@@ -2859,7 +2859,7 @@ Callback = function(v)
 _G.HeadBrightness = v
 end})
 Ambient:AddSlider("Range",{
-Text = "Range",
+Text = "Độ Xa",
 Min = 1,
 Default = 1,
 Max = 60,
@@ -2869,7 +2869,7 @@ Callback = function(v)
 _G.RangeLightHead = v
 end})
 Ambient:AddToggle("EnabledHeadLight",{
-Text = "Enabled",
+Text = "Nhận",
 Default = false,
 Callback = function(v)
 _G.EnabledLightHead = v
@@ -2882,9 +2882,9 @@ game.Players.LocalPlayer.Character.Head.PointLight.Brightness = _G.HeadBrightnes
 end)
 
 
-local Camera = Tabs.Visual:AddRightGroupbox("Camera")
+local Camera = Tabs.Visual:AddRightGroupbox("Góc Nhìn")
 Camera:AddSlider("SelectFOV",{
-Text = "Field Of View",
+Text = "Ước Lượng Góc Nhìn",
 Min = 70,
 Default = 70,
 Max = 120,
@@ -2894,7 +2894,7 @@ Callback = function(v)
 _G.SelectFieldOfView = v
 end})
 Camera:AddToggle("FOV",{
-Text = "Field Of View",
+Text = "Góc Nhìn Uớc Lượng",
 Default = false,
 Callback = function(v)
 _G.FieldOfView = v
@@ -2907,7 +2907,7 @@ end
 end)
 end})
 Camera:AddToggle("NoCutscenes",{
-Text = "No Cutscenes",
+Text = "Không Đoạn Cảnh",
 Default = false,
 Callback = function(v)
 _G.NoCutscenes = v
@@ -2924,7 +2924,7 @@ end
 end)
 end})
 Camera:AddToggle("NoCamBob",{
-Text = "No Camera Bob",
+Text = "Không Góc Nhìn Bob",
 Default = false,
 Callback = function(v)
 _G.NoCamBob = v
@@ -2933,7 +2933,7 @@ Main_Game.spring.Speed = _G.NoCamBob and 9e9 or 8
 end)
 end})
 Camera:AddToggle("NoCamShake",{
-Text = "No Camera Shake",
+Text = "Không Lắc Màn Hình",
 Default = false,
 Callback = function(v)
 _G.NoCamShake = v
@@ -2945,7 +2945,7 @@ end)
 end})
 Camera:AddDivider()
 Camera:AddToggle("Viewmodel",{
-Text = "Viewmodel",
+Text = "Xem Đồ Toạ Độ",
 Default = false,
 Callback = function(v)
 _G.Viewmodel = v
@@ -2958,7 +2958,7 @@ end
 end)
 end})
 Camera:AddSlider("SelectViewmodelX",{
-Text = "X",
+Text = "Toạ Độ X",
 Min = -5,
 Default = 0,
 Max = 5,
@@ -2968,7 +2968,7 @@ Callback = function(v)
 _G.ViewmodelX = v
 end})
 Camera:AddSlider("SelectViewmodelY",{
-Text = "Y",
+Text = "Toạ Độ Y",
 Min = -5,
 Default = 0,
 Max = 5,
@@ -2978,7 +2978,7 @@ Callback = function(v)
 _G.ViewmodelY = v
 end})
 Camera:AddSlider("SelectViewmodelZ",{
-Text = "Z",
+Text = "Toạ Độ Z",
 Min = -5,
 Default = 0,
 Max = 5,
@@ -2987,9 +2987,9 @@ Compact = true,
 Callback = function(v)
 _G.ViewmodelZ = v
 end})
-local FPS = Tabs.Visual:AddLeftGroupbox("FPS")
+local FPS = Tabs.Visual:AddLeftGroupbox("Tăng FPS")
 FPS:AddToggle("UnbreakerLight",{
-Text = "Unbreaker Light",
+Text = "Không Phá Vỡ Đèn",
 Default = false,
 Callback = function(v)
 if v then
@@ -3002,21 +3002,9 @@ else
 Module_Events.shatter = ShatterFunction
 end
 end})
-FPS:AddToggle("UnmessageDeathHint",{
-Text = "Unmessage Death Hint",
-Default = false,
-Callback = function(v)
-_G.RemoveDeathHint = v
-RemotesFolder.DeathHint.OnClientEvent:Connect(function()
-if _G.RemoveDeathHint then
-task.wait(1)
-firesignal(RemotesFolder.DeathHint.OnClientEvent,{},"Blue")
-end
-end)
-end})
 FPS:AddDivider()
 FPS:AddToggle("LowDetail",{
-Text = "Low Detail",
+Text = "Chế Độ Chậm",
 Default = false,
 Callback = function(v)
 if v then
@@ -3070,7 +3058,7 @@ end
 end})
 FPS:AddDivider()
 FPS:AddToggle("DeleteBatDecorate",{
-Text = "Delete Bat Decorate",
+Text = "Xoá Đồ Trang Trí Dơi",
 Default = false,
 Callback = function(v)
 if v then
@@ -3093,14 +3081,14 @@ end})
 local MenuGroup = Tabs.Settings:AddLeftGroupbox("Menu")
 local CreditsGroup = Tabs.Settings:AddRightGroupbox("Credits")
 
-MenuGroup:AddToggle("KeybindMenuOpen", { Default = false, Text = "Open Keybind Menu", Callback = function(v) Library.KeybindFrame.Visible = v end})
-MenuGroup:AddToggle("ShowCustomCursor", {Text = "Custom Cursor", Default = true, Callback = function(v) Library.ShowCustomCursor = v end})
+MenuGroup:AddToggle("KeybindMenuOpen", { Default = false, Text = "Mở Bảng Chức Năng", Callback = function(v) Library.KeybindFrame.Visible = v end})
+MenuGroup:AddToggle("ShowCustomCursor", {Text = "Con Trỏ Tùy Chỉnh", Default = true, Callback = function(v) Library.ShowCustomCursor = v end})
 MenuGroup:AddDivider()
-MenuGroup:AddLabel("Keybind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
-MenuGroup:AddButton("Unload", function() Library:Unload() end)
+MenuGroup:AddLabel("Chỉnh Sửa Menu"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
+MenuGroup:AddButton("Xoá Menu", function() Library:Unload() end)
 
-CreditsGroup:AddLabel("Developers:")
-CreditsGroup:AddLabel("< Owner > | rechedmcvn")
+CreditsGroup:AddLabel("Người Sáng Tạo:")
+CreditsGroup:AddLabel("< CHỦ > | rechedmcvn")
 
 ThemeManager:SetLibrary(Library)
 SaveManager:SetLibrary(Library)
