@@ -29,12 +29,15 @@ local Highlight = Instance.new('Highlight', Child)
         Highlight.Name = Title
 task.spawn(function()
 while wait(0.001) do
+if getgenv().TextESP == false then
+Text.Text = ""
+end
 if getgenv().DistanceESP then
-if getgenv().TextESP then
+if getgenv().TextESP == true then
 Text.Text = string.format("%s\n[%s]", Name or Child.Name, math.floor((workspace.Camera.CFrame.Position - Child:GetPivot().Position).Magnitude))
 end
 else
-if getgenv().TextESP then
+if getgenv().TextESP == true then
 Text.Text = Name
 end
 end
