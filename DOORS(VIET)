@@ -800,7 +800,7 @@ end
 end)
 end})
 Players:AddToggle("GodmodeNew",{
-Text = "Bất Tử + Xuyên Tường Vĩnh Viễn",
+Text = "Bất Tử",
 Default = false,
 Callback = function(v)
 _G.GodmodeNew = v
