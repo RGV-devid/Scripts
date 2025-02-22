@@ -765,7 +765,6 @@ if v then
             end
         end)
     else
-     Toggles.GodmodeNew:SetValue(false)
         if noclipConnection then
             noclipConnection:Disconnect()
             noclipConnection = nil
@@ -805,11 +804,6 @@ Text = "Godmode + Noclip",
 Default = false,
 Callback = function(v)
 _G.GodmodeNew = v
-if v then
-Toggles.Noclip:SetValue(true)
-else
-Toggles.Noclip:SetValue(false)
-end
 end}):AddKeyPicker("GodmodeNewKeybind", {
     Default = "G",
     Text = "Godmode",
@@ -1187,7 +1181,7 @@ game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.Remo
 end
 else
 if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("_A90") then
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90.Name = "A90"
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules._A90.Name = "A90"
 end
 end
 end)
@@ -1245,7 +1239,7 @@ game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.Remo
 end
 else
 if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("_Dread") then
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.Dread.Name = "Dread"
+game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules._Dread.Name = "Dread"
 end
 end
 end)
@@ -1798,7 +1792,7 @@ LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 
 end
 end
 end
-KeyESP = workspace.DescendantAdded:Connect(function(v)
+KeyESP = workspace.CurrentRooms.ChildAdded:Connect(function(v)
 if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
@@ -1834,7 +1828,7 @@ LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "Lev
 end
 end
 end
-LeverESP = workspace.DescendantAdded:Connect(function(v)
+LeverESP = workspace.CurrentRooms.ChildAdded:Connect(function(v)
 if v.Name == "LeverForGate" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
@@ -2076,7 +2070,7 @@ LibraryESP:AddESP(v, "Toolbox", _G.ChestCE or Color3.fromRGB(255,135), 20, "Gold
 end
 end
 end
-ChestESP = workspace.DescendantAdded:Connect(function(v)
+ChestESP = workspace.CurrentRooms.ChildAdded:Connect(function(v)
 if v.Name == "ChestBox" then
 if not v:FindFirstChild("ChestESP") then
 LibraryESP:AddESP(v, "Chest", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
@@ -2588,7 +2582,12 @@ Default = false,
 Callback = function(v)
 getgenv().RainbowESP = v
 end})
-
+ESP:AddToggle("TextESP",{
+Text = "Text ESP",
+Default = false,
+Callback = function(v)
+getgenv().TextESP = v
+end})
 
 local Notifying = Tabs.Visual:AddRightGroupbox("Notifying")
 Notifying:AddDropdown('SelectEntity',{
