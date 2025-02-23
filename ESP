@@ -18,13 +18,14 @@ local Highlight = Instance.new('Highlight', Child)
         Text.TextSize = Size
         Text.TextTransparency = 0
         Text.Visible = true
+        Text.Text = ""
         Text.Size = UDim2.new(1,0,0,0)
         Text.Position = UDim2.new(0.5,0,0.7,-35)
         UIStroke.Thickness = 0.75
         Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
         Highlight.FillColor = Color
         Highlight.OutlineColor = Color
-        Highlight.FillTransparency = 0.8
+        Highlight.FillTransparency = 0.75
         Highlight.OutlineTransparency =  0
         Highlight.Name = Title
 task.spawn(function()
@@ -34,7 +35,7 @@ Text.Text = ""
 end
 if getgenv().DistanceESP then
 if getgenv().TextESP == true then
-Text.Text = string.format("%s\n[%s]", Name or Child.Name, math.floor((workspace.Camera.CFrame.Position - Child:GetPivot().Position).Magnitude))
+Text.Text = string.format("%s\n(%sm)", Name or Child.Name, math.floor((workspace.Camera.CFrame.Position - Child:GetPivot().Position).Magnitude))
 end
 else
 if getgenv().TextESP == true then
@@ -45,7 +46,6 @@ end
 end)
 task.spawn(function()
 local traceDrawing = Drawing.new('Line') do
-end
 game:GetService("RunService").RenderStepped:Connect(function()
 if not getgenv().RainbowESP then
 traceDrawing.Color = Color
@@ -68,6 +68,7 @@ else
 traceDrawing.Visible = false
 end
 end)
+end
 end)
 task.spawn(function()
 game:GetService("RunService").RenderStepped:Connect(function()
