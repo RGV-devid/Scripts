@@ -52,7 +52,7 @@ Library.ShowToggleFrameInKeybinds = true
 local Window = Library:CreateWindow({
 	Title = "YOUHUB | DOORS",
 	Footer = "BETA v0.0.2",
-	Icon = 95869322194132,
+	Icon = 95073582077930,
 	NotifySide = "Right",
 	ShowCustomCursor = true,
         AutoShow = true,
@@ -305,35 +305,12 @@ end}):AddKeyPicker("AutoInteractKeybind", {
    SyncToggleState = Library.IsMobile
 })
 
-Interact:AddDropdown("Auto-interact-drop", {
-	Values = {"Jeff Items", "Unlock Lockpick", "Paintings", "Gold", "Light Source Items", "Skull Prompt"},
-	Default = 1,
-	Multi = true,
-	Text = "Ignore list",
-	Searchable = false,
-	Callback = function(v)
-        for k, _ in pairs(IgnoreSettings) do
-            IgnoreSettings[k] = false
-        end
-        for _, v in pairs(v) do
-            IgnoreSettings[v] = true
-			end
-	end,
-	Disabled = false,
-	Visible = true, 
-})
 local function AutoInteractLoop()
     while true do wait()
-        task.wait(0.15)
+        task.wait()
         if _G.AutoInteractEnabled then
             local prompts = Script.Functions.GetAllPromptsWithCondition(function(prompt)
                 if not prompt.Parent then return false end
-                if IgnoreSettings["Jeff Items"] and prompt.Parent:GetAttribute("JeffShop") then return false end
-                if IgnoreSettings["Unlock Lockpick"] and (prompt.Name == "UnlockPrompt" or prompt.Parent:GetAttribute("Locked")) and shared.Character:FindFirstChild("Lockpick") then return false end
-                if IgnoreSettings["Paintings"] and prompt.Name == "PropPrompt" then return false end
-                if IgnoreSettings["Gold"] and prompt.Name == "LootPrompt" then return false end
-                if IgnoreSettings["Light Source Items"] and prompt.Parent:GetAttribute("Tool_LightSource") and not prompt.Parent:GetAttribute("Tool_CanCutVines") then return false end
-                if IgnoreSettings["Skull Prompt"] and prompt.Name == "SkullPrompt" then return false end
                 if prompt.Parent:GetAttribute("PropType") == "Battery" and not (shared.Character:FindFirstChildOfClass("Tool") and (shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("RechargeProp") == "Battery" or shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("StorageProp") == "Battery")) then return false end 
                 if prompt.Parent:GetAttribute("PropType") == "Heal" and shared.Humanoid and shared.Humanoid.Health == shared.Humanoid.MaxHealth then return false end
                 if prompt.Parent.Name == "MinesAnchor" then return false end
