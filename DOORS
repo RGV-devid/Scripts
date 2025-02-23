@@ -754,17 +754,6 @@ end}):AddKeyPicker("NC", {
     SyncToggleState = Library.IsMobile,
 })
 if not Hotelold or not Rooms then
-game:GetService("RunService").RenderStepped:Connect(function()
-if _G.GodmodeNew then
-game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 2.5, 0)
-game.Players.LocalPlayer.Character.Collision.CanCollide = false
-game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = false
-else
-game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 0, 0)
-game.Players.LocalPlayer.Character.Collision.CanCollide = true
-game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = true
-end
-end)
 Players:AddToggle("NoFootsteps",{
 Text = "No Footsteps",
 Default = false,
@@ -776,6 +765,17 @@ game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.Foot
 end
 end)
 end})
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.GodmodeNew then
+game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 2.55, 0)
+game.Players.LocalPlayer.Character.Collision.CanCollide = false
+game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = false
+else
+game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 0, 0)
+game.Players.LocalPlayer.Character.Collision.CanCollide = true
+game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = true
+end
+end)
 Players:AddToggle("GodmodeNew",{
 Text = "Godmode + Noclip",
 Default = false,
@@ -2986,18 +2986,6 @@ end
 else
 Module_Events.shatter = ShatterFunction
 end
-end})
-FPS:AddToggle("UnmessageDeathHint",{
-Text = "Unmessage Death Hint",
-Default = false,
-Callback = function(v)
-_G.RemoveDeathHint = v
-RemotesFolder.DeathHint.OnClientEvent:Connect(function()
-if _G.RemoveDeathHint then
-task.wait(1)
-firesignal(RemotesFolder.DeathHint.OnClientEvent,{},"Blue")
-end
-end)
 end})
 FPS:AddDivider()
 FPS:AddToggle("LowDetail",{
