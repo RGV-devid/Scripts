@@ -770,10 +770,12 @@ if _G.GodmodeNew then
 game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 2.55, 0)
 game.Players.LocalPlayer.Character.Collision.CanCollide = false
 game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = false
+game.Players.LocalPlayer.Character.Collision.Size = Vector3.new(4,0.1,2.75)
 else
 game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 0, 0)
 game.Players.LocalPlayer.Character.Collision.CanCollide = true
 game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = true
+game.Players.LocalPlayer.Character.Collision.Size = Vector3.new(5,4,4)
 end
 end)
 Players:AddToggle("GodmodeNew",{
@@ -1059,6 +1061,27 @@ Text = "Anti-Giggle",
 Default = false,
 Callback = function(v)
 _G.AntiGiggle = v
+end})
+end
+if Mines then
+game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+if _G.AntiGloomEgg then
+for _, room in ipairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do
+if room.Name == "GloomPile" then
+for _,egg in ipairs(room:GetDescendants()) do
+egg.GloomEgg.Egg.CanTouch = not _G.AntiGloomEgg
+end
+end
+end
+end
+end)
+end)
+Anti:AddToggle("Anti-GloomPile",{
+Text = "Anti-Gloom Egg",
+Default = false,
+Callback = function(v)
+_G.AntiGloomEgg = v
 end})
 end
 if Retro then
@@ -1732,15 +1755,27 @@ Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-if not v:GetAttribute("Opened") and not v:FindFirstChild("DoorESP") then
+if not v:FindFirstChild("DoorESP") then
 LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
+end
+elseif v.Name == "Door" and v.Parent.Name == "Door" then
+if v:GetAttribute("Opened") then
+if v:FindFirstChild("DoorESP") then
+v.DoorESP:Destroy()
+end
 end
 end
 end
 DoorESP = workspace.DescendantAdded:Connect(function(v)
 if v.Name == "Door" and v.Parent.Name == "Door" then
-if not v:GetAttribute("Opened") and not v:FindFirstChild("DoorESP") then
+if not v:FindFirstChild("DoorESP") then
 LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
+end
+elseif v.Name == "Door" and v.Parent.Name == "Door" then
+if v:GetAttribute("Opened") then
+if v:FindFirstChild("DoorESP") then
+v.DoorESP:Destroy()
+end
 end
 end
 end)
@@ -1770,6 +1805,7 @@ end
 end
 end
 KeyESP = workspace.CurrentRooms.ChildAdded:Connect(function(v)
+for _,v in ipairs(workspace:GetDescendants()) do
 if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
@@ -1777,6 +1813,7 @@ end
 elseif v.Name == "ElectricalKeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
+end
 end
 end
 end)
@@ -1806,6 +1843,7 @@ end
 end
 end
 LeverESP = workspace.CurrentRooms.ChildAdded:Connect(function(v)
+for _, v in ipairs(workspace:GetDescendants()) do
 if v.Name == "LeverForGate" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
@@ -1813,6 +1851,7 @@ end
 elseif v.Name == "TimerLever" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
+end
 end
 end
 end)
