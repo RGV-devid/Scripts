@@ -42,20 +42,9 @@ Frame.Position = UDim2.new(0.100320168, 0, 0.379746825, 0)
 
 Frame.Size = UDim2.new(0, 191, 0, 58)
 
-task.spawn(function()
-
-while true do
-
-	for hue = 0, 255, 4 do		Frame.BorderColor3 = Color3.fromHSV(hue/256, 1, 1)
-
-		Frame.BackgroundColor3 = Color3.fromHSV(hue/256, .5, .8)
-
-		wait(0.055)
-
-	end
-
-end
-
+game:GetService("RunService").RenderStepped:Connect(function()
+Frame.BorderColor3 = Color3.fromHSV(tick() % 10/10,1,1)
+Frame.BackgroundColor3 = Color3.fromHSV(tick() % 10/10,1,1)
 end)
 
 up.Name = "up"
@@ -74,6 +63,10 @@ up.TextColor3 = Color3.fromRGB(0, 255, 0)
 
 up.TextSize = 17.000
 
+game:GetService("RunService").RenderStepped:Connect(function()
+up.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
+end)
+
 down.Name = "down"
 
 down.Parent = Frame
@@ -91,6 +84,10 @@ down.Text = "↓"
 down.TextColor3 = Color3.fromRGB(255, 0, 0)
 
 down.TextSize = 17.000
+
+game:GetService("RunService").RenderStepped:Connect(function()
+down.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
+end)
 
 onof.Name = "onof"
 
@@ -112,6 +109,10 @@ onof.TextColor3 = Color3.fromRGB(0, 255, 255)
 
 onof.TextSize = 14.700
 
+game:GetService("RunService").RenderStepped:Connect(function()
+onof.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
+end)
+
 TextLabel.Parent = Frame
 
 TextLabel.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
@@ -122,7 +123,7 @@ TextLabel.Size = UDim2.new(0, 100, 0, 28)
 
 TextLabel.Font = Enum.Font.SourceSans
 
-TextLabel.Text = " "
+TextLabel.Text = "YH FLY GUI"
 
 TextLabel.TextColor3 = Color3.new(0, 255, 0) 
 
@@ -131,6 +132,10 @@ TextLabel.TextScaled = true
 TextLabel.TextSize = 13.250
 
 TextLabel.TextWrapped = true
+
+game:GetService("RunService").RenderStepped:Connect(function()
+TextLabel.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
+end)
 
 plus.Name = "plus"
 
@@ -154,6 +159,10 @@ plus.TextSize = 14.000
 
 plus.TextWrapped = true
 
+game:GetService("RunService").RenderStepped:Connect(function()
+plus.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
+end)
+
 speed.Name = "speed"
 
 speed.Parent = Frame
@@ -175,6 +184,10 @@ speed.TextScaled = true
 speed.TextSize = 14.000
 
 speed.TextWrapped = true
+
+game:GetService("RunService").RenderStepped:Connect(function()
+speed.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
+end)
 
 mine.Name = "mine"
 
@@ -198,6 +211,10 @@ mine.TextSize = 14.000
 
 mine.TextWrapped = true
 
+game:GetService("RunService").RenderStepped:Connect(function()
+mine.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
+end)
+
 closebutton.Name = "Close"
 
 closebutton.Parent = main.Frame
@@ -214,6 +231,10 @@ closebutton.TextSize = 30
 
 closebutton.Position =  UDim2.new(0, 0, -1, 27)
 
+game:GetService("RunService").RenderStepped:Connect(function()
+closebutton.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
+end)
+
 mini.Name = "minimize"
 
 mini.Parent = main.Frame
@@ -229,6 +250,10 @@ mini.Text = "—"
 mini.TextSize = 40
 
 mini.Position = UDim2.new(0, 44, -1, 27)
+
+game:GetService("RunService").RenderStepped:Connect(function()
+mini.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
+end)
 
 mini2.Name = "minimize2"
 
@@ -248,6 +273,10 @@ mini2.Position = UDim2.new(0, 44, -1, 57)
 
 mini2.Visible = false
 
+game:GetService("RunService").RenderStepped:Connect(function()
+mini2.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
+end)
+
 speeds = 1
 
 local speaker = game:GetService("Players").LocalPlayer
@@ -260,7 +289,7 @@ nowe = false
 
 game:GetService("StarterGui"):SetCore("SendNotification", { 
 
-	Title = " ";
+	Title = "YH FLY GUI";
 
 	Text = "Security Enable";
 
@@ -270,9 +299,9 @@ Duration = 15;
 
 game:GetService("StarterGui"):SetCore("SendNotification", { 
 
-	Title = "";
+	Title = "YH FLY GUI";
 
-	Text = "100% Anti Ban";
+	Text = "FLY GUI - v0.0.2";
 
 	Icon = "rbxthumb://type=Asset&id=11935883214&w=150&h=150"})
 
