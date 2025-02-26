@@ -16,10 +16,6 @@ local plus = Instance.new("TextButton")
 
 local speed = Instance.new("TextLabel")
 
-local mine = Instance.new("TextButton")
-
-local closebutton = Instance.new("TextButton")
-
 local mini = Instance.new("TextButton")
 
 local mini2 = Instance.new("TextButton")
@@ -121,9 +117,9 @@ TextLabel.Position = UDim2.new(0.469327301, 0, 0, 0)
 
 TextLabel.Size = UDim2.new(0, 100, 0, 28)
 
-TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Font = Enum.Font.GothamBlack
 
-TextLabel.Text = "YH FLY GUI"
+TextLabel.Text = "FLY GUI"
 
 TextLabel.TextColor3 = Color3.new(0, 255, 0) 
 
@@ -189,52 +185,6 @@ game:GetService("RunService").RenderStepped:Connect(function()
 speed.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
 end)
 
-mine.Name = "mine"
-
-mine.Parent = Frame
-
-mine.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-
-mine.Position = UDim2.new(0.231578946, 0, 0.491228074, 0)
-
-mine.Size = UDim2.new(0, 44, 0, 28)
-
-mine.Font = Enum.Font.SourceSans
-
-mine.Text = "—"
-
-mine.TextColor3 = Color3.fromRGB(255, 0, 0)
-
-mine.TextScaled = true
-
-mine.TextSize = 14.000
-
-mine.TextWrapped = true
-
-game:GetService("RunService").RenderStepped:Connect(function()
-mine.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
-end)
-
-closebutton.Name = "Close"
-
-closebutton.Parent = main.Frame
-
-closebutton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-
-closebutton.Font = "SourceSans"
-
-closebutton.Size = UDim2.new(0, 45, 0, 28)
-
-closebutton.Text = "X"
-
-closebutton.TextSize = 30
-
-closebutton.Position =  UDim2.new(0, 0, -1, 27)
-
-game:GetService("RunService").RenderStepped:Connect(function()
-closebutton.TextColor3 = Color3.fromHSV(tick() % 10/10,1,1)
-end)
-
 mini.Name = "minimize"
 
 mini.Parent = main.Frame
@@ -286,26 +236,6 @@ local chr = game.Players.LocalPlayer.Character
 local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 
 nowe = false
-
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-
-	Title = "YH FLY GUI";
-
-	Text = "Security Enable";
-
-	Icon = "rbxthumb://type=Asset&id=11935868660&w=150&h=150"})
-
-Duration = 15;
-
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-
-	Title = "YH FLY GUI";
-
-	Text = "FLY GUI - v0.0.2";
-
-	Icon = "rbxthumb://type=Asset&id=11935883214&w=150&h=150"})
-
-Duration = 10;
 
 Frame.Active = true -- main = gui
 
@@ -741,63 +671,7 @@ plus.MouseButton1Down:connect(function()
 
 end)
 
-mine.MouseButton1Down:connect(function()
 
-	if speeds == 1 then
-
-		speed.Text = 'cannot be less than 1'
-
-		wait(1)
-
-		speed.Text = speeds
-
-	else
-
-		speeds = speeds - 1
-
-		speed.Text = speeds
-
-		if nowe == true then
-
-			tpwalking = false
-
-			for i = 1, speeds do
-
-				spawn(function()
-
-					local hb = game:GetService("RunService").Heartbeat	
-
-					tpwalking = true
-
-					local chr = game.Players.LocalPlayer.Character
-
-					local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
-
-					while tpwalking and hb:Wait() and chr and hum and hum.Parent do
-
-						if hum.MoveDirection.Magnitude > 0 then
-
-							chr:TranslateBy(hum.MoveDirection)
-
-						end
-
-					end
-
-				end)
-
-			end
-
-		end
-
-	end
-
-end)
-
-closebutton.MouseButton1Click:Connect(function()
-
-	main:Destroy()
-
-end)
 
 mini.MouseButton1Click:Connect(function()
 
