@@ -1,1 +1,28 @@
+local Library = loadstring(game:HttpGet("https://github.com/realredz/RedzLibV5/blob/main/Source.lua?raw=true"))()
 
+local Window = Library:MakeWindow({"YOUHUB | ONE FRUIT SIMULATOR | User : " .. game.Players.LocalPlayer.DisplayName, "Version 1.2", "testando-redzLibv5.json"})
+
+local Button = Window:AddMinimizeButton({
+Button = { Image = "rbxassetid://95869322194132", BackgroundColor3 = Color3.fromRGB(0,0,0), BackgroundTransparency = 0 },
+Corner = { CornerRadius = UDim.new(0, 5) }
+})
+
+local Tabs = {
+Main = Window:MakeTab({"Main", "Home"})
+}
+
+Tabs.Main:AddDropdown({
+        Name = "Select Weapon & Miscellaneous",
+        Options = {"Melee", "Fruit", "Gun", "Sword", "Defence"},
+        MultiSelect = false,
+        Default = {"Melee"},
+      	Callback = function(v)
+_G.Select_Weapon_Miscellaneous = v
+end})
+Tabs.Main:AddToggle({
+	Name = "Auto Training",
+	Callback = function(v)
+_G.Auto_Training = v
+while _G.Auto_Training do
+end
+end})
