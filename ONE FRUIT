@@ -30,6 +30,23 @@ if v:IsA("Tool") then
 if v.ToolTip == "When used, increase strengh stats" then
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
 end
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "\5",
+            [2] = "Combat",
+            [3] = 1,
+            [4] = false,
+            [5] = game:GetService("Players").LocalPlayer.Character[v],
+            [6] = "Melee",
+            [7] = {
+                [1] = Vector3.new(3385.024169921875, 135.72975158691406, 1734.807373046875),
+                [2] = Vector3.new(-0.7523197531700134, -0.6477567553520203, 0.12010899931192398)
+            }
+        }
+    }
+}
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 end
 elseif _G.Select_Weapon_Miscellaneous == "Fruit" then
@@ -38,6 +55,23 @@ if v:IsA("Tool") then
 if v.ToolTip == "When used, increase fruit stats" then
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
 end
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "\5",
+            [2] = "Combat",
+            [3] = 1,
+            [4] = false,
+            [5] = game:GetService("Players").LocalPlayer.Character[v],
+            [6] = "Fruit",
+            [7] = {
+                [1] = Vector3.new(3387.776123046875, 135.72975158691406, 1732.5447998046875),
+                [2] = Vector3.new(-0.5750899910926819, -0.7653697729110718, -0.288930207490921)
+            }
+        }
+    }
+}
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 end
 elseif _G.Select_Weapon_Miscellaneous == "Gun" then
@@ -46,6 +80,22 @@ if v:IsA("Tool") then
 if v.ToolTip == "When used, increase gun stats" then
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
 end
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "\5",
+            [2] = "GunCombat",
+            [3] = {
+                [1] = Vector3.new(3386.726806640625, 135.72975158691406, 1733.748046875),
+                [2] = Vector3.new(-0.6159165501594543, -0.7596065402030945, -0.2089129388332367)
+            },
+            [4] = false,
+            [5] = game:GetService("Players").LocalPlayer.Character[v],
+            [6] = "Gun"
+        }
+    }
+}
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 end
 elseif _G.Select_Weapon_Miscellaneous == "Sword" then
@@ -54,6 +104,23 @@ if v:IsA("Tool") then
 if v.ToolTip == "When used, increase sword stats" then
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
 end
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "\5",
+            [2] = "Combat",
+            [3] = 1,
+            [4] = false,
+            [5] = game:GetService("Players").LocalPlayer.Character[v],
+            [6] = "Sword",
+            [7] = {
+                [1] = Vector3.new(1289.9833984375, 127.02220153808594, -828.2638549804688),
+                [2] = Vector3.new(-0.7341978549957275, -0.30203360319137573, -0.6080536842346191)
+            }
+        }
+    }
+}
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 end
 elseif _G.Select_Weapon_Miscellaneous == "Defence" then
@@ -62,7 +129,37 @@ if v:IsA("Tool") then
 if v.ToolTip == "When used, increase defence stats" then
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
 end
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "\5",
+            [2] = "Defence",
+            [3] = game:GetService("Players").LocalPlayer.Character.Defence,
+            [4] = "Defence"
+        }
+    }
+}
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 end
+end
+end})
+Tabs.Main:AddToggle({
+	Name = "Auto Hao Haki",
+	Callback = function(v)
+_G.Auto_Hao_Haki = v
+while _G.Auto_Hao_Haki do
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "\5",
+            [2] = "HaoHaki",
+            [3] = "null",
+            [4] = false
+        }
+    }
+}
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+wait(1)
 end
 end})
