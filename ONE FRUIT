@@ -24,5 +24,45 @@ Tabs.Main:AddToggle({
 	Callback = function(v)
 _G.Auto_Training = v
 while _G.Auto_Training do
+if _G.Select_Weapon_Miscellaneous == "Melee" then
+for _,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
+if v:IsA("Tool") then
+if v.ToolTip == "When used, increase strengh stats" then
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+end
+end
+elseif _G.Select_Weapon_Miscellaneous == "Fruit" then
+for _,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
+if v:IsA("Tool") then
+if v.ToolTip == "When used, increase fruit stats" then
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+end
+end
+elseif _G.Select_Weapon_Miscellaneous == "Gun" then
+for _,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
+if v:IsA("Tool") then
+if v.ToolTip == "When used, increase gun stats" then
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+end
+end
+elseif _G.Select_Weapon_Miscellaneous == "Sword" then
+for _,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
+if v:IsA("Tool") then
+if v.ToolTip == "When used, increase sword stats" then
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+end
+end
+elseif _G.Select_Weapon_Miscellaneous == "Defence" then
+for _,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
+if v:IsA("Tool") then
+if v.ToolTip == "When used, increase defence stats" then
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+end
+end
 end
 end})
