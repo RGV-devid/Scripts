@@ -16,19 +16,23 @@ Tabs.Main:AddDropdown({
         Options = {"Melee", "Fruit", "Gun", "Sword", "Defence"},
         MultiSelect = false,
         Default = {"Melee"},
-      	Callback = function(v)
-_G.Select_Weapon_Miscellaneous = v
+        Callback = function(v)
+_G.Select_Weapon_Miscellaneou = v
 end})
 Tabs.Main:AddToggle({
 	Name = "Auto Training",
 	Callback = function(v)
-_G.Auto_Training = v
-while _G.Auto_Training do
-if _G.Select_Weapon_Miscellaneous == "Melee" then
+_G.Auto_Train = v
+while _G.Auto_Train do
+if _G.Auto_Train then
+if _G.Select_Weapon_Miscellaneou == "Melee" then
 for i ,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
 if v:IsA("Tool") then
 if v.ToolTip == "When used, increases strength stats" then
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+end
+end
 local args = {
     [1] = {
         [1] = {
@@ -36,7 +40,7 @@ local args = {
             [2] = "Combat",
             [3] = 1,
             [4] = false,
-            [5] = game:GetService("Players").LocalPlayer.Character[v],
+            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
             [6] = "Melee",
             [7] = {
                 [1] = Vector3.new(3385.024169921875, 135.72975158691406, 1734.807373046875),
@@ -45,16 +49,17 @@ local args = {
         }
     }
 }
+
 game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
-end
-end
-end
-if _G.Select_Weapon_Miscellaneous == "Fruit" then
+if _G.Select_Weapon_Miscellaneou == "Fruit" then
 for i ,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
 if v:IsA("Tool") then
 if v.ToolTip == "When used, increases fruit stats" then
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+end
+end
 local args = {
     [1] = {
         [1] = {
@@ -62,7 +67,7 @@ local args = {
             [2] = "Combat",
             [3] = 1,
             [4] = false,
-            [5] = game:GetService("Players").LocalPlayer.Character[v],
+            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
             [6] = "Fruit",
             [7] = {
                 [1] = Vector3.new(3387.776123046875, 135.72975158691406, 1732.5447998046875),
@@ -71,16 +76,17 @@ local args = {
         }
     }
 }
+
 game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
-end
-end
-end
-if _G.Select_Weapon_Miscellaneous == "Gun" then
+if _G.Select_Weapon_Miscellaneou == "Gun" then
 for i ,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
 if v:IsA("Tool") then
 if v.ToolTip == "When used, increases gun stats" then
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+end
+end
 local args = {
     [1] = {
         [1] = {
@@ -91,21 +97,22 @@ local args = {
                 [2] = Vector3.new(-0.6159165501594543, -0.7596065402030945, -0.2089129388332367)
             },
             [4] = false,
-            [5] = game:GetService("Players").LocalPlayer.Character[v],
+            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
             [6] = "Gun"
         }
     }
 }
+
 game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
-end
-end
-end
-if _G.Select_Weapon_Miscellaneous == "Sword" then
+if _G.Select_Weapon_Miscellaneou == "Sword" then
 for i ,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
 if v:IsA("Tool") then
 if v.ToolTip == "When used, increases sword stats" then
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+end
+end
 local args = {
     [1] = {
         [1] = {
@@ -113,7 +120,7 @@ local args = {
             [2] = "Combat",
             [3] = 1,
             [4] = false,
-            [5] = game:GetService("Players").LocalPlayer.Character[v],
+            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
             [6] = "Sword",
             [7] = {
                 [1] = Vector3.new(1289.9833984375, 127.02220153808594, -828.2638549804688),
@@ -124,29 +131,29 @@ local args = {
 }
 game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
-end
-end
-end
-if _G.Select_Weapon_Miscellaneous == "Defence" then
+if _G.Select_Weapon_Miscellaneou == "Defence" then
 for i ,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
 if v:IsA("Tool") then
 if v.ToolTip == "When used, increases defence stats" then
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+end
+end
 local args = {
     [1] = {
         [1] = {
             [1] = "\5",
             [2] = "Defence",
-            [3] = game:GetService("Players").LocalPlayer.Character[v.Name],
+            [3] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
             [4] = "Defence"
         }
     }
 }
+
 game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 end
-end
-end
+wait(-1)
 end
 end})
 Tabs.Main:AddToggle({
@@ -168,3 +175,28 @@ game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 wait(1)
 end
 end})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
