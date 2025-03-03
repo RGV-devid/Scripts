@@ -1,82 +1,3 @@
-local args1 = {
-    [1] = {
-        [1] = {
-            [1] = "\5",
-            [2] = "Combat",
-            [3] = 1,
-            [4] = false,
-            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
-            [6] = "Melee",
-            [7] = {
-                [1] = Vector3.new(3385.024169921875, 135.72975158691406, 1734.807373046875),
-                [2] = Vector3.new(-0.7523197531700134, -0.6477567553520203, 0.12010899931192398)
-            }
-        }
-    }
-}
-
-local args2 = {
-    [1] = {
-        [1] = {
-            [1] = "\5",
-            [2] = "Combat",
-            [3] = 1,
-            [4] = false,
-            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
-            [6] = "Fruit",
-            [7] = {
-                [1] = Vector3.new(3387.776123046875, 135.72975158691406, 1732.5447998046875),
-                [2] = Vector3.new(-0.5750899910926819, -0.7653697729110718, -0.288930207490921)
-            }
-        }
-    }
-}
-
-local args3 = {
-    [1] = {
-        [1] = {
-            [1] = "\5",
-            [2] = "GunCombat",
-            [3] = {
-                [1] = Vector3.new(3386.726806640625, 135.72975158691406, 1733.748046875),
-                [2] = Vector3.new(-0.6159165501594543, -0.7596065402030945, -0.2089129388332367)
-            },
-            [4] = false,
-            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
-            [6] = "Gun"
-        }
-    }
-}
-
-local args4 = {
-    [1] = {
-        [1] = {
-            [1] = "\5",
-            [2] = "Combat",
-            [3] = 1,
-            [4] = false,
-            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
-            [6] = "Sword",
-            [7] = {
-                [1] = Vector3.new(1289.9833984375, 127.02220153808594, -828.2638549804688),
-                [2] = Vector3.new(-0.7341978549957275, -0.30203360319137573, -0.6080536842346191)
-            }
-        }
-    }
-}
-
-local args5 = {
-    [1] = {
-        [1] = {
-            [1] = "\5",
-            [2] = "Defence",
-            [3] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
-            [4] = "Defence"
-        }
-    }
-}
-
-
 local Library = loadstring(game:HttpGet("https://github.com/realredz/RedzLibV5/blob/main/Source.lua?raw=true"))()
 
 local LibraryESP = loadstring(game:HttpGet("https://github.com/RGV-devid/Scripts/blob/main/ESP?raw=true"))()
@@ -114,7 +35,23 @@ game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
 end
 end
 end
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args1))
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "\5",
+            [2] = "Combat",
+            [3] = 1,
+            [4] = false,
+            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
+            [6] = "Melee",
+            [7] = {
+                [1] = Vector3.new(3385.024169921875, 135.72975158691406, 1734.807373046875),
+                [2] = Vector3.new(-0.7523197531700134, -0.6477567553520203, 0.12010899931192398)
+            }
+        }
+    }
+}
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 if _G.Select_Weapon_Miscellaneou == "Fruit" then
 for i ,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
@@ -124,7 +61,23 @@ game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
 end
 end
 end
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args2))
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "\5",
+            [2] = "Combat",
+            [3] = 1,
+            [4] = false,
+            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
+            [6] = "Fruit",
+            [7] = {
+                [1] = Vector3.new(3387.776123046875, 135.72975158691406, 1732.5447998046875),
+                [2] = Vector3.new(-0.5750899910926819, -0.7653697729110718, -0.288930207490921)
+            }
+        }
+    }
+}
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 if _G.Select_Weapon_Miscellaneou == "Gun" then
 for i ,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
@@ -134,7 +87,22 @@ game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
 end
 end
 end
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args3))
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "\5",
+            [2] = "GunCombat",
+            [3] = {
+                [1] = Vector3.new(3386.726806640625, 135.72975158691406, 1733.748046875),
+                [2] = Vector3.new(-0.6159165501594543, -0.7596065402030945, -0.2089129388332367)
+            },
+            [4] = false,
+            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
+            [6] = "Gun"
+        }
+    }
+}
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 if _G.Select_Weapon_Miscellaneou == "Sword" then
 for i ,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
@@ -144,7 +112,23 @@ game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
 end
 end
 end
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args4))
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "\5",
+            [2] = "Combat",
+            [3] = 1,
+            [4] = false,
+            [5] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
+            [6] = "Sword",
+            [7] = {
+                [1] = Vector3.new(1289.9833984375, 127.02220153808594, -828.2638549804688),
+                [2] = Vector3.new(-0.7341978549957275, -0.30203360319137573, -0.6080536842346191)
+            }
+        }
+    }
+}
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 if _G.Select_Weapon_Miscellaneou == "Defence" then
 for i ,v in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
@@ -154,7 +138,17 @@ game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
 end
 end
 end
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args5))
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "\5",
+            [2] = "Defence",
+            [3] = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"),
+            [4] = "Defence"
+        }
+    }
+}
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 end
 wait(-1)
@@ -183,7 +177,7 @@ end})
 Tabs.Main:AddSection({"Players"})
 Tabs.Main:AddDropdown({
         Name = "Select Speed Boost",
-        Options = {"100", "200", "300", "400", "500"},
+        Options = {"100", "200", "300", "400", "500","600","700","800","900","1000"},
         MultiSelect = false,
         Default = {"100"},
         Callback = function(v)
@@ -223,7 +217,7 @@ _G.FakeAwakObservion = v
 end})
 Tabs.Main:AddSection({"ESP"})
 Tabs.Main:AddToggle({
-	Name = "Chest ESP,
+	Name = "Chest ESP",
 	Callback = function(v)
 if v then
 for _,v in ipairs(workspace:GetDescendants()) do
@@ -256,11 +250,6 @@ Tabs.Main:AddToggle({
 	Name = "Rainbow ESP",
 	Callback = function(v)
 getgenv().RainbowESP = v
-end})
-Tabs.Main:AddToggle({
-	Name = "Tracer ESP",
-	Callback = function(v)
-getgenv().TracerESP = v
 end})
 
 
