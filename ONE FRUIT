@@ -1,14 +1,23 @@
-local Library = loadstring(game:HttpGet("https://github.com/realredz/RedzLibV5/blob/main/Source.lua?raw=true"))()
 
+local Library = loadstring(game:HttpGet("https://github.com/realredz/RedzLibV5/blob/main/Source.lua?raw=true"))()
+              Library.Themes.Darker["Color Hub 1"] = ColorSequence.new({
+				ColorSequenceKeypoint.new(0.00, Color3.fromRGB()),
+				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(35)),
+				ColorSequenceKeypoint.new(1.00, Color3.fromRGB())
+			})
+			Library.Themes.Darker["Color Hub 2"] = Color3.fromRGB(40,5,5)
+			Library.Themes.Darker["Color Stroke"] = Color3.fromRGB(50,25,25)
+			Library.Themes.Darker["Color Theme"] = Color3.fromRGB(255)
+			Library.Themes.Darker["Color Text"] = Color3.fromRGB(255,255,255)
+			Library.Themes.Darker["Color Dark Text"] = Color3.fromRGB(200)
 local LibraryESP = loadstring(game:HttpGet("https://github.com/RGV-devid/Scripts/blob/main/ESP?raw=true"))()
 
-local Window = Library:MakeWindow({"YOUHUB | ONE FRUIT SIMULATOR", "Version 1.2", "testando-redzLibv5.json"})
+local Window = Library:MakeWindow({"YOUHUB | ONE FRUIT SIMULATOR", "v0.0.3", "testando-redzLibv5.json"})
 
 local Button = Window:AddMinimizeButton({
-Button = { ImageColor3 = Color3.new(1), Image = "rbxassetid://95869322194132", BackgroundColor3 = Color3.fromRGB(0,0,0), BackgroundTransparency = 0 },
-Corner = { CornerRadius = UDim.new(0, 5) }
+Button = { ImageColor3 = Color3.new(1), Image = "rbxassetid://95869322194132", BackgroundColor3 = Color3.fromRGB(0,0,0), BackgroundTransparency = 0 , Size = UDim2.new(0.1,0,0.22,0)},
+Corner = { CornerRadius = UDim.new(0, 5) },
 })
-
 local Tabs = {
 Main = Window:MakeTab({"Main", "Home"})
 }
