@@ -15,7 +15,7 @@ local LibraryESP = loadstring(game:HttpGet("https://github.com/RGV-devid/Scripts
 local Window = Library:MakeWindow({"YOUHUB | ONE FRUIT SIMULATOR", "v0.0.3", "testando-redzLibv5.json"})
 
 local Button = Window:AddMinimizeButton({
-Button = { ImageColor3 = Color3.new(1), Image = "rbxassetid://95869322194132", BackgroundColor3 = Color3.fromRGB(0,0,0), BackgroundTransparency = 0 , Size = UDim2.new(0.1,0,0.22,0)},
+Button = { ImageColor3 = Color3.new(1), Image = "rbxassetid://95869322194132", BackgroundColor3 = Color3.fromRGB(0,0,0), BackgroundTransparency = 0 },
 Corner = { CornerRadius = UDim.new(0, 5) },
 })
 local Tabs = {
@@ -212,7 +212,7 @@ _G.SelectJumpPower = v
 end})
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.JumpPower then
-game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = _G.SelectJumpPower or 75
+game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = _G.SelectJumpPower or 75
 end
 end)
 Tabs.Main:AddToggle({
@@ -270,28 +270,16 @@ function Tween(Pos)
     if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = false end
     pcall(function() tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/300, Enum.EasingStyle.Linear),{CFrame = Pos}) end)
     tween:Play()
-    if _G.StopTween == true then
-        tween:Cancel()
-    end
 end
 Tabs.Main:AddSection({"Tween"})
-Tabs.Main:AddToggle({
+Tabs.Main:AddButton({
 	Name = "Tween Chest",
-	Callback = function(v)
-_G.Tween_Chest = v
-while _G.Tween_Chest do
+	Callback = function()
 for _,v in ipairs(workspace:GetDescendants()) do
 if v.Name == "ChestInteract" then
 Tween(v.Parent.Baixo:FindFirstChildWhichIsA("BasePart").CFrame)
 end
 end
-wait(0.1)
-end
-end})
-Tabs.Main:AddButton({
-	Name = "Tween Chest",
-	Callback = function()
-_G.StopTween = true
 end})
 Tabs.Main:AddSection({"ESP"})
 Tabs.Main:AddToggle({
