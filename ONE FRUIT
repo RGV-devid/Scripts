@@ -221,11 +221,47 @@ Tabs.Main:AddToggle({
 	Callback = function(v)
 _G.FakeAwakObservion = v
 end})
-Tabs.Main
-
-
-
-
+Tabs.Main:AddSection({"ESP"})
+Tabs.Main:AddToggle({
+	Name = "Chest ESP,
+	Callback = function(v)
+if v then
+for _,v in ipairs(workspace:GetDescendants()) do
+if v.Name == "ChestInteract" then
+LibraryESP:AddESP(v.Parent, v.Parent.Name .. " Chest", Color3.new(1,1), 15, "ChestESP")
+end
+end
+ChestESP = workspace.DescendantAdded:Connect(function(v)
+if v.Name == "ChestInteract" then
+LibraryESP:AddESP(v.Parent, v.Parent.Name .. " Chest", Color3.new(1,1), 15, "ChestESP")
+end
+end)
+else
+ChestESP:Disconnect()
+LibraryESP:Delete("ChestESP")
+end
+end})
+Tabs.Main:AddSection({"Setting ESP"})
+Tabs.Main:AddToggle({
+	Name = "Text ESP",
+	Callback = function(v)
+getgenv().TextESP = v
+end})
+Tabs.Main:AddToggle({
+	Name = "Distance ESP",
+	Callback = function(v)
+getgenv().DistanceESP = v
+end})
+Tabs.Main:AddToggle({
+	Name = "Rainbow ESP",
+	Callback = function(v)
+getgenv().RainbowESP = v
+end})
+Tabs.Main:AddToggle({
+	Name = "Tracer ESP",
+	Callback = function(v)
+getgenv().TracerESP = v
+end})
 
 
 
