@@ -160,7 +160,6 @@ Tabs.Main:AddToggle({
 	Name = "Auto Hao Haki",
 	Callback = function(v)
 _G.Auto_Hao_Haki = v
-while _G.Auto_Hao_Haki do
 local args = {
     [1] = {
         [1] = {
@@ -171,9 +170,11 @@ local args = {
         }
     }
 }
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.Auto_Hao_Haki then
 game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-wait(1)
 end
+end)
 end})
 Tabs.Main:AddDropdown({
         Name = "Select Speed Boost",
