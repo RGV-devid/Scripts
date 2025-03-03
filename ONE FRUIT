@@ -175,9 +175,24 @@ game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 wait(1)
 end
 end})
-
-
-
+Tabs.Main:AddDropdown({
+        Name = "Select Speed Boost",
+        Options = {"100", "200", "300", "400", "500"},
+        MultiSelect = false,
+        Default = {"100"},
+        Callback = function(v)
+_G.SelectSpeed = v
+end})
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.Speed then
+game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = _G.SelectSpeed or 100
+end
+end)
+Tabs.Main:AddToggle({
+	Name = "Speed",
+	Callback = function(v)
+_G.Speed = v
+end})
 
 
 
