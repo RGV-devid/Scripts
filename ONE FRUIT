@@ -202,6 +202,47 @@ Tabs.Main:AddToggle({
 	Callback = function(v)
 _G.Speed = v
 end})
+Tabs.Main:AddDropdown({
+        Name = "Select JumpPower",
+        Options = {"75", "100", "125", "150", "175","200","225","250","275","300"},
+        MultiSelect = false,
+        Default = {"75"},
+        Callback = function(v)
+_G.SelectJumpPower = v
+end})
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.JumpPower then
+game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = _G.SelectJumpPower or 75
+end
+end)
+Tabs.Main:AddToggle({
+	Name = "JumpPower",
+	Callback = function(v)
+_G.JumpPower = v
+end})
+Tabs.Main:AddToggle({
+	Name = "No Accessories",
+	Callback = function(v)
+_G.NoSlow = v
+game:GetService("RunService").RenderStepped:Connect(function()
+game.Players.LocalPlayer.Character.Head.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftFoot.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftHand.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftLowerArm.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftLowerLeg.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftUpperArm.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LeftUpperLeg.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.LowerTorso.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightFoot.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightFoot.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightHand.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightLowerArm.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightLowerLeg.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightUpperArm.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.RightUpperLeg.Massless = not _G.NoSlow;
+game.Players.LocalPlayer.Character.UpperTorso.Massless = not _G.NoSlow;
+end)
+end})
 Tabs.Main:AddToggle({
 	Name = "Inf Jump",
 	Callback = function(v)
@@ -223,6 +264,34 @@ Tabs.Main:AddToggle({
 	Name = "Fake Awakening Observion",
 	Callback = function(v)
 _G.FakeAwakObservion = v
+end})
+function Tween(Pos)
+    Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+    if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = false end
+    pcall(function() tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/300, Enum.EasingStyle.Linear),{CFrame = Pos}) end)
+    tween:Play()
+    if _G.StopTween == true then
+        tween:Cancel()
+    end
+end
+Tabs.Main:AddSection({"Tween"})
+Tabs.Main:AddToggle({
+	Name = "Tween Chest",
+	Callback = function(v)
+_G.Tween_Chest = v
+while _G.Tween_Chest do
+for _,v in ipairs(workspace:GetDescendants()) do
+if v.Name == "ChestInteract" then
+Tween(v.Parent.Baixo:FindFirstChildWhichIsA("BasePart").CFrame)
+end
+end
+wait(0.1)
+end
+end})
+Tabs.Main:AddButton({
+	Name = "Tween Chest",
+	Callback = function()
+_G.StopTween = true
 end})
 Tabs.Main:AddSection({"ESP"})
 Tabs.Main:AddToggle({
