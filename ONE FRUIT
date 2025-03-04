@@ -220,26 +220,7 @@ Tabs.Main:AddToggle({
 	Callback = function(v)
 _G.JumpPower = v
 end})
-Tabs.Main:AddToggle({
-	Name = "No Accessories",
-	Callback = function(v)
-_G.NoSlow = v
-game:GetService("RunService").RenderStepped:Connect(function()
-game.Players.LocalPlayer.Character.Head.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.LeftHand.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.LeftLowerArm.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.LeftLowerLeg.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.LeftUpperArm.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.LeftUpperLeg.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.LowerTorso.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.RightHand.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.RightLowerArm.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.RightLowerLeg.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.RightUpperArm.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.RightUpperLeg.Massless = not _G.NoSlow;
-game.Players.LocalPlayer.Character.UpperTorso.Massless = not _G.NoSlow;
-end)
-end})
+
 Tabs.Main:AddToggle({
 	Name = "Inf Jump",
 	Callback = function(v)
@@ -289,6 +270,52 @@ end)
 else
 ChestESP:Disconnect()
 LibraryESP:Delete("ChestESP")
+end
+end})
+Tabs.Main:AddToggle({
+	Name = "Sea Cow ESP",
+	Callback = function(v)
+if v then
+for _,v in ipairs(workspace:GetDescendants()) do
+if v:FindFirstChild("SeaBeast2") then
+if v.Name == "SeaBeast2" and not v:FindFirstChild("CowESP") then
+LibraryESP:AddESP(v, "Sea Cow", Color3.new(80,255,190), 15, "CowESP")
+end
+end
+end
+CowESP = workspace.DescendantAdded:Connect(function(v)
+if v:FindFirstChild("SeaBeast2") then
+if v.Name == "SeaBeast2" and not v:FindFirstChild("CowESP") then
+LibraryESP:AddESP(v, "Sea Cow", Color3.new(80,255,190), 15, "CowESP")
+end
+end
+end)
+else
+CowESP:Disconnect()
+LibraryESP:Delete("CowESP")
+end
+end})
+Tabs.Main:AddToggle({
+	Name = "Sea King ESP",
+	Callback = function(v)
+if v then
+for _,v in ipairs(workspace:GetDescendants()) do
+if v:FindFirstChild("SeaBeast") then
+if v.Name == "SeaBeast" and not v:FindFirstChild("SeaKingESP") then
+LibraryESP:AddESP(v, "Sea King", Color3.new(255,0,255), 15, "SeaKingESP")
+end
+end
+end
+SeaKingESP = workspace.DescendantAdded:Connect(function(v)
+if v:FindFirstChild("SeaBeast") then
+if v.Name == "SeaBeast" and not v:FindFirstChild("SeaKingESP") then
+LibraryESP:AddESP(v, "Sea King", Color3.new(255,0,255), 15, "SeaKingESP")
+end
+end
+end)
+else
+SeaKingESP:Disconnect()
+LibraryESP:Delete("SeaKingESP")
 end
 end})
 Tabs.Main:AddSection({"Setting ESP"})
