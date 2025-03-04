@@ -273,39 +273,19 @@ function Tween(pos)
     });
     tween:Play()
 end
-Tabs.Main:AddSection({"Tween"})
-Tabs.Main:AddToggle({
-	Name = "Auto Interact Chest",
-	Callback = function()
-for _,v in ipairs(workspace:GetDescendants()) do
-if v.Name == "ChestInteract" then
-if (v.Parent.Baixo:FindFirstChildWhichIsA("BasePart").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 15 then
-fireproximityprompt(v)
-end
-end
-end
-end})
-Tabs.Main:AddButton({
-	Name = "Tween Chest",
-	Callback = function()
-for _,v in ipairs(workspace:GetDescendants()) do
-if v.Name == "ChestInteract" then
-Tween(v.Parent.Baixo:FindFirstChildWhichIsA("BasePart").CFrame)
-end
-end
-end})
+
 Tabs.Main:AddSection({"ESP"})
 Tabs.Main:AddToggle({
 	Name = "Chest ESP",
 	Callback = function(v)
 if v then
 for _,v in ipairs(workspace:GetDescendants()) do
-if v.Name == "ChestInteract" then
+if v.Name == "ChestInteract" and not v.Parent:FindFirstChild("ChestESP") then
 LibraryESP:AddESP(v.Parent, v.Parent.Name .. " Chest", Color3.new(1,1), 15, "ChestESP")
 end
 end
 ChestESP = workspace.DescendantAdded:Connect(function(v)
-if v.Name == "ChestInteract" then
+if v.Name == "ChestInteract" and not v.Parent:FindFirstChild("ChestESP") then
 LibraryESP:AddESP(v.Parent, v.Parent.Name .. " Chest", Color3.new(1,1), 15, "ChestESP")
 end
 end)
