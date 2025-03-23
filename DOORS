@@ -1758,23 +1758,13 @@ if v.Name == "Door" and v.Parent.Name == "Door" then
 if not v:FindFirstChild("DoorESP") then
 LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
-elseif v.Name == "Door" and v.Parent.Name == "Door" then
-if v:GetAttribute("Opened") then
-if v:FindFirstChild("DoorESP") then
-v.DoorESP:Destroy()
 end
 end
-end
-end
-DoorESP = workspace.DescendantAdded:Connect(function(v)
+DoorESP = workspace.CurrentRooms.ChildAdded:Connect(function(v)
+for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
 if not v:FindFirstChild("DoorESP") then
 LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
-end
-elseif v.Name == "Door" and v.Parent.Name == "Door" then
-if v:GetAttribute("Opened") then
-if v:FindFirstChild("DoorESP") then
-v.DoorESP:Destroy()
 end
 end
 end
