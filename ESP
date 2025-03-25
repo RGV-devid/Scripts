@@ -35,7 +35,7 @@ Text.Text = ""
 end
 if getgenv().DistanceESP then
 if getgenv().TextESP == true then
-Text.Text = string.format("%s\n(%sm)", Name or Child.Name, math.floor((workspace.Camera.CFrame.Position - Child:GetPivot().Position).Magnitude))
+Text.Text = string.format("%s\n(%sm)", Name or Child.Name, math.floor((game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position - Child:GetPivot().Position).Magnitude))
 end
 else
 if getgenv().TextESP == true then
