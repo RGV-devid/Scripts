@@ -21,8 +21,8 @@ local Highlight = Instance.new('Highlight', Child)
         Text.Text = ""
         Text.Size = UDim2.new(1,0,0,0)
         Text.Position = UDim2.new(0.5,0,0.7,-35)
-        UIStroke.Thickness = 0.75
-        UIStroke.Color = Color
+        UIStroke.Thickness = 0
+        UIStroke.Color = Color3.new(1,1,1)
         UIStroke.Transparency = 0.75
         Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
         Highlight.FillColor = Color
@@ -75,12 +75,10 @@ end)
 task.spawn(function()
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().RainbowESP then
-        UIStroke.Color = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         Text.TextColor3 = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         Highlight.FillColor = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         Highlight.OutlineColor = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         else
-        UIStroke.Color = Color
         Text.TextColor3 = Color
         Highlight.FillColor = Color
         Highlight.OutlineColor = Color
