@@ -882,6 +882,7 @@ else
 break
 end
 end
+wait()
 end
 end)
 Bypass:AddToggle("SpeedBypass",{
