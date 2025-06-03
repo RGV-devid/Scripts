@@ -57,32 +57,6 @@ end
 end                                
 end)
 task.spawn(function()
-local traceDrawing = Drawing.new('Line') do
-game:GetService("RunService").RenderStepped:Connect(function()
-if not getgenv().RainbowESP then
-traceDrawing.Color = Color
-end
-if getgenv().RainbowESP then
-traceDrawing.Color = Color3.fromHSV(tick() % 10 / 10, 1, 1)
-end
-if getgenv().TracerESP and Child.Parent ~= nil then
-
-local camera = workspace.CurrentCamera
-local vector, onScreen = camera:WorldToViewportPoint(Child:IsA("Model") and not Child:IsA("Tool") and Child:GetPivot().Position or Child:IsA("BasePart") and Child.Position)
-if onScreen then
-traceDrawing.From = Vector2.new(camera.ViewportSize.X /2, camera.ViewportSize.Y / 1)
-traceDrawing.To = Vector2.new(vector.X, vector.Y)
-traceDrawing.Visible = true
-else
-traceDrawing.Visible = false
-end
-else
-traceDrawing.Visible = false
-end
-end)
-end
-end)
-task.spawn(function()
 game:GetService("RunService").RenderStepped:Connect(function()
 if getgenv().RainbowESP then
         Text.TextColor3 = Color3.fromHSV(tick() % 10 / 10, 1, 1)
