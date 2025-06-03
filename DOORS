@@ -24,13 +24,12 @@ local GameData = ReplicatedStorage:WaitForChild("GameData")
 local Floor = GameData:WaitForChild("Floor")
 local Fools = Floor.Value == "Fools"
 local Hotel = Floor.Value == "Hotel"
-local Rooms = Floor.Value == "Rooms"
 local Mines = Floor.Value == "Mines"
 local Retro = Floor.Value == "Retro"
 local Rooms = Floor.Value == "Rooms"
 local Backdoor = Floor.Value == "Backdoor"
 local Hotelold = game.PlaceId == 110258689672367
-if (Fools or game.PlaceId == 110258689672367) then
+if game.PlaceId == 110258689672367 then
 RemotesFolder = ReplicatedStorage.Bricks
 else
 RemotesFolder = ReplicatedStorage.RemotesFolder
@@ -308,8 +307,8 @@ end}):AddKeyPicker("AutoInteractKeybind", {
 })
 
 local function AutoInteractLoop()
-    while true do wait()
-        task.wait()
+    while true do wait(0.1)
+        task.wait(0.3)
         if _G.AutoInteractEnabled then
             local prompts = Script.Functions.GetAllPromptsWithCondition(function(prompt)
                 if not prompt.Parent then return false end
@@ -353,7 +352,7 @@ Text = "Auto Breaker",
 Default = false,
 Callback = function(v)
 _G.AutoBreaker = v
-while _G.AutoBreaker do wait(1)
+while _G.AutoBreaker do wait(0.1)
 if _G.AutoBreaker then
 RemotesFolder.EBF:FireServer()
 end
@@ -361,7 +360,7 @@ end
 end})
 if not Hotelold then
 Automation:AddButton({
-Text = "Padlock Unlock",
+Text = "Padlock Unlock Button",
 Default = false,
 Func = function(v)
 local Floor = game:GetService("ReplicatedStorage").GameData.Floor
@@ -643,7 +642,7 @@ Callback = function(v)
 _G.SeekSpeed = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.SeekSpeed then
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 20.75
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 20.5
 end
 end)
 end}):AddKeyPicker("SeekSpeed", {
@@ -677,21 +676,30 @@ end
 end
 end)
 end})
-
 if Fools or Hotelold then
+Players:AddSlider("GodmodeDepth",{
+    Text = "Godmode Depth",
+    Default = 10,
+    Min = 10,
+    Max = 15,
+    Rounding = 1,
+    Compact = true,
+    Callback = function(v)
+_G.GodmodeDepth = v
+end})
 Players:AddToggle("Godmode",{
 Text = "Godmode",
 Default = false,
 Callback = function(v)
 if v then
 local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
-Collison.Position = Collison.Position - Vector3.new(0,10,0)
+Collison.Position = Collison.Position - Vector3.new(0,_G.GodmodeDepth or 10,0)
 else
 local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
-Collison.Position = Collison.Position - Vector3.new(0,-10,0)
+Collison.Position = Collison.Position - Vector3.new(0,(-_G.GodmodeDepth) or -10,0)
 end
 task.spawn(function()
-while wait(1) do
+while wait(0.1) do
 if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
 Toggles.Godmode:SetValue(false)
 end
@@ -767,17 +775,25 @@ game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.Foot
 end
 end)
 end})
+Players:AddSlider("GodmodeDepthNew",{
+    Text = "Godmode Depth",
+    Default = 2.5,
+    Min = 2.5,
+    Max = 3,
+    Rounding = 1,
+    Compact = true,
+    Callback = function(v)
+_G.GodmodeDepthNew = v
+end})
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.GodmodeNew then
-game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 2.55, 0)
+game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, _G.GodmodeDepthNew or 2.5, 0)
 game.Players.LocalPlayer.Character.Collision.CanCollide = false
 game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = false
-game.Players.LocalPlayer.Character.Collision.Size = Vector3.new(4,0.1,2.75)
 else
 game.Players.LocalPlayer.Character.Collision.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 0, 0)
 game.Players.LocalPlayer.Character.Collision.CanCollide = true
 game.Players.LocalPlayer.Character.Collision.CollisionCrouch.CanCollide = true
-game.Players.LocalPlayer.Character.Collision.Size = Vector3.new(5,4,4)
 end
 end)
 Players:AddToggle("GodmodeNew",{
@@ -833,6 +849,17 @@ end})
 end
 local Bypass = Tabs.Players:AddRightGroupbox("Bypass")
 if not Hotelold then
+Bypass:AddSlider("SpeedBypassDelay",{
+    Text = "Speed Bypass Delay",
+    Default = 0.2,
+    Min = 0.2,
+    Max = 0.23,
+    Rounding = 0.01,
+    Compact = true,
+    Callback = function(v)
+_G.SpeedBypassDelay = v
+end})
+_G.SpeedBypassDelay = 0.2
 local ClonedCollision = game:GetService("Players").LocalPlayer.Character.Collision:Clone()
 ClonedCollision.Name = "_CollisionClone"
 ClonedCollision.Massless = true
@@ -844,14 +871,14 @@ if ClonedCollision:FindFirstChild("CollisionCrouch") then
 ClonedCollision.CollisionCrouch:Destroy()
 end
 task.spawn(function()
-while task.wait(0.23) do
+while true do
 if _G.SpeedBypass and not _G.SeekSpeed then
 if ClonedCollision then
 ClonedCollision.Massless = false
-task.wait(0.23)
+task.wait(_G.SpeedBypassDelay)
 if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored then
 ClonedCollision.Massless = true
-task.wait(1)
+task.wait(_G.SpeedBypassDelay)
 end
 ClonedCollision.Massless = true
 end
@@ -881,7 +908,7 @@ progressPart.Name = "Ladder_Bypass"
 progressPart.Transparency = 1
 end
 if _G.LadderBypass and game.Players.LocalPlayer.Character:GetAttribute("Climbing") then
-task.wait()
+task.wait(0.1)
 game.Players.LocalPlayer.Character:SetAttribute("Climbing", false)
 Library:Notify("WARNING | Complete Ladder Bypass!")
 end
@@ -910,8 +937,6 @@ end}):AddKeyPicker("ManiBypassKey", {
     Mode = Library.IsMobile and "Toggle",
     SyncToggleState = Library.IsMobile,
 })
-
-
 
 local Anti = Tabs.Exploits:AddLeftGroupbox("Anti")
 if not Hotelold then
