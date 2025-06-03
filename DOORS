@@ -834,7 +834,7 @@ Bypass:AddSlider("SpeedBypassDelay",{
     Default = 0.2,
     Min = 0.2,
     Max = 0.23,
-    Rounding = 0.01,
+    Rounding = 2,
     Compact = true,
     Callback = function(v)
 _G.SpeedBypassDelay = v
