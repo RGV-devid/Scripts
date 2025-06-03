@@ -31,14 +31,14 @@ local Highlight = Instance.new('Highlight', Child)
         Highlight.OutlineTransparency =  0
         Highlight.Name = Title
         for i = 1, 100 do
-        if Object:FindFirstChildOfClass("Part") then
+        if Child:FindFirstChildOfClass("Part") then
         break
         end
         if i == 100 then
         return
         end
         end
-        Object:FindFirstChildOfClass("Part").Transparency = 0.99
+        Child:FindFirstChildOfClass("Part").Transparency = 0.99
         Instance.new("Humanoid",Child)
 task.spawn(function()
 while wait(0.001) do
@@ -68,7 +68,7 @@ end
 if getgenv().TracerESP and Child.Parent ~= nil then
 
 local camera = workspace.CurrentCamera
-local vector, onScreen = camera:WorldToViewportPoint(Child:IsA("Model") and Child:GetPivot().Position or Child:IsA("BasePart") and Child.Position)
+local vector, onScreen = camera:WorldToViewportPoint(Child:IsA("Model") and not Child:IsA("Tool") and Child:GetPivot().Position or Child:IsA("BasePart") and Child.Position)
 if onScreen then
 traceDrawing.From = Vector2.new(camera.ViewportSize.X /2, camera.ViewportSize.Y / 1)
 traceDrawing.To = Vector2.new(vector.X, vector.Y)
