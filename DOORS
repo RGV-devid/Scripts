@@ -876,11 +876,10 @@ if _G.SpeedBypass and not _G.SeekSpeed then
 if ClonedCollision then
 ClonedCollision.Massless = false
 task.wait(_G.SpeedBypassDelay)
-if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored then
 ClonedCollision.Massless = true
 task.wait(_G.SpeedBypassDelay)
-end
-ClonedCollision.Massless = true
+else
+break
 end
 end
 end
