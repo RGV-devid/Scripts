@@ -14,7 +14,7 @@ local Highlight = Instance.new('Highlight', Child)
         Text.BackgroundTransparency = 1
         Text.BackgroundColor3 = Color3.new(0,0,0)
         Text.TextColor3 = Color
-        Text.Font = "Oswald"
+        Text.Font = "Roboto"
         Text.TextSize = Size
         Text.TextTransparency = 0
         Text.Visible = true
@@ -27,7 +27,7 @@ local Highlight = Instance.new('Highlight', Child)
         Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
         Highlight.FillColor = Color
         Highlight.OutlineColor = Color
-        Highlight.FillTransparency = 0.75
+        Highlight.FillTransparency = 1
         Highlight.OutlineTransparency =  0
         Highlight.Name = Title
         for i = 1, 100 do
@@ -38,8 +38,10 @@ local Highlight = Instance.new('Highlight', Child)
         return
         end
         end
+        if Child.Name == "KeyObtain" or Child.Name == "ElectricalKeyObtain" or Child.Name == "RushMoving" or Child.Name == "AmbushMoving"  or Child.Name == "Eyes" or Child.Name == "BackdoorRush" or Child.Name == "BackdoorLookman" or Child.Name == "A60" or Child.Name == "A120" or Child.Name == "GlitchAmbush" or Child.Name == "GlitchRush" then
         Child:FindFirstChildOfClass("Part").Transparency = 0.99
         Instance.new("Humanoid",Child)
+end
 task.spawn(function()
 while wait(0.001) do
 if getgenv().TextESP == false then
