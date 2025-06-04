@@ -1763,15 +1763,15 @@ if v then
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
 if not v:FindFirstChild("DoorESP") then
-LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
+LibraryESP:AddESP(v, "Door", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end
 end
-DoorESP = workspace.CurrentRooms.ChildAdded:Connect(function(v)
+DoorESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
 if not v:FindFirstChild("DoorESP") then
-LibraryESP:AddESP(v, v.Name, _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
+LibraryESP:AddESP(v, "Door", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end
 end
@@ -2157,7 +2157,7 @@ elseif v.Name == "AmbushMoving" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Ambush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 end
-elseif v.Parent.Name == "Eyes" and v.Name == "Core" then
+elseif v.Name == "Eyes" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Eyes", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 end
@@ -2220,7 +2220,7 @@ elseif v.Name == "AmbushMoving" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Ambush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 end
-elseif v.Parent.Name == "Eyes" and v.Name == "Core" then
+elseif v.Parent.Name == "Eyes" then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Eyes", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
 end
