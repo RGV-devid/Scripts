@@ -30,6 +30,7 @@ local Highlight = Instance.new('Highlight', Child)
         Highlight.FillTransparency = 1
         Highlight.OutlineTransparency =  0
         Highlight.Name = Title
+if Child.Name == "RushMoving" or Child.Name == "AmbushMoving"  or Child.Name == "Eyes" or Child.Name == "BackdoorRush" or Child.Name == "BackdoorLookman" or Child.Name == "A60" or Child.Name == "A120" or Child.Name == "GlitchAmbush" or Child.Name == "GlitchRush" then
         for i = 1, 100 do
         if Child:FindFirstChildOfClass("Part") then
         break
@@ -38,7 +39,6 @@ local Highlight = Instance.new('Highlight', Child)
         return
         end
         end
-        if Child.Name == "RushMoving" or Child.Name == "AmbushMoving"  or Child.Name == "Eyes" or Child.Name == "BackdoorRush" or Child.Name == "BackdoorLookman" or Child.Name == "A60" or Child.Name == "A120" or Child.Name == "GlitchAmbush" or Child.Name == "GlitchRush" then
         Child:FindFirstChildOfClass("Part").Transparency = 0.99
         Instance.new("Humanoid",Child)
 end
