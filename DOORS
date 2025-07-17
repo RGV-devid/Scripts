@@ -493,9 +493,35 @@ end)
 end})
 World:AddDivider()
 World:AddToggle("ShowNode",{
-Text = "Show Node Play",
+Text = "Show Pathfind Nodes",
 Default = false,
 Callback = function(v)
+if v then
+for _,v in ipairs(workspace.CurrentRooms:GetDescendants()) do
+if v.Parent.Name == "PathfindNodes" then
+local Part = Instance.new("Part",workspace)
+Part.Size = v.Size
+Part.CFrame = v.CFrame
+Part.Shape = "Ball"
+Part.Anchored = true
+Part.Material = "ForceField"
+end
+end
+ShowPathfindNodes = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
+if v.Parent.Name == "PathfindNodes" then
+local Part = Instance.new("Part",workspace)
+Part.Size = v.Size
+Part.Name = "_PathfindNodes"
+Part.CFrame = v.CFrame
+Part.Shape = "Ball"
+Part.Anchored = true
+Part.Material = "ForceField"
+end
+end)
+else
+ShowPathfindNodes:Disconnect()
+LibraryESP:Delete("_PathfindNodes")
+end
 end})
 local Misc = Tabs.Main:AddRightGroupbox("Misc")
 Misc:AddButton({
