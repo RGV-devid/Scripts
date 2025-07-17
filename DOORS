@@ -334,7 +334,7 @@ Callback = function(v)
 _G.AutoBreaker = v
 while _G.AutoBreaker do wait(0.1)
 if _G.AutoBreaker then
-RemotesFolder.EBF:FireServer()
+RemotesFolder.EBF:FireServer() --EBF = Enabled Breaker Fix ☠️☠️
 end
 end
 end})
@@ -490,6 +490,12 @@ game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.Heal
 end
 end
 end)
+end})
+World:AddDivider()
+World:AddToggle("ShowNode",{
+Text = "Show Node Play",
+Default = false,
+Callback = function(v)
 end})
 local Misc = Tabs.Main:AddRightGroupbox("Misc")
 Misc:AddButton({
