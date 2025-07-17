@@ -1755,14 +1755,14 @@ Text = "Door ESP",
 Default = false,
 Callback = function(v)
 if v then
-for _,v in pairs(workspace.CurrentRooms:GetDescendants()) do
+for _,v in ipairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-LibraryESP:AddESP(v, "Door ", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
+LibraryESP:AddESP(v, "Door", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end
 DoorESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 if v.Name == "Door" and v.Parent.Name == "Door" then
-LibraryESP:AddESP(v, "Door ", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
+LibraryESP:AddESP(v, "Door", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end)
 else
@@ -1791,7 +1791,6 @@ end
 end
 end
 KeyESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
-for _,v in ipairs(workspace:GetDescendants()) do
 if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
@@ -1799,7 +1798,6 @@ end
 elseif v.Name == "ElectricalKeyObtain" then
 if not v:FindFirstChild("KeyESP") then
 LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
-end
 end
 end
 end)
@@ -1829,7 +1827,6 @@ end
 end
 end
 LeverESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
-for _, v in ipairs(workspace:GetDescendants()) do
 if v.Name == "LeverForGate" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "Lever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
@@ -1837,7 +1834,6 @@ end
 elseif v.Name == "TimerLever" then
 if not v:FindFirstChild("LeverESP") then
 LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "LeverESP")
-end
 end
 end
 end)
