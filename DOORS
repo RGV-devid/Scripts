@@ -14,7 +14,7 @@ RemotesFolder = ReplicatedStorage.Bricks
 else
 RemotesFolder = ReplicatedStorage.RemotesFolder
 end
-local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
+local repo = "https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/"
 local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
@@ -1755,16 +1755,14 @@ Text = "Door ESP",
 Default = false,
 Callback = function(v)
 if v then
-for _,v in pairs(workspace:GetDescendants()) do
+for _,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-LibraryESP:AddESP(v, "Door", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
+LibraryESP:AddESP(v, "Door ", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end
 DoorESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
-for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "Door" and v.Parent.Name == "Door" then
-LibraryESP:AddESP(v, "Door", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
-end
+LibraryESP:AddESP(v, "Door ", _G.DoorCE or Color3.fromRGB(135,135,255), 20, "DoorESP")
 end
 end)
 else
@@ -1792,7 +1790,7 @@ LibraryESP:AddESP(v, "Electrical Key", _G.KeyCE or Color3.fromRGB(135,255,255), 
 end
 end
 end
-KeyESP = workspace.CurrentRooms.ChildAdded:Connect(function(v)
+KeyESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 for _,v in ipairs(workspace:GetDescendants()) do
 if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") then
@@ -1830,7 +1828,7 @@ LibraryESP:AddESP(v, "TimerLever", _G.LeverCE or Color3.fromRGB(0,255), 20, "Lev
 end
 end
 end
-LeverESP = workspace.CurrentRooms.ChildAdded:Connect(function(v)
+LeverESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 for _, v in ipairs(workspace:GetDescendants()) do
 if v.Name == "LeverForGate" then
 if not v:FindFirstChild("LeverESP") then
@@ -1864,7 +1862,7 @@ LibraryESP:AddESP(v, "Generator", _G.GeneratorCE or Color3.fromRGB(0,255), 20, "
 end
 end
 end
-GeneratorESP = workspace.DescendantAdded:Connect(function(v)
+GeneratorESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 if v.Name == "MinesGenerator" then
 if not v:FindFirstChild("GeneratorESP") then
 LibraryESP:AddESP(v, "Generator", _G.GeneratorCE or Color3.fromRGB(0,255), 20, "GeneratorESP")
@@ -1892,7 +1890,7 @@ LibraryESP:AddESP(v, "Fuse", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "Fuse
 end
 end
 end
-FuseESP = workspace.DescendantAdded:Connect(function(v)
+FuseESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 if v.Name == "FuseObtain" then
 if not v:FindFirstChild("FuseESP") then
 LibraryESP:AddESP(v, "Fuse", _G.FuseCE or Color3.fromRGB(255,255,255), 20, "FuseESP")
@@ -1920,7 +1918,7 @@ LibraryESP:AddESP(v, "Book", _G.BookCE or Color3.fromRGB(255,0,255), 20, "BookES
 end
 end
 end
-BookESP = workspace.DescendantAdded:Connect(function(v)
+BookESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 if v.Name == "LiveHintBook" then
 if not v:FindFirstChild("BookESP") then
 LibraryESP:AddESP(v, "Book", _G.BookCE or Color3.fromRGB(255,0,255), 20, "BookESP")
@@ -1948,7 +1946,7 @@ LibraryESP:AddESP(v, "Breaker", _G.BreakerCE or Color3.fromRGB(255,255,255), 20,
 end
 end
 end
-BreakerESP = workspace.DescendantAdded:Connect(function(v)
+BreakerESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 if v.Name == "LiveBreakerPolePickup" then
 if not v:FindFirstChild("BreakerESP") then
 LibraryESP:AddESP(v, "Breaker", _G.BreakerCE or Color3.fromRGB(255,255,255), 20, "BreakerESP")
@@ -1976,7 +1974,7 @@ LibraryESP:AddESP(v, "Anchor " .. v.Sign.TextLabel.Text, _G.AnchorCE or Color3.f
 end
 end
 end
-AnchorESP = workspace.DescendantAdded:Connect(function(v)
+AnchorESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 if v.Name == "MinesAnchor" then
 if not v:FindFirstChild("AnchorESP") then
 LibraryESP:AddESP(v, "Anchor " .. v.Sign.TextLabel.Text, _G.AnchorCE or Color3.fromRGB(255,255,255), 20, "AnchorESP")
@@ -1992,32 +1990,6 @@ Default = Color3.fromRGB(255,255,255),
 Callback = function(v)
 _G.AnchorCE = v
 end})
-ESP:AddToggle("PlayerESP",{
-Text = "Players ESP",
-Default = false,
-Callback = function(v)
-if v then
-for _,Player in pairs(game:GetService("Players"):GetPlayers()) do
-if Player ~= game:GetService("Players").LocalPlayer then
-ESP:AddESP(Player.Character, Player.DisplayName .. "\n[HP:" .. Player.Character.Humanoid.Health .. "%]", _G.PlayerCE or Color3.new(1,1,1), 14, "PlayerESP")
-end
-end
-PlayerESP = workspace.DescendantAdded:Connect(function(v)
-for _,Player in pairs(game:GetService("Players"):GetPlayers()) do
-if Player ~= game:GetService("Players").LocalPlayer then
-ESP:AddESP(Player.Character, Player.DisplayName .. "\n[HP:" .. Player.Character.Humanoid.Health .. "%]", _G.PlayerCE or Color3.new(1,1,1), 14, "PlayerESP")
-end
-end
-end)
-else
-PlayerESP:Disconnect()
-LibraryESP:Delete("PlayerESP")
-end
-end}):AddColorPicker("PlayerESP",{
-Default = Color3.fromRGB(255,255,255),
-Callback = function(v)
-_G.PlayerCE = v
-end})
 ESP:AddToggle("GoldESP",{
 Text = "Gold ESP",
 Default = false,
@@ -2030,7 +2002,7 @@ LibraryESP:AddESP(v, "Gold " .. v:GetAttribute("GoldValue"), _G.GoldCE or Color3
 end
 end
 end
-GoldESP = workspace.DescendantAdded:Connect(function(v)
+GoldESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 if v.Name == "GoldPile" then
 if not v:FindFirstChild("GoldESP") then
 LibraryESP:AddESP(v, "Gold " .. v:GetAttribute("GoldValue"), _G.GoldCE or Color3.fromRGB(255,255), 20, "GoldESP")
@@ -2074,7 +2046,7 @@ LibraryESP:AddESP(v, "Toolbox", _G.ChestCE or Color3.fromRGB(255,135), 20, "Gold
 end
 end
 end
-ChestESP = workspace.CurrentRooms.ChildAdded:Connect(function(v)
+ChestESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 if v.Name == "ChestBox" then
 if not v:FindFirstChild("ChestESP") then
 LibraryESP:AddESP(v, "Chest", _G.ChestCE or Color3.fromRGB(255,135), 20, "GoldESP")
@@ -2118,7 +2090,7 @@ LibraryESP:AddESP(v, "Waterpump", _G.PumpCE or Color3.fromRGB(0,255,255), 20, "P
 end
 end
 end
-PumpESP = workspace.DescendantAdded:Connect(function(v)
+PumpESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 if v.Name == "WaterPump" then
 if not v:FindFirstChild("PumpESP") then
 LibraryESP:AddESP(v, "Waterpump", _G.PumpCE or Color3.fromRGB(0,255,255), 20, "PumpESP")
@@ -2412,7 +2384,7 @@ end
 end
 end
 end
-ItemsESP = workspace.DescendantAdded:Connect(function(v)
+ItemsESP = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
 if v:IsA("Model") then
 if v.Name == "StarJug" then
 if not v:FindFirstChild("ItemsESP") then
@@ -3082,7 +3054,9 @@ MenuGroup:AddLabel("Keybind"):AddKeyPicker("MenuKeybind", { Default = "RightShif
 MenuGroup:AddButton("Unload", function() Library:Unload() end)
 
 CreditsGroup:AddLabel("Developers:")
-CreditsGroup:AddLabel("< Owner > | rechedmcvn")
+CreditsGroup:AddLabel("Owner | rechedmcvn")
+CreditsGroup:AddLabel("Reviewer:")
+CreditsGroup:AddLabel("Not Found.")
 
 ThemeManager:SetLibrary(Library)
 SaveManager:SetLibrary(Library)
