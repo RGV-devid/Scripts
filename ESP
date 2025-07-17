@@ -38,7 +38,7 @@ local Highlight = Instance.new('Highlight', Child)
         return
         end
         end
-        if Child.Name == "KeyObtain" or Child.Name == "ElectricalKeyObtain" or Child.Name == "RushMoving" or Child.Name == "AmbushMoving"  or Child.Name == "Eyes" or Child.Name == "BackdoorRush" or Child.Name == "BackdoorLookman" or Child.Name == "A60" or Child.Name == "A120" or Child.Name == "GlitchAmbush" or Child.Name == "GlitchRush" then
+        if Child.Name == "RushMoving" or Child.Name == "AmbushMoving"  or Child.Name == "Eyes" or Child.Name == "BackdoorRush" or Child.Name == "BackdoorLookman" or Child.Name == "A60" or Child.Name == "A120" or Child.Name == "GlitchAmbush" or Child.Name == "GlitchRush" then
         Child:FindFirstChildOfClass("Part").Transparency = 0.99
         Instance.new("Humanoid",Child)
 end
