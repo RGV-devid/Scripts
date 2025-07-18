@@ -34,6 +34,7 @@ local Window = Library:CreateWindow({
 	Icon = 95073582077930,
         Font = Enum.Font.GothamBlack,
         CornerRadius = 10,
+        Center = true,
 	NotifySide = "Right",
 	ShowCustomCursor = true,
         AutoShow = true,
