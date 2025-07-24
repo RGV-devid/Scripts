@@ -1814,7 +1814,7 @@ Text = "Key ESP",
 Default = false,
 Callback = function(v)
 if v then
-for _,v in pairs(workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do
+for _,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 if v.Name == "KeyObtain" then
 if not v:FindFirstChild("KeyESP") and v then
 LibraryESP:AddESP(v, "Key", _G.KeyCE or Color3.fromRGB(135,255,255), 20, "KeyESP")
@@ -2142,7 +2142,7 @@ Text = "Entity ESP",
 Default = false,
 Callback = function(v)
 if v then
-for _,v in pairs(workspace:GetDescendants()) do
+for _,v in ipairs(workspace:GetDescendants()) do
 if v.Name == "RushMoving" and v then
 if not v:FindFirstChild("EntityESP") then
 LibraryESP:AddESP(v, "Rush", _G.EntityCE or Color3.fromRGB(255), 20, "EntityESP")
