@@ -79,19 +79,19 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v:IsA("ProximityPrompt") then
+if v:IsA("ProximityPrompt") and v then
 v.MaxActivationDistance = 15
 end
 end
 IncreasedDistance = workspace.DescendantAdded:Connect(function(v)
-if v:IsA("ProximityPrompt") then
+if v:IsA("ProximityPrompt") and v then
 v.MaxActivationDistance = 15
 end
 end)
 else
 IncreasedDistance:Disconnect()
 for _,v in pairs(workspace:GetDescendants()) do
-if v:IsA("ProximityPrompt") then
+if v:IsA("ProximityPrompt") and v then
 v.MaxActivationDistance = 8
 end
 end
@@ -104,19 +104,19 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v:IsA("ProximityPrompt") then
+if v:IsA("ProximityPrompt") and v then
 v.RequiresLineOfSight = false
 end
 end
 ThroughInteract = workspace.DescendantAdded:Connect(function(v)
-if v:IsA("ProximityPrompt") then
+if v:IsA("ProximityPrompt") and v then
 v.RequiresLineOfSight = false
 end
 end)
 else
 ThroughInteract:Disconnect()
 for _,v in pairs(workspace:GetDescendants()) do
-if v:IsA("ProximityPrompt") then
+if v:IsA("ProximityPrompt") and v then
 v.RequiresLineOfSight = true
 end
 end
@@ -128,12 +128,12 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v:IsA("ProximityPrompt") then
+if v:IsA("ProximityPrompt") and v then
 v.HoldDuration = 0
 end
 end
 InstanceInteract = workspace.DescendantAdded:Connect(function(v)
-if v:IsA("ProximityPrompt") then
+if v:IsA("ProximityPrompt") and v then
 v.HoldDuration = 0
 end
 end)
@@ -429,13 +429,13 @@ Callback = function(v)
 _G.BlurFakeBridge = v
 if _G.BlurFakeBridge then
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Bridge" and not v.CanCollide == true then
+if v.Name == "Bridge" and not v.CanCollide == true and v then
 v.Transparency = 0.9
 end
 end
 BlurFakeBridge = workspace.CurrentRooms.ChildAdded:Connect(function(v)
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Bridge" and not v.CanCollide == true then
+if v.Name == "Bridge" and not v.CanCollide == true and v then
 v.Transparency = 0.75
 end
 end
@@ -443,7 +443,7 @@ end)
 else
 BlurFakeBridge:Disconnect()
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Bridge" and not v.CanCollide == true then
+if v.Name == "Bridge" and not v.CanCollide == true and v then
 v.Transparency = 0
 end
 end
@@ -458,7 +458,7 @@ Callback = function(v)
 _G.NoLiveSanity = v
 while _G.NoLiveSanity do wait(1)
 for _,v in workspace.CurrentCamera:GetChildren() do
-if v.Name == "LiveSanity" then
+if v.Name == "LiveSanity" and v then
 v.Enabled = not _G.NoLiveSanity
 end
 end
@@ -499,7 +499,7 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in ipairs(workspace.CurrentRooms:GetDescendants()) do
-if v.Parent.Name == "PathfindNodes" then
+if v.Parent.Name == "PathfindNodes" and v then
 local Part = Instance.new("Part",workspace)
 Part.Size = v.Size
 Part.CFrame = v.CFrame
@@ -510,7 +510,7 @@ Part.Material = "ForceField"
 end
 end
 ShowPathfindNodes = workspace.CurrentRooms.DescendantAdded:Connect(function(v)
-if v.Parent.Name == "PathfindNodes" then
+if v.Parent.Name == "PathfindNodes" and v then
 local Part = Instance.new("Part",workspace)
 Part.Size = v.Size
 Part.Name = "_PathfindNodes"
@@ -954,7 +954,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 if _G.AntiSnare then
 if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Snare") then
 for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do 
-if v.Name == "Snare" then 
+if v.Name == "Snare" and v then 
 v.Hitbox.CanTouch = not _G.AntiSnare
 end 
 end 
@@ -974,7 +974,7 @@ Callback = function(v)
 _G.AntiDupe = v
 if _G.AntiDupe then
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "DoorFake" and v:IsA("Model") then
+if v.Name == "DoorFake" and v:IsA("Model") and v then
 v.Hidden.CanTouch = not _G.AntiDupe
 if v:FindFirstChild("LockPart") and v.LockPart:FindFirstChild("UnlockPrompt") then
 v.LockPart.UnlockPrompt.Enabled = not true
@@ -983,7 +983,7 @@ end
 end
 AntiDupe = workspace.CurrentRooms.ChildAdded:Connect(function()
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "DoorFake" and v:IsA("Model") then
+if v.Name == "DoorFake" and v:IsA("Model") and v then
 v.Hidden.CanTouch = not _G.AntiDupe
 if v:FindFirstChild("LockPart") and v.LockPart:FindFirstChild("UnlockPrompt") then
 v.LockPart.UnlockPrompt.Enabled = not true
@@ -994,7 +994,7 @@ end)
 else
 AntiDupe:Disconnect()
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "DoorFake" and v:IsA("Model") then
+if v.Name == "DoorFake" and v:IsA("Model") and v then
 v.Hidden.CanTouch = not false
 if v:FindFirstChild("LockPart") and v.LockPart:FindFirstChild("UnlockPrompt") then
 v.LockPart.UnlockPrompt.Enabled = not false
@@ -1008,7 +1008,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 if _G.AntiChandelier then 
 if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("ChandelierObstruction") then 
 for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do 
-if v.Name == "ChandelierObstruction" then 
+if v.Name == "ChandelierObstruction" and v then 
 v.HurtPart.CanTouch = not _G.AntiChandelier
 end 
 end 
@@ -1025,7 +1025,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 if _G.AntiSeekArms then
 if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Seek_Arm") then
 for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do 
-if v.Name == "Seek_Arm" then 
+if v.Name == "Seek_Arm" and v then 
 v.AnimatorPart.CanTouch = not _G.AntiSeekArms
 end 
 end 
@@ -1086,7 +1086,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 pcall(function()
 if _G.AntiGiggle then
 for _, room in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetChildren()) do
-if room.Name == "GiggleCeiling" then
+if room.Name == "GiggleCeiling" and v then
 room.Hitbox.CanTouch = not _G.AntiGiggle
 end
 end
@@ -1104,7 +1104,7 @@ if Mines then
 game:GetService("RunService").RenderStepped:Connect(function()
 pcall(function()
 if _G.AntiGloomEgg then
-for _, room in ipairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do
+for _, room in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetChildren()) do
 if room.Name == "GloomPile" then
 for _,egg in ipairs(room:GetDescendants()) do
 egg.GloomEgg.Egg.CanTouch = not _G.AntiGloomEgg
@@ -1129,13 +1129,13 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Lava" then
+if v.Name == "Lava" and v then
 v.CanTouch = false
 end
 end
 AntiLava = workspace.CurrentRooms.ChildAdded:Connect(function()
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Lava" then
+if v.Name == "Lava" and v then
 v.CanTouch = false
 end
 end
@@ -1143,7 +1143,7 @@ end)
 else
 AntiLava:Disconnect()
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Lava" then
+if v.Name == "Lava" and v then
 v.CanTouch = true
 end
 end
@@ -1155,13 +1155,13 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "TheWall" then
+if v.Name == "TheWall" and v then
 v.CanTouch = false
 end
 end
 AntiWall = workspace.CurrentRooms.ChildAdded:Connect(function(v)
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "TheWall" then
+if v.Name == "TheWall" and v then
 v.CanTouch = false
 end
 end
@@ -1169,7 +1169,7 @@ end)
 else
 AntiWall:Disconnect()
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "TheWall" then
+if v.Name == "TheWall" and v then
 v.CanTouch = true
 end
 end
@@ -1184,14 +1184,14 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "BananaPeel" then
+if v.Name == "BananaPeel" and v then
 v.CanTouch = false
 v:Destroy()
 end
 end
 AntiBanana = workspace.ChildAdded:Connect(function(v)
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "BananaPeel" then
+if v.Name == "BananaPeel" and v then
 v.CanTouch = false
 v:Destroy()
 end
@@ -1290,13 +1290,13 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Drakobloxxer" then
+if v.Name == "Drakobloxxer" and v then
 v:Destroy()
 end
 end
 AntiDrakobloxxer = workspace.ChildAdded:Connect(function()
 for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "Drakobloxxer" then
+if v.Name == "Drakobloxxer" and v then
 v:Destroy()
 end
 end
@@ -1314,100 +1314,100 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v.Knife.CanTouch = false 
 v.Knife.CanCollide = false
 v:Destroy()
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v.Head.CanTouch = false 
 v.Head.CanCollide = false
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v.HumanoidRootPart.CanTouch = false 
 v.HumanoidRootPart.CanCollide = false
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v["Left Arm"].CanTouch = false 
 v["Left Arm"].CanCollide = false
 end 
 end
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v["Left Leg"].CanTouch = false 
 v["Left Leg"].CanCollide = false
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v["Right Arm"].CanTouch = false 
 v["Right Arm"].CanCollide = false
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v["Right Leg"].CanTouch = false 
 v["Right Leg"].CanCollide = false
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v.Torso.CanTouch = false 
 v.Torso.CanCollide = false
 end 
 end 
 AntiJeff = workspace.ChildAdded:Connect(function(child)
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v.Knife.CanTouch = false 
 v.Knife.CanCollide = false
 v:Destroy()
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v.Head.CanTouch = false 
 v.Head.CanCollide = false
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v.HumanoidRootPart.CanTouch = false 
 v.HumanoidRootPart.CanCollide = false
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v["Left Arm"].CanTouch = false 
 v["Left Arm"].CanCollide = false
 end 
 end
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v["Left Leg"].CanTouch = false 
 v["Left Leg"].CanCollide = false
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v["Right Arm"].CanTouch = false 
 v["Right Arm"].CanCollide = false
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do 
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v["Right Leg"].CanTouch = false 
 v["Right Leg"].CanCollide = false
 end 
 end 
 for _,v in pairs(game.workspace:GetChildren()) do
-if v.Name == "JeffTheKiller" then 
+if v.Name == "JeffTheKiller" and v then 
 v.Torso.CanTouch = false 
 v.Torso.CanCollide = false
 end 
@@ -1428,7 +1428,7 @@ _G.AntiSeekCar = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.AntiSeekCar then
 for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do 
-if v.Name == "TriggerEventCollision" then 
+if v.Name == "TriggerEventCollision" and v then 
 v:Destroy()
 end 
 end 
@@ -1443,7 +1443,7 @@ _G.RemovalGate = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.RemovalGate then
 for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do 
-if v.Name == "Gate" then 
+if v.Name == "Gate" and v then 
 v:Destroy()
 end 
 end 
@@ -1456,7 +1456,7 @@ Default = false,
 Callback = function(v)
 _G.RemovalSkeleton = v
 game:GetService("RunService").RenderStepped:Connect(function()
-if _G.RemovalSkeleton then
+if _G.RemovalSkeleton and v then
 for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do 
 if v.Name == "Wax_Door" then 
 v:Destroy()
@@ -1473,7 +1473,7 @@ _G.RemovalPuzzle = v
 game:GetService("RunService").RenderStepped:Connect(function()
 if _G.RemovalPuzzle then
 for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do 
-if v.Name == "MovingDoor" then 
+if v.Name == "MovingDoor" and v then 
 v:Destroy()
 end 
 end 
@@ -2596,7 +2596,7 @@ NotificationEntity = workspace.ChildAdded:Connect(function(v)
 if table.find(Entity,v.Name) then
 repeat task.wait() until game.Players.LocalPlayer:DistanceFromCharacter(v:GetPivot().Position) < 750 or not v:IsDescendantOf(workspace)
 if v:IsDescendantOf(workspace) then
-if Options.SelectEntity.Value["Rush"] and v.Name == "RushMoving" then
+if Options.SelectEntity.Value["Rush"] and v.Name == "RushMoving" and v then
 Library:Notify("ENTITIES | Rush has spawn, find hiding place and hide now!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -2609,7 +2609,7 @@ end
 if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Rush has spawn!")
 end
-elseif Options.SelectEntity.Value["Ambush"] and v.Name == "AmbushMoving" then
+elseif Options.SelectEntity.Value["Ambush"] and v.Name == "AmbushMoving" and v then
 Library:Notify("ENTITIES | Ambush has spawn, find hiding place and hide now!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -2622,7 +2622,7 @@ end
 if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Ambush has spawn!")
 end
-elseif Options.SelectEntity.Value["Blitz"] and v.Name == "BackdoorRush" then
+elseif Options.SelectEntity.Value["Blitz"] and v.Name == "BackdoorRush" and v then
 Library:Notify("ENTITIES | Blitz has spawn, find hiding place and hide now!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -2635,7 +2635,7 @@ end
 if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Blitz has spawn!")
 end
-elseif Options.SelectEntity.Value["A60"] and v.Name == "A60" then
+elseif Options.SelectEntity.Value["A60"] and v.Name == "A60" and v then
 Library:Notify("ENTITIES | A60 has spawn, find hiding place and hide now!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -2648,7 +2648,7 @@ end
 if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] A60 has spawn!")
 end
-elseif Options.SelectEntity.Value["A120"] and v.Name == "A120" then
+elseif Options.SelectEntity.Value["A120"] and v.Name == "A120" and v then
 Library:Notify("ENTITIES | A120 has spawn, find hiding place and hide now!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -2661,7 +2661,7 @@ end
 if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] A120 has spawn!")
 end
-elseif Options.SelectEntity.Value["Lookman"] and v.Name == "BackdoorLookman" then
+elseif Options.SelectEntity.Value["Lookman"] and v.Name == "BackdoorLookman" and v then
 Library:Notify("ENTITIES | Lookman has spawn, dont look at it!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -2674,7 +2674,7 @@ end
 if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Lookman has spawn!")
 end
-elseif Options.SelectEntity.Value["Eyes"] and v.Name == "Eyes" then
+elseif Options.SelectEntity.Value["Eyes"] and v.Name == "Eyes" and v then
 Library:Notify("ENTITIES | Eyes has spawn, dont look at it!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -2687,7 +2687,7 @@ end
 if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Eyes has spawn!")
 end
-elseif Options.SelectEntity.Value["Seek Chase"] and v.Name == "SeekMoving" or v.Name == "SeekMovingNewClone" then
+elseif Options.SelectEntity.Value["Seek Chase"] and v.Name == "SeekMoving" or v.Name == "SeekMovingNewClone" and v then
 Library:Notify("ENTITIES | Seek has spawn, goodluck for chase!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -2700,7 +2700,7 @@ end
 if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Seek Chase goodluck!")
 end
-elseif Options.SelectEntity.Value["JeffTheKiller"] and v.Name == "JeffTheKiller" then
+elseif Options.SelectEntity.Value["JeffTheKiller"] and v.Name == "JeffTheKiller" and v then
 Library:Notify("ENTITIES | Jeff The Killer has spawn, careful with knife it!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -2713,7 +2713,7 @@ end
 if _G.PlayChatAlert then
 game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Alert] Jeff The Killer has spawn!")
 end
-elseif Options.SelectEntity.Value["AR0xMBUSH"] and v.Name == "GlitchAmbush" then
+elseif Options.SelectEntity.Value["AR0xMBUSH"] and v.Name == "GlitchAmbush" and v then
 Library:Notify("ENTITIES | AR0xMBUSH has spawn, find hiding place and hide now!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -2723,7 +2723,7 @@ Sound.Volume = _G.PlaySoundAlert
 Sound.PlayOnRemove = true
 Sound:Destroy()
 end
-elseif Options.SelectEntity.Value["RNIUSHCg=="] and v.Name == "GlitchRush" then
+elseif Options.SelectEntity.Value["RNIUSHCg=="] and v.Name == "GlitchRush" and v then
 Library:Notify("ENTITIES | RNIUSHCg== has spawn, find hiding place and hide now!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -2733,7 +2733,7 @@ Sound.Volume = _G.PlaySoundAlert
 Sound.PlayOnRemove = true
 Sound:Destroy()
 end
-elseif Options.SelectEntity.Value["Gloombat Swarm"] and v.Name == "GloombatSwarm" then
+elseif Options.SelectEntity.Value["Gloombat Swarm"] and v.Name == "GloombatSwarm" and v then
 Library:Notify("ENTITIES | Gloombat Swarm has spawn!")
 if _G.SoundAlert then
 local Sound = Instance.new("Sound")
@@ -3006,7 +3006,7 @@ Default = false,
 Callback = function(v)
 if v then
 for _, object in pairs(workspace:GetDescendants()) do
-if object:IsA("BasePart") then
+if object:IsA("BasePart") and object then
 if not object:GetAttribute("Material") then object:SetAttribute("Material", object.Material) end
 if not object:GetAttribute("Reflectance") then object:SetAttribute("Reflectance", object.Reflectance) end
 object.Material = true and Enum.Material.Plastic or object:GetAttribute("Material")
@@ -3021,7 +3021,7 @@ workspace.Terrain.WaterWaveSize = true and 0 or 0.05
 workspace.Terrain.WaterWaveSpeed = true and 0 or 8
 LowQuality = workspace.CurrentRooms.ChildAdded:Connect(function(child)
 for _, object in pairs(workspace:GetDescendants()) do
-if object:IsA("BasePart") then
+if object:IsA("BasePart") and object then
 if not object:GetAttribute("Material") then object:SetAttribute("Material", object.Material) end
 if not object:GetAttribute("Reflectance") then object:SetAttribute("Reflectance", object.Reflectance) end
 object.Material = true and Enum.Material.Plastic or object:GetAttribute("Material")
@@ -3060,13 +3060,13 @@ Default = false,
 Callback = function(v)
 if v then
 for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do
-if v:IsA("Model") and v.Name == "HangingHalloweenDecor" then
+if v:IsA("Model") and v.Name == "HangingHalloweenDecor" and v then
 v:Destroy()
 end
 end
 NoBat = workspace.CurrentRooms.ChildAdded:Connect(function(child)
 for _,v in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:GetDescendants()) do
-if v:IsA("Model") and v.Name == "HangingHalloweenDecor" then
+if v:IsA("Model") and v.Name == "HangingHalloweenDecor" and v then
 v:Destroy()
 end
 end
