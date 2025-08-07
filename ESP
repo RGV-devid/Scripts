@@ -56,6 +56,8 @@ end
 end)
 task.spawn(function()
 game:GetService("RunService").RenderStepped:Connect(function()
+Highlight.FillTransparency = getgenv().FillTransparency or 1
+Highlight.OutlineTransparency =  getgenv().OutlineTransparency or 0
 if getgenv().RainbowESP then
         Text.TextColor3 = Color3.fromHSV(tick() % 10 / 10, 1, 1)
         Highlight.FillColor = Color3.fromHSV(tick() % 10 / 10, 1, 1)
