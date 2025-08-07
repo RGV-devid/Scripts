@@ -48,9 +48,7 @@ while wait(0.001) do
 if getgenv().DistanceESP then
 Text.Text = string.format("%s\n(%sm)", Name or Child.Name, math.floor((game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position - Child:GetPivot().Position).Magnitude))
 else
-if getgenv().TextESP == true then
 Text.Text = Name
-end
 end
 end                                
 end)
